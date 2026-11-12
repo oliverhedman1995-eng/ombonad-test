@@ -19,15 +19,15 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='12' fill='%23F3DE95'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23455B47' stroke-width='3'/%3E%3C/svg%3E">
 <script>window.BRAND="Webbglans";document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');</script>
 
-<link rel="preload" href="fonts/Newsreader-normal.woff2?v=9" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/Newsreader-italic.woff2?v=9" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/Figtree-normal.woff2?v=9" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Newsreader-normal.woff2?v=10" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Newsreader-italic.woff2?v=10" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Figtree-normal.woff2?v=10" as="font" type="font/woff2" crossorigin>
 <style>
 /* Självhostade typsnitt (woff2, latin-subset, font-display:swap) */
-@font-face{font-family:'Figtree';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/Figtree-normal.woff2?v=9) format('woff2')}
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/Newsreader-normal.woff2?v=9) format('woff2')}
-@font-face{font-family:'Newsreader';font-style:italic;font-weight:100 900;font-display:swap;src:url(fonts/Newsreader-italic.woff2?v=9) format('woff2')}
-@font-face{font-family:'Figtree';font-style:italic;font-weight:300 900;font-display:swap;src:url(fonts/Figtree-italic.woff2?v=9) format('woff2')}
+@font-face{font-family:'Figtree';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/Figtree-normal.woff2?v=10) format('woff2')}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/Newsreader-normal.woff2?v=10) format('woff2')}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:100 900;font-display:swap;src:url(fonts/Newsreader-italic.woff2?v=10) format('woff2')}
+@font-face{font-family:'Figtree';font-style:italic;font-weight:300 900;font-display:swap;src:url(fonts/Figtree-italic.woff2?v=10) format('woff2')}
 
 :root{
   --linen:#F4EFE6; --linen-2:#EBE4D6; --paper:#FFFDF8; --ink:#2C302C; --ink-2:#565C55; --line:#DED6C6;
@@ -55,6 +55,17 @@ h1{font:500 clamp(46px,7vw,92px)/1 var(--disp);font-variation-settings:"SOFT" 10
 h2{font:500 clamp(34px,4.8vw,60px)/1.05 var(--disp);font-variation-settings:"SOFT" 100,"opsz" 120;letter-spacing:-.02em}
 h3{font:700 21px/1.25 var(--sans);letter-spacing:-.01em}
 h1 i,h2 i{font-style:italic;color:var(--sage-d)}
+/* glimma på "glans": en ljusreflex sveper över ordet och två stjärnor tindrar. Pausas av pausknappen (.v2-paused), av i reducerad rörelse. */
+.glint{position:relative;display:inline-block;padding-right:.08em}
+.motion .glint{background:linear-gradient(110deg,var(--sage-d) 0 38%,#E9C95A 46%,#FFF8DC 50%,#E9C95A 54%,var(--sage-d) 62% 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;animation:glint 8s 1.4s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes glint{0%{background-position:100% 0}16%,100%{background-position:0 0}}
+.spark{position:absolute;width:.28em;height:.28em;fill:#E9C95A;opacity:0;pointer-events:none}
+.spark.s1{top:-.12em;right:-.18em}
+.spark.s2{top:.42em;left:-.16em;width:.17em;height:.17em}
+.motion .spark{animation:spark 8s 1.4s ease-in-out infinite}
+.motion .spark.s2{animation-delay:1.75s}
+@keyframes spark{0%,4%{opacity:0;transform:scale(.2) rotate(0)}10%{opacity:1;transform:scale(1) rotate(45deg)}18%,100%{opacity:0;transform:scale(.3) rotate(90deg)}}
+@media (prefers-reduced-motion:reduce){.glint{background:none!important;color:var(--sage-d)!important;animation:none!important}.spark{display:none}}
 p{margin:0}
 .lead{font-size:clamp(18px,1.6vw,20px);color:var(--ink-2);max-width:54ch}
 .kicker{display:inline-flex;align-items:center;gap:10px;font:600 13px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--sage-d);background:var(--sage-l);padding:9px 14px;border-radius:999px}
@@ -175,6 +186,8 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .n-site .r i{height:clamp(46px,7vw,90px);border-radius:16px;background:var(--sage-l)}
 .n-site .r i:nth-child(2){background:var(--butter-l)}
 .checks{position:absolute;right:6%;bottom:8%;display:grid;gap:8px}
+/* kort 4: rutraden ger plats åt bockarna så att inget ligger över varandra */
+.dk[data-k="3"] .r{grid-template-columns:repeat(2,1fr);max-width:56%}
 .checks span{background:var(--sage-d);color:#fff;font-size:12px;font-weight:600;padding:7px 12px 7px 9px;border-radius:999px;display:flex;gap:7px;align-items:center}
 .checks span::before{content:"✓";width:18px;height:18px;border-radius:50%;background:var(--butter);color:var(--sage-d);display:grid;place-items:center;font-size:11px}
 .stack-ill{position:absolute;right:clamp(20px,4vw,40px);bottom:14px;font-size:12px;color:var(--ink-2)}
@@ -263,6 +276,13 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .dial .k{font-weight:700}
 .dial .d{font-size:14px;color:#C8D3C5;margin-top:4px}
 .results-box .tag{margin-bottom:22px}
+.measure{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);margin-top:clamp(30px,4vw,48px);padding-top:clamp(24px,3vw,36px);border-top:1px solid rgba(244,239,230,.22)}
+.measure h3{font:500 clamp(24px,2.4vw,30px)/1.1 var(--disp);color:#fff;margin:0 0 10px}
+.measure h3 small{display:block;font:600 14px/1.4 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--butter);margin-top:6px}
+.measure p{color:#D5DED2;margin:0 0 12px;max-width:52ch}
+.measure .m-why{color:#F4EFE6}
+.measure .m-why b{color:var(--butter)}
+@media (max-width:760px){.measure{grid-template-columns:1fr}}
 .disc{display:flex;gap:12px;margin-top:26px;font-size:14px;color:#D5DED2;max-width:80ch}
 @media (max-width:960px){.dials{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:440px){.dial .ring{width:104px;height:104px}.dial{padding:20px 12px}}
@@ -520,7 +540,7 @@ html:not(.motion) .blob{position:fixed}
     <div class="hero-grid">
       <div>
         <span class="kicker fade">Upprustning av befintliga hemsidor · Holmsund/Umeå</span>
-        <h1 id="h-hero" aria-label="Samma hemsida. Ny glans."><span aria-hidden="true"><span class="w" style="--i:0">Samma</span> <span class="w" style="--i:1">hemsida.</span><br><span class="w" style="--i:2">Ny</span> <span class="w" style="--i:3"><i>glans.</i></span></span></h1>
+        <h1 id="h-hero" aria-label="Samma hemsida. Ny glans."><span aria-hidden="true"><span class="w" style="--i:0">Samma</span> <span class="w" style="--i:1">hemsida.</span><br><span class="w" style="--i:2">Ny</span> <span class="w" style="--i:3"><i class="glint">glans.<svg class="spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg><svg class="spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg></i></span></span></h1>
         <p class="lead fade">Vi rustar upp sajten ni redan har – varmare, tydligare och snabbare, i samma plattform. Ingen ny sajt från noll, inget nytt system att lära sig.</p>
         <div class="hero-cta fade">
           <a class="btn" href="#analys">Skicka in er sajt för en kostnadsfri snabbgranskning <span class="dot" aria-hidden="true">→</span></a>
@@ -540,8 +560,6 @@ html:not(.motion) .blob{position:fixed}
   </div>
 </section>
 
-<div class="ribbon-wrap" aria-hidden="true"><div class="ribbon"><div class="tr"><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span><span>WordPress</span><span>Avada</span><span>Elementor</span><span>Wix</span><span>Squarespace</span></div></div></div>
-<div class="ribbon-note v2-rb"><p>Vi rustar upp hemsidor i plattformen ni redan har: WordPress (även med sidbyggare som Avada och Elementor), Wix och Squarespace.</p><button class="v2-pause" type="button" data-v2-pause=".ribbon" aria-pressed="false" aria-label="Pausa rörelsen i plattformsbandet"><svg class="ic-pa" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg><svg class="ic-pl" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1l10 6-10 6z" fill="currentColor"/></svg><span class="v2-pl">Pausa</span></button></div>
 
 <!-- CINEMATIC: card stack -->
 <section class="stack flat" data-shot="stack" id="kansla" data-blob="1" aria-labelledby="h-stack">
@@ -666,6 +684,18 @@ html:not(.motion) .blob{position:fixed}
         <div class="dial" style="--t:.96"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50"/></svg><div class="val"><span data-count="96">96</span><small>/100</small></div></div><div class="k">Prestanda</div><div class="d">Exempel: från 41</div></div>
         <div class="dial" style="--t:.93"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50"/></svg><div class="val"><span data-count="0.02" data-dec="2">0,02</span></div></div><div class="k">Layoutskift (CLS)</div><div class="d">Exempel: från 0,31</div></div>
         <div class="dial" style="--t:1"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50"/></svg><div class="val"><span data-count="100">100</span><small>/100</small></div></div><div class="k">Tillgänglighet</div><div class="d">Exempel: från 72</div></div>
+      </div>
+      <div class="measure">
+        <div class="m-item">
+          <h3>PageSpeed <small>Googles hastighetsmätning</small></h3>
+          <p>Visar hur snabbt sajten känns i mobilen. Varje extra sekund får fler besökare att ge upp innan sidan ens syns, och Google väger in samma mått när de rangordnar sökresultat.</p>
+          <p class="m-why"><b>För er:</b> fler som stannar kvar, och bättre chans att synas när någon söker.</p>
+        </div>
+        <div class="m-item">
+          <h3>WAVE <small>granskning av tillgänglighet</small></h3>
+          <p>Hittar det som stänger ute besökare: för svag kontrast, bilder utan beskrivning och knappar som inte går att nå med tangentbord eller skärmläsare.</p>
+          <p class="m-why"><b>För er:</b> en sajt som fungerar för alla. För offentlig sektor är det lagkrav, och sedan 2025 gäller krav även för många tjänster mot konsumenter.</p>
+        </div>
       </div>
       <p class="disc"><span aria-hidden="true">ⓘ</span><span>Siffrorna är illustrativa exempel på vilka mått vi följer upp (Lighthouse/Core Web Vitals). De är inte resultat från ett verkligt uppdrag. Er kostnadsfria snabbgranskning visar era egna utgångsvärden.</span></p>
     </div>
