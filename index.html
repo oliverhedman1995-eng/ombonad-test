@@ -55,16 +55,17 @@ h1{font:500 clamp(46px,7vw,92px)/1 var(--disp);font-variation-settings:"SOFT" 10
 h2{font:500 clamp(34px,4.8vw,60px)/1.05 var(--disp);font-variation-settings:"SOFT" 100,"opsz" 120;letter-spacing:-.02em}
 h3{font:700 21px/1.25 var(--sans);letter-spacing:-.01em}
 h1 i,h2 i{font-style:italic;color:var(--sage-d)}
-/* glimma på "glans": en ljusreflex sveper över ordet och två stjärnor tindrar. Pausas av pausknappen (.v2-paused), av i reducerad rörelse. */
+/* glimma på "glans": en ljusreflex sveper över ordet och två stjärnor tindrar – en gång när sidan laddas och när musen förs över ordet. Av i reducerad rörelse. */
 .glint{position:relative;display:inline-block;padding-right:.08em}
-.motion .glint{background:linear-gradient(110deg,var(--sage-d) 0 38%,#E9C95A 46%,#FFF8DC 50%,#E9C95A 54%,var(--sage-d) 62% 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;animation:glint 8s 1.4s cubic-bezier(.45,0,.2,1) infinite}
-@keyframes glint{0%{background-position:100% 0}16%,100%{background-position:0 0}}
+.motion .glint{background:linear-gradient(110deg,var(--sage-d) 0 38%,#E9C95A 46%,#FFF8DC 50%,#E9C95A 54%,var(--sage-d) 62% 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;}
+.motion .glint.run{animation:glint 1.3s cubic-bezier(.45,0,.2,1) both}
+@keyframes glint{from{background-position:100% 0}to{background-position:0 0}}
 .spark{position:absolute;width:.28em;height:.28em;fill:#E9C95A;opacity:0;pointer-events:none}
 .spark.s1{top:-.12em;right:-.18em}
 .spark.s2{top:.42em;left:-.16em;width:.17em;height:.17em}
-.motion .spark{animation:spark 8s 1.4s ease-in-out infinite}
-.motion .spark.s2{animation-delay:1.75s}
-@keyframes spark{0%,4%{opacity:0;transform:scale(.2) rotate(0)}10%{opacity:1;transform:scale(1) rotate(45deg)}18%,100%{opacity:0;transform:scale(.3) rotate(90deg)}}
+.motion .glint.run .spark{animation:spark 1.3s ease-in-out both}
+.motion .glint.run .spark.s2{animation-delay:.35s}
+@keyframes spark{0%,15%{opacity:0;transform:scale(.2) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}100%{opacity:0;transform:scale(.3) rotate(90deg)}}
 @media (prefers-reduced-motion:reduce){.glint{background:none!important;color:var(--sage-d)!important;animation:none!important}.spark{display:none}}
 p{margin:0}
 .lead{font-size:clamp(18px,1.6vw,20px);color:var(--ink-2);max-width:54ch}
@@ -1065,6 +1066,12 @@ window.FORM_CONFIG = {
     f.hidden = true; ok.classList.add('show'); ok.focus();
   });
 })();
+</script>
+<script>
+/* glimma: en gång efter att rubriken poppat in, och igen vid hover/fokus */
+(()=>{const g=document.querySelector('.glint');if(!g)return;
+const run=()=>{g.classList.remove('run');void g.offsetWidth;g.classList.add('run');};
+setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
 </script>
 </body>
 </html>
