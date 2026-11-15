@@ -612,6 +612,19 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 .logo .gem .gl{transition:stroke .3s}.logo:hover .gem .gl{stroke:#FFFDF8}
 .logo .wm{color:#656B63}.logo .wm i{color:var(--sage-d);font-style:italic;font-weight:650}
 @media (max-width:860px){.nav .logo .gem{width:26px;height:26px}}
+.v2-incl{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:start}
+.v2-get .v2-yes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+.v2-get li{padding:14px 0 14px 40px;font-size:15px;line-height:1.5}
+.v2-get li b{display:block;color:var(--v-ink);font-size:16.5px;margin-bottom:2px}
+.v2-yes li::before{content:"";left:0;top:16px;width:26px;height:26px;border-radius:50%;background:var(--sage-l) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23455B47' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.v2-focus{background:var(--linen-2);border-radius:24px;padding:24px 26px}
+.v2-focus>p{margin:0 0 8px;color:var(--v-ink-2);font-size:15px;line-height:1.5}
+.v2-focus li{font-size:15px;padding:8px 0 8px 26px;border-top-color:color-mix(in srgb,var(--v-line) 70%,transparent)}
+.v2-no li::before{content:"";left:4px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--sage)}
+.v2-focus .v2-tip{margin:12px 0 0;color:var(--v-acc);font-weight:600}
+@media (max-width:860px){.v2-incl{grid-template-columns:1fr}.v2-get .v2-yes{grid-template-columns:1fr}}
+.c1 .old b{background:#5f6f8f}
+.b-img{color:#444}
 </style>
 </head>
 <body>
@@ -848,8 +861,22 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
     <li><b>Tidplan</b> cirka 5–6 veckor.</li>
   </ul>
   <div class="v2-incl">
-    <div><h3>Ingår</h3><ul class="v2-yes"><li>Upprustning i den plattform ni redan har: WordPress (även Avada och Elementor), Wix eller Squarespace</li><li>Fördjupad genomgång av sajten</li><li>Backup och testkopia innan vi ändrar något</li><li>Två förslag på ny känsla att välja mellan</li><li>Mätning med PageSpeed och WAVE före och efter</li><li>Kontroll, publicering och en enkel instruktion</li><li>Uppfräschning av er befintliga logotyp, om det går att göra bra</li><li>Ni behåller domän, webbhotell, e-post och innehåll</li></ul></div>
-    <div><h3>Ingår inte</h3><ul class="v2-no"><li>Ny sajt från grunden eller byte av plattform</li><li>Webbutik, betalning eller kundinloggning</li><li>Flytt av domän, webbhotell eller e-post</li><li>Nya texter – ni äger texterna, vi lägger in dem</li><li>En helt ny logotyp</li></ul></div>
+    <div class="v2-get"><h3>Det här får ni</h3><ul class="v2-yes">
+      <li><b>Samma plattform, ny glans</b>Vi rustar upp sajten där den redan bor: WordPress (även Avada och Elementor), Wix eller Squarespace.</li>
+      <li><b>Ni behåller allt</b>Domän, webbhotell, e-post och innehåll – precis som i dag.</li>
+      <li><b>Tryggt från första klicket</b>Grundlig genomgång, full backup och en testkopia innan något ändras.</li>
+      <li><b>Två förslag att välja mellan</b>Ett nära dagens sajt och ett mer nytänkande. Ni bestämmer.</li>
+      <li><b>Mätbart bättre</b>PageSpeed och WAVE före och efter, så ni ser skillnaden i siffror.</li>
+      <li><b>Logotypen får också glans</b>Vi fräschar upp er befintliga logga när det går att göra snyggt.</li>
+      <li><b>Klart att använda</b>Kontroll, publicering och en enkel instruktion så ni kan uppdatera själva.</li>
+    </ul></div>
+    <div class="v2-focus"><h3>Vi håller fokus</h3><p>Vi gör en sak riktigt bra: ger det ni redan har ny glans. Därför lämnar vi det här till andra:</p><ul class="v2-no">
+      <li>Nya sajter från grunden eller byte av plattform</li>
+      <li>Webbutiker, betalningar och kundinloggning</li>
+      <li>Flytt av domän, webbhotell eller e-post</li>
+      <li>Nyskrivna texter – era ord är era, vi ger dem rätt ram</li>
+      <li>Helt nya logotyper</li>
+    </ul><p class="v2-tip">Behöver ni något av det? Säg till, så tipsar vi om rätt person.</p></div>
   </div>
 </div>
   </div>
