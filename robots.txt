@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /signatur.html
+
+Sitemap: https://oliverhedman1995-eng.github.io/ombonad-test/sitemap.xml
