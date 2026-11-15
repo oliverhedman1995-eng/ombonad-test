@@ -11,10 +11,10 @@
      stängs av vid prefers-reduced-motion. Utan JS syns allt innehåll.
      ============================================================ -->
 <title>Webbglans – vi rustar upp befintliga hemsidor</title>
-<meta name="description" content="Webbglans rustar upp hemsidan ni redan har – varmare, tydligare och snabbare, i samma plattform. Skicka in er sajt för en kostnadsfri snabbgranskning.">
+<meta name="description" content="Samma hemsida. Ny glans. Vi rustar upp hemsidor ni redan har – i WordPress, Wix eller Squarespace – utan att börja om från noll.">
 <meta name="theme-color" content="#F4EFE6">
-<meta property="og:title" content="Webbglans – samma hemsida, ny glans">
-<meta property="og:description" content="Vi rustar upp hemsidor ni redan har – utan att börja om från noll.">
+<meta property="og:title" content="Webbglans – vi rustar upp befintliga hemsidor">
+<meta property="og:description" content="Samma hemsida. Ny glans. Vi rustar upp hemsidor ni redan har – i WordPress, Wix eller Squarespace – utan att börja om från noll.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://oliverhedman1995-eng.github.io/ombonad-test/og.jpg?v=2">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -625,6 +625,17 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 @media (max-width:860px){.v2-incl{grid-template-columns:1fr}.v2-get .v2-yes{grid-template-columns:1fr}}
 .c1 .old b{background:#5f6f8f}
 .b-img{color:#444}
+.v2-band-in{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--sage-d);color:#F4EFE6;border-radius:32px;padding:clamp(28px,5vw,56px)}
+.v2-band-in h2{color:#F4EFE6}.v2-band-in h2 i{color:var(--butter)}.v2-band-in .lead{color:#E3EBDF}.v2-band-in .kicker{color:var(--sage-d)}
+.v2-band-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:flex-end}
+.v2-band-btns .btn{background:var(--butter);color:var(--sage-d)}.v2-band-btns .btn.ghost{background:transparent;color:#F4EFE6;box-shadow:inset 0 0 0 2px rgba(244,239,230,.5)}
+.v2-band-link{color:#F4EFE6;font-weight:600;text-decoration:underline;text-underline-offset:4px;width:100%;text-align:right}
+@media (max-width:860px){.v2-band-in{grid-template-columns:1fr}.v2-band-btns{justify-content:flex-start}.v2-band-link{text-align:left}}
+.om-me .me{margin-top:0;border-top:0;padding:clamp(22px,4vw,40px);background:var(--paper);border-radius:28px;gap:clamp(18px,3vw,36px);align-items:center;max-width:860px}
+.om-me .me-pic{width:clamp(120px,16vw,180px);height:clamp(120px,16vw,180px)}
+.om-me .me-txt{font-size:clamp(16px,1.6vw,19px);line-height:1.6}.om-me .me-name{font-size:clamp(20px,2vw,26px)}
+.om-me .me-sig{height:60px}
+@media (max-width:600px){.om-me .me{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -635,9 +646,9 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   <div class="wrap">
     <nav class="nav" aria-label="Huvudmeny">
       <a class="logo" href="#top" aria-label="Webbglans, till toppen"><svg class="gem" width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 3 L39 13 V31 L22 41 L5 31 V13 Z" fill="#455B47"/><path d="M22 3 L39 13 L22 22 Z" fill="#9DB49A"/><path d="M22 22 L39 13 V31 Z" fill="#6F8A6D"/><path class="gl" d="M11 17 L16 14" stroke="#F3DE95" stroke-width="2.6" stroke-linecap="round"/></svg><span class="wm">Webb<i>glans</i></span></a>
-      <ul><li><a href="#forvandling">Före & efter</a></li><li><a href="#process">Så jobbar vi</a></li><li><a href="#darfor">Därför oss</a></li><li><a href="#tjanster">Pris</a></li><li><a href="#fragor">Frågor</a></li></ul>
-      <a class="btn v2-hbtn" href="#analys"><span class="hb-long">Kostnadsfri granskning</span><span class="hb-short">Granskning</span></a>
-      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="#forvandling">Före & efter</a></li><li><a href="#process">Så jobbar vi</a></li><li><a href="#darfor">Därför oss</a></li><li><a href="#tjanster">Pris</a></li><li><a href="#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="#analys">Kostnadsfri granskning <span aria-hidden="true">→</span></a></div>
+      <ul><li><a href="#forvandling">Före & efter</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul>
+      <a class="btn v2-hbtn" href="granskning.html"><span class="hb-long">Kostnadsfri granskning</span><span class="hb-short">Granskning</span></a>
+      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="#forvandling">Före & efter</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></div>
     </nav>
   </div>
 </header>
@@ -651,7 +662,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
         <h1 id="h-hero" aria-label="Samma hemsida. Ny glans."><span aria-hidden="true"><span class="w" style="--i:0">Samma</span> <span class="w" style="--i:1">hemsida.</span><br><span class="w" style="--i:2">Ny</span> <span class="w" style="--i:3"><i class="glint">glans.<svg class="spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg><svg class="spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg></i></span></span></h1>
         <p class="lead fade">Vi rustar upp sajten ni redan har – varmare, tydligare och snabbare, i samma plattform. Ingen ny sajt från noll, inget nytt system att lära sig.</p>
         <div class="hero-cta fade">
-          <a class="btn" href="#analys">Få en kostnadsfri granskning <span class="dot" aria-hidden="true">→</span></a>
+          <a class="btn" href="granskning.html">Få en kostnadsfri granskning <span class="dot" aria-hidden="true">→</span></a>
           <a class="btn soft" href="#forvandling">Se före & efter</a>
         </div>
         <ul class="chips fade">
@@ -668,8 +679,6 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   </div>
 </section>
 
-
-<!-- CINEMATIC: card stack -->
 <section class="stack flat" data-shot="stack" id="kansla" data-blob="1" aria-labelledby="h-stack">
   <div class="stack-sticky">
     <div>
@@ -693,7 +702,6 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   </div>
 </section>
 
-<!-- BEFORE / AFTER -->
 <section class="sec" id="forvandling" data-blob="2" aria-labelledby="h-ba">
   <div class="wrap">
     <div class="sec-head">
@@ -740,55 +748,6 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="sec" id="process" data-blob="3" style="padding-top:0" aria-labelledby="h-proc">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="kicker">Så jobbar vi</span><h2 id="h-proc" style="margin-top:20px">Åtta lugna steg. <i>Inga överraskningar.</i></h2></div>
-      <p class="lead">Från första kontakt till överlämning. Ni vet vad som händer, vad det kostar och när – och ni får tid att fundera.</p>
-    </div>
-    <div class="v2-proc"><ol class="v2-tl" aria-label="Arbetsgången i åtta steg">
-<li class="v2-ph rv"><p class="v2-ph-h"><span class="v2-ph-n">Fas 1</span> <span class="v2-ph-t">Kontakt och granskning</span></p><ol class="v2-steps">
-<li class="v2-step" value="1"><span class="v2-step-n" aria-hidden="true">01</span><h3 class="v2-step-h"><span class="sr">Steg 1: </span>Första kontakt</h3><p>Ni fyller i formuläret längre ned. Det tar cirka 2 minuter.</p></li>
-<li class="v2-step" value="2"><span class="v2-step-n" aria-hidden="true">02</span><h3 class="v2-step-h"><span class="sr">Steg 2: </span>Kostnadsfri snabbgranskning</h3><p>Ni får de tre viktigaste förbättringarna, mätvärden från PageSpeed och WAVE och ett ungefärligt pris – inom några arbetsdagar. Passar sajten inte oss får ni ett ärligt nej.</p></li>
-</ol></li>
-<li class="v2-ph rv"><p class="v2-ph-h"><span class="v2-ph-n">Fas 2</span> <span class="v2-ph-t">Plan och avtal</span></p><ol class="v2-steps">
-<li class="v2-step" value="3"><span class="v2-step-n" aria-hidden="true">03</span><h3 class="v2-step-h"><span class="sr">Steg 3: </span>Era önskemål</h3><p>Ni fyller i formulär 2, cirka 10–15 minuter. Varje önskemål blir en numrerad punkt i en kravlista.</p></li>
-<li class="v2-step" value="4"><span class="v2-step-n" aria-hidden="true">04</span><h3 class="v2-step-h"><span class="sr">Steg 4: </span>Avtal och åtkomst</h3><p>Fast pris, med kravlistan som bilaga. Ni lägger till oss som användare – inga lösenord skickas.</p></li>
-</ol></li>
-<li class="v2-ph rv"><p class="v2-ph-h"><span class="v2-ph-n">Fas 3</span> <span class="v2-ph-t">Arbete i testkopia</span></p><ol class="v2-steps">
-<li class="v2-step" value="5"><span class="v2-step-n" aria-hidden="true">05</span><h3 class="v2-step-h"><span class="sr">Steg 5: </span>Innehåll och backup</h3><p>Ni granskar era texter och skickar bilder. Vi tar en fullständig backup och jobbar i en testkopia.</p></li>
-<li class="v2-step" value="6"><span class="v2-step-n" aria-hidden="true">06</span><h3 class="v2-step-h"><span class="sr">Steg 6: </span>Två förslag</h3><p>En riktning nära dagens sajt och en mer nytänkande. Vi visar hur varje punkt i kravlistan är löst. Ni väljer.</p></li>
-</ol></li>
-<li class="v2-ph rv"><p class="v2-ph-h"><span class="v2-ph-n">Fas 4</span> <span class="v2-ph-t">Publicering och överlämning</span></p><ol class="v2-steps">
-<li class="v2-step" value="7"><span class="v2-step-n" aria-hidden="true">07</span><h3 class="v2-step-h"><span class="sr">Steg 7: </span>Feedback och publicering</h3><p>En feedbackrunda ingår. Vi bockar av kravlistan, tar ny backup och publicerar.</p></li>
-<li class="v2-step" value="8"><span class="v2-step-n" aria-hidden="true">08</span><h3 class="v2-step-h"><span class="sr">Steg 8: </span>Överlämning</h3><p>Instruktion för egna ändringar, kravlistan ifylld med ”ni bad om → vi gjorde” och faktura efter publicering.</p></li>
-</ol></li>
-</ol>
-<p class="v2-tl-note"><b>Tidplan:</b> cirka 5–6 veckor. Takten styrs mest av hur snabbt texter och bilder kommer in – ni får tid att fundera.</p></div>
-  </div>
-</section>
-
-
-<!-- DÄRFÖR OSS (v2) -->
-<section class="sec" id="darfor" style="padding-top:0" aria-labelledby="h-why">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="kicker">Därför oss</span><h2 id="h-why" style="margin-top:20px">Det ni bad om. <i>Punkt för punkt.</i></h2></div>
-      <p class="lead">Så skiljer vi oss från en vanlig webbyrå.</p>
-    </div>
-    <ul class="v2-why">
-<li class="rv"><span class="v2-why-n" aria-hidden="true">01</span><h3>Kravlistan</h3><p>Varje önskemål blir en numrerad punkt. Ni ser punkt för punkt att vi gjort det ni bad om.</p></li>
-<li class="rv"><span class="v2-why-n" aria-hidden="true">02</span><h3>Två förslag att välja mellan</h3><p>Inte ett förslag att ta eller lämna, utan två riktningar – en nära dagens sajt och en mer nytänkande.</p></li>
-<li class="rv"><span class="v2-why-n" aria-hidden="true">03</span><h3>Fast pris</h3><p>Ni vet vad det kostar innan vi börjar. Tillägg görs bara efter ert ok.</p></li>
-<li class="rv"><span class="v2-why-n" aria-hidden="true">04</span><h3>Tryggt</h3><p>Backup före start. Allt byggs i en testkopia, så inget syns förrän ni godkänt. Inga lösenord via mejl.</p></li>
-<li class="rv"><span class="v2-why-n" aria-hidden="true">05</span><h3>Era texter förblir era</h3><p>Vi skriver inte om ert innehåll. Ni äger texterna – vi lägger in dem snyggt.</p></li>
-<li class="rv"><span class="v2-why-n" aria-hidden="true">06</span><h3>Tillgängligt och mätbart</h3><p>Vi arbetar mot WCAG 2.1 AA och mäter hastigheten med PageSpeed före och efter.</p></li>
-</ul>
-  </div>
-</section>
-
-<!-- RESULTS -->
 <section class="sec" id="resultat" data-blob="4" style="padding-top:0" aria-labelledby="h-res">
   <div class="wrap">
     <div class="results-box rv">
@@ -819,7 +778,6 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   </div>
 </section>
 
-<!-- AUDIENCES -->
 <section class="sec" id="for-vem" data-blob="5" style="padding-top:0" aria-labelledby="h-aud">
   <div class="wrap">
     <div class="sec-head">
@@ -833,110 +791,12 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="sec" id="tjanster" data-blob="6" style="padding-top:0" aria-labelledby="h-srv">
+<section class="sec v2-band" data-blob="6" style="padding-top:0" aria-labelledby="h-band">
   <div class="wrap">
-    <div class="sec-head">
-      <div><span class="kicker">Pris</span><h2 id="h-srv" style="margin-top:20px">Öppet pris. <i>Fast pris.</i></h2></div>
-      <p class="lead">Alla uppdrag börjar med en kostnadsfri snabbgranskning. Sedan får ni ett fast pris enligt prismodellen nedan.</p>
-    </div>
-    <div class="v2-price rv">
-  <div class="v2-pr-main">
-    <table class="v2-pr-table">
-      <caption class="sr">Prismodell, exklusive moms</caption>
-      <thead><tr><th scope="col">Del</th><th scope="col">Pris <span class="v2-pr-moms">(exkl. moms)</span></th></tr></thead>
-      <tbody>
-<tr><th scope="row">Kostnadsfri snabbgranskning<span class="v2-pr-d">Tre viktigaste förbättringarna, mätvärden (PageSpeed, WAVE) och ett ungefärligt pris</span></th><td>0 kr</td></tr>
-<tr><th scope="row">Grundavgift<span class="v2-pr-d">Fördjupad genomgång, backup, testkopia, två förslag, kontroll, publicering och instruktion</span></th><td>4 000 kr</td></tr>
-<tr><th scope="row">Per sida som rustas upp<span class="v2-pr-d">Sidor som tas bort eller bara byter namn kostar inget</span></th><td>1 000 kr</td></tr>
-<tr><th scope="row">Tillägg utöver avtalet<span class="v2-pr-d">Bara efter ert ok</span></th><td>800 kr/tim</td></tr>
-      </tbody>
-    </table>
-    <div class="v2-pr-ex" role="note"><p class="v2-pr-ex-h">Räkneexempel</p><p><b>5 sidor</b> = 4 000 kr + 5 × 1 000 kr = <b>9 000 kr</b> exkl. moms</p></div>
-  </div>
-  <ul class="v2-pr-facts">
-    <li><b>Faktura efter publicering</b> med 30 dagars betalningstid.</li>
-    <li><b>Sidor som tas bort</b> eller bara byter namn kostar inget.</li>
-    <li><b>Löpande underhåll</b> kan avtalas separat.</li>
-    <li><b>Tidplan</b> cirka 5–6 veckor.</li>
-  </ul>
-  <div class="v2-incl">
-    <div class="v2-get"><h3>Det här får ni</h3><ul class="v2-yes">
-      <li><b>Samma plattform, ny glans</b>Vi rustar upp sajten där den redan bor: WordPress (även Avada och Elementor), Wix eller Squarespace.</li>
-      <li><b>Ni behåller allt</b>Domän, webbhotell, e-post och innehåll – precis som i dag.</li>
-      <li><b>Tryggt från första klicket</b>Grundlig genomgång, full backup och en testkopia innan något ändras.</li>
-      <li><b>Två förslag att välja mellan</b>Ett nära dagens sajt och ett mer nytänkande. Ni bestämmer.</li>
-      <li><b>Mätbart bättre</b>PageSpeed och WAVE före och efter, så ni ser skillnaden i siffror.</li>
-      <li><b>Logotypen får också glans</b>Vi fräschar upp er befintliga logga när det går att göra snyggt.</li>
-      <li><b>Klart att använda</b>Kontroll, publicering och en enkel instruktion så ni kan uppdatera själva.</li>
-    </ul></div>
-    <div class="v2-focus"><h3>Vi håller fokus</h3><p>Vi gör en sak riktigt bra: ger det ni redan har ny glans. Därför lämnar vi det här till andra:</p><ul class="v2-no">
-      <li>Nya sajter från grunden eller byte av plattform</li>
-      <li>Webbutiker, betalningar och kundinloggning</li>
-      <li>Flytt av domän, webbhotell eller e-post</li>
-      <li>Nyskrivna texter – era ord är era, vi ger dem rätt ram</li>
-      <li>Helt nya logotyper</li>
-    </ul><p class="v2-tip">Behöver ni något av det? Säg till, så tipsar vi om rätt person.</p></div>
-  </div>
-</div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="sec" id="fragor" data-blob="7" style="padding-top:0" aria-labelledby="h-faq">
-  <div class="wrap">
-    <span class="kicker">Vanliga frågor</span><h2 id="h-faq" style="margin:20px 0 40px">Bra att veta.</h2>
-    <div class="faq">
-      <details><summary>Måste vi byta plattform eller bygga en ny sajt?</summary><p>Nej. Vi rustar upp hemsidan i den plattform ni redan har: WordPress (även med Avada eller Elementor), Wix eller Squarespace. Ni behåller domän, webbhotell, e-post och innehåll.</p></details>
-      <details><summary>Vad ingår i den kostnadsfria snabbgranskningen?</summary><p>De tre viktigaste förbättringarna på vanlig svenska, mätvärden för hastighet på mobil (PageSpeed) och tillgänglighet (WAVE) och ett ungefärligt pris. Ni får svar inom några arbetsdagar, utan förpliktelser. Det är ingen full rapport, video eller möte – den fördjupade genomgången ingår i grundavgiften när uppdraget blir av.</p></details>
-      <details><summary>Vad kostar en upprustning?</summary><p>Grundavgift 4 000 kr plus 1 000 kr per sida som rustas upp, exklusive moms. Fem sidor blir alltså 9 000 kr. Sidor som tas bort eller bara byter namn kostar inget. Tillägg utöver avtalet kostar 800 kr/tim och görs bara efter ert ok.</p></details>
-      <details><summary>När betalar vi?</summary><p>Fakturan skickas efter publicering, med 30 dagars betalningstid.</p></details>
-      <details><summary>Hur lång tid tar det?</summary><p>Cirka 5–6 veckor. Takten styrs mest av hur snabbt texter och bilder kommer in, och ni får tid att fundera mellan stegen.</p></details>
-      <details><summary>Ligger sajten nere under arbetet?</summary><p>Nej. Vi tar en fullständig backup och arbetar i en testkopia. Inget syns för besökarna förrän ni har godkänt.</p></details>
-      <details><summary>Behöver ni våra lösenord?</summary><p>Nej. Ni lägger till oss som användare i er plattform, så att inga lösenord behöver skickas.</p></details>
-      <details><summary>Skriver ni nya texter eller gör en ny logotyp?</summary><p>Nej. Era texter förblir era – ni granskar dem och vi lägger in dem. Vi gör ingen helt ny logotyp, men vi kan fräscha upp den ni har om det går att göra på ett bra sätt.</p></details>
-      <details><summary>Ingår underhåll?</summary><p>Nej, löpande underhåll ingår inte. Det kan avtalas separat.</p></details>
-      <details><summary>Hur jobbar ni med tillgänglighet?</summary><p>Vi arbetar mot WCAG 2.1 nivå AA och mäter med WAVE före och efter. Vi ger ingen juridisk rådgivning, men ni ser i kravlistan exakt vad som är åtgärdat.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- FORM -->
-<section class="sec" id="analys" data-blob="8" style="padding-top:0" aria-labelledby="h-form">
-  <div class="wrap">
-    <div class="cta">
-      <div>
-        <span class="kicker">Kostnadsfri snabbgranskning</span>
-        <h2 id="h-form" style="margin-top:20px">Skicka in er sajt. <i>Vi visar vad som kan bli bättre.</i></h2>
-        <p class="lead" style="margin-top:18px">Tre konkreta förbättringar, mätvärden för hastighet och tillgänglighet, och ett ungefärligt pris. Utan förpliktelser.</p>
-        <ol><li>Ni fyller i formuläret – cirka en minut</li><li>Vi går igenom sajten</li><li>Ni får svar inom några arbetsdagar</li></ol>
-        <div class="me">
-          <div class="me-pic"><img src="oliver.jpg?v=2" alt="Oliver, grundare av Webbglans" width="84" height="84" loading="lazy"></div>
-          <div><p class="me-name">Oliver, Webbglans</p><p class="me-txt">Tvåbarnspappa och lärare med ett livslångt intresse för datorer och IT. Läraryrket har gett mig en känsla för pedagogik och för hur teknik blir enkel att använda – det är det jag tar med in i varje hemsida. Jag driver Webbglans från Holmsund, och ni pratar med mig hela vägen.</p><svg class="me-sig" viewBox="-39 -790 4824 862" role="img" aria-label="Oliver Nordemans namnteckning"><path pathLength="1" d="M596 -648Q647 -623 647 -551Q647 -454 564.5 -316.5Q482 -179 366 -86Q408 -88 453.5 -106.0Q499 -124 527.0 -141.0Q555 -158 558.5 -158.0Q562 -158 562 -150Q562 -130 486.0 -99.5Q410 -69 351 -69H344Q230 15 131 15Q65 15 33.0 -21.5Q1 -58 1.0 -131.0Q1 -204 49.5 -313.0Q98 -422 172.5 -518.5Q247 -615 346.0 -682.5Q445 -750 536 -750Q573 -750 590.5 -734.0Q608 -718 608.0 -693.0Q608 -668 596 -648ZM446 -498 447 -491Q447 -479 440 -479Q427 -479 427.0 -506.5Q427 -534 446.5 -557.0Q466 -580 503.0 -603.5Q540 -627 552 -638Q536 -642 526 -642Q440 -642 361.0 -577.5Q282 -513 237.0 -422.5Q192 -332 192 -256Q192 -96 341 -86Q447 -172 526.0 -313.0Q605 -454 605 -550Q605 -601 579 -624Q561 -604 525.5 -579.5Q490 -555 468.0 -535.5Q446 -516 446 -498ZM162 -10Q236 -10 320 -70Q230 -77 186.0 -124.0Q142 -171 142.0 -239.5Q142 -308 175.5 -381.5Q209 -455 262.0 -516.5Q315 -578 389.5 -619.0Q464 -660 539 -660Q554 -660 568 -657Q581 -676 581.0 -695.5Q581 -715 565.0 -724.0Q549 -733 528 -733Q447 -733 358.0 -668.5Q269 -604 203.0 -512.0Q137 -420 94.0 -316.5Q51 -213 51 -145Q51 -10 162 -10Z M880 -166Q887 -171 893.0 -171.0Q899 -171 899 -164V-162Q795 -76 741 -42Q671 11 623 11Q581 11 581 -39Q581 -106 667.5 -237.5Q754 -369 862.0 -474.0Q970 -579 1025 -579Q1050 -579 1050 -557Q1050 -502 918.5 -375.5Q787 -249 660 -160Q623 -89 623.0 -52.0Q623 -15 649.0 -15.0Q675 -15 717 -45Q788 -87 855 -145ZM1000 -547Q958 -547 851.0 -426.0Q744 -305 674 -184Q789 -266 899.0 -384.5Q1009 -503 1009 -538Q1009 -547 1000 -547Z M988.5 -302.0Q998 -302 1003.5 -296.0Q1009 -290 1009.0 -279.0Q1009 -268 994.0 -251.0Q979 -234 968.0 -234.0Q957 -234 952.0 -240.5Q947 -247 947.0 -255.5Q947 -264 963.0 -283.0Q979 -302 988.5 -302.0ZM1071 -167Q1079 -172 1083.5 -172.0Q1088 -172 1088 -166V-163Q1092 -163 1034.5 -119.0Q977 -75 911.5 -31.0Q846 13 829 13Q800 13 800 -11Q800 -40 850.0 -120.5Q900 -201 923 -201Q940 -201 940.0 -188.0Q940 -175 894.0 -117.0Q848 -59 848 -34Q848 -20 858.5 -20.0Q869 -20 911 -48Q986 -98 1049 -149Z M1245 -159 1229 -166Q1210 -166 1022 -3Q1004 13 995.5 13.0Q987 13 982.5 7.0Q978 1 978.0 -6.5Q978 -14 1012.0 -74.5Q1046 -135 1046.0 -139.5Q1046 -144 1042 -144Q1028 -137 1021.0 -137.0Q1014 -137 1014.0 -141.5Q1014 -146 1018 -150Q1060 -183 1076.5 -183.0Q1093 -183 1093.0 -164.0Q1093 -145 1068.0 -102.5Q1043 -60 1043.0 -53.0Q1043 -46 1046.5 -46.0Q1050 -46 1055.0 -50.0Q1060 -54 1108 -96Q1271 -224 1286 -224Q1287 -224 1287 -224Q1293 -224 1299.0 -220.0Q1305 -216 1305.0 -208.0Q1305 -200 1282.0 -179.5Q1259 -159 1245 -159Z M1582 -166Q1589 -171 1595.0 -171.0Q1601 -171 1601 -164V-162Q1497 -76 1428.0 -33.0Q1359 10 1303 10Q1258 10 1258 -34Q1258 -99 1324.0 -167.5Q1390 -236 1435 -236Q1460 -236 1460 -208Q1455 -153 1302 -60V-50Q1302 -17 1336.5 -17.0Q1371 -17 1411 -40Q1489 -86 1557 -145ZM1409 -205Q1387 -205 1352.5 -168.0Q1318 -131 1306 -84Q1354 -113 1387.0 -145.5Q1420 -178 1420.0 -191.5Q1420 -205 1409 -205Z M1804 -166Q1811 -171 1817.0 -171.0Q1823 -171 1823 -164V-162Q1748 -102 1675.0 -49.5Q1602 3 1568 3Q1543 3 1543.0 -24.0Q1543 -51 1567.0 -78.0Q1591 -105 1614.5 -125.0Q1638 -145 1638.0 -151.5Q1638 -158 1630.5 -166.5Q1623 -175 1618 -178Q1601 -161 1544 -116L1540 -131Q1603 -181 1613 -198V-207Q1613 -232 1618.0 -241.0Q1623 -250 1642.0 -266.0Q1661 -282 1668.0 -282.0Q1675 -282 1680.5 -277.0Q1686 -272 1686.0 -267.0Q1686 -262 1682.5 -255.5Q1679 -249 1675.5 -244.5Q1672 -240 1666.0 -233.5Q1660 -227 1658.5 -224.5Q1657 -222 1655.5 -216.0Q1654 -210 1649.0 -206.0Q1644 -202 1644.0 -196.0Q1644 -190 1652.0 -169.5Q1660 -149 1660.0 -139.5Q1660 -130 1623.0 -94.5Q1586 -59 1586 -37Q1586 -25 1597 -25Q1611 -25 1649 -50L1661 -58Q1726 -103 1783 -149Z M2162 -379Q2155 -379 2151.5 -385.0Q2148 -391 2147 -392Q2136 -381 2116.5 -364.0Q2097 -347 2047.0 -319.0Q1997 -291 1958 -291Q1893 -291 1893 -341Q1893 -395 1962.0 -481.0Q2031 -567 2133.5 -634.5Q2236 -702 2317 -702Q2364 -702 2388.5 -674.0Q2413 -646 2413.0 -601.5Q2413 -557 2374 -474Q2530 -590 2591 -590Q2603 -590 2611.0 -583.0Q2619 -576 2619 -564Q2619 -544 2537.5 -435.0Q2456 -326 2374.0 -207.0Q2292 -88 2292 -43Q2292 -15 2323 -15Q2370 -15 2456 -101Q2469 -114 2478 -114Q2484 -114 2484.0 -105.5Q2484 -97 2452.0 -68.5Q2420 -40 2372.5 -13.0Q2325 14 2290 14Q2243 14 2243.0 -25.5Q2243 -65 2292.5 -147.5Q2342 -230 2402 -308Q2561 -513 2561 -547Q2561 -553 2554 -553Q2497 -553 2360 -445Q2283 -294 2150.5 -131.0Q2018 32 1972 32Q1947 32 1947 11Q1947 -54 2059.0 -182.5Q2171 -311 2317 -429Q2372 -539 2372 -601Q2372 -677 2291 -677Q2229 -677 2141.5 -616.5Q2054 -556 1992.0 -479.0Q1930 -402 1930 -357Q1930 -319 1980 -319Q2014 -319 2077.0 -360.0Q2140 -401 2149 -417Q2192 -493 2198 -501Q2219 -534 2232 -534Q2237 -534 2238.0 -527.0Q2239 -520 2236.5 -513.5Q2234 -507 2228.0 -497.5Q2222 -488 2217.0 -480.5Q2212 -473 2203.5 -461.0Q2195 -449 2188.5 -440.0Q2182 -431 2178 -423Q2172 -411 2172.0 -395.0Q2172 -379 2162 -379ZM1985 8Q2012 7 2119.5 -126.5Q2227 -260 2299 -394Q2173 -286 2077.0 -170.0Q1981 -54 1981 1Q1981 8 1985 8Z M2673 -86Q2729 -86 2807 -149L2824 -144Q2726 -62 2655 -62Q2647 -62 2643 -63Q2616 -30 2584.0 -9.5Q2552 11 2528 11Q2490 11 2490.0 -31.5Q2490 -74 2561 -145Q2549 -174 2549.0 -206.0Q2549 -238 2572.0 -258.0Q2595 -278 2625.5 -278.0Q2656 -278 2677.0 -258.0Q2698 -238 2698 -201Q2698 -144 2661 -87Q2665 -86 2673 -86ZM2641 -96Q2672 -148 2672.0 -184.5Q2672 -221 2654.0 -238.5Q2636 -256 2619 -256Q2584 -256 2584.0 -220.0Q2584 -184 2600.0 -148.5Q2616 -113 2641 -96ZM2531 -37Q2531 -17 2557.0 -17.0Q2583 -17 2623 -70Q2596 -84 2575 -119Q2531 -71 2531 -37Z M3048 -166Q3055 -171 3061.0 -171.0Q3067 -171 3067 -164V-162Q2992 -102 2919.0 -49.5Q2846 3 2812 3Q2787 3 2787.0 -24.0Q2787 -51 2811.0 -78.0Q2835 -105 2858.5 -125.0Q2882 -145 2882.0 -151.5Q2882 -158 2874.5 -166.5Q2867 -175 2862 -178Q2845 -161 2788 -116L2784 -131Q2847 -181 2857 -198V-207Q2857 -232 2862.0 -241.0Q2867 -250 2886.0 -266.0Q2905 -282 2912.0 -282.0Q2919 -282 2924.5 -277.0Q2930 -272 2930.0 -267.0Q2930 -262 2926.5 -255.5Q2923 -249 2919.5 -244.5Q2916 -240 2910.0 -233.5Q2904 -227 2902.5 -224.5Q2901 -222 2899.5 -216.0Q2898 -210 2893.0 -206.0Q2888 -202 2888.0 -196.0Q2888 -190 2896.0 -169.5Q2904 -149 2904.0 -139.5Q2904 -130 2867.0 -94.5Q2830 -59 2830 -37Q2830 -25 2841 -25Q2855 -25 2893 -50L2905 -58Q2970 -103 3027 -149Z M3120 -143 3152 -192Q3149 -193 3146 -193Q3104 -193 3036.0 -129.0Q2968 -65 2968 -39Q2968 -32 2976 -32Q3001 -32 3052.0 -74.5Q3103 -117 3120 -143ZM3343 -162Q3135 6 3091 6Q3074 6 3074.0 -14.0Q3074 -34 3089 -81Q3089 -82 3087 -82Q2972 13 2934 13Q2908 13 2908 -6Q2908 -48 2998.5 -129.0Q3089 -210 3143 -210Q3150 -210 3158 -200Q3181 -234 3416 -569Q3441 -600 3456.5 -600.0Q3472 -600 3472 -590Q3472 -565 3300 -354Q3236 -274 3182.5 -187.5Q3129 -101 3129 -56Q3129 -37 3140 -37Q3153 -37 3186 -60Q3254 -109 3305 -150L3324 -166Q3331 -171 3337.0 -171.0Q3343 -171 3343 -164Z M3581 -166Q3588 -171 3594.0 -171.0Q3600 -171 3600 -164V-162Q3496 -76 3427.0 -33.0Q3358 10 3302 10Q3257 10 3257 -34Q3257 -99 3323.0 -167.5Q3389 -236 3434 -236Q3459 -236 3459 -208Q3454 -153 3301 -60V-50Q3301 -17 3335.5 -17.0Q3370 -17 3410 -40Q3488 -86 3556 -145ZM3408 -205Q3386 -205 3351.5 -168.0Q3317 -131 3305 -84Q3353 -113 3386.0 -145.5Q3419 -178 3419.0 -191.5Q3419 -205 3408 -205Z M3587 -174 3585 -185Q3585 -190 3606 -190Q3618 -190 3618.0 -175.0Q3618 -160 3583.5 -108.5Q3549 -57 3549.0 -55.0Q3549 -53 3553.0 -53.0Q3557 -53 3645.5 -123.0Q3734 -193 3752.0 -193.0Q3770 -193 3770.0 -180.5Q3770 -168 3760.0 -152.5Q3750 -137 3718.0 -96.5Q3686 -56 3684.0 -53.0Q3682 -50 3682.0 -46.0Q3682 -42 3688.5 -42.0Q3695 -42 3787.0 -110.0Q3879 -178 3892.0 -178.0Q3905 -178 3905 -167Q3905 -147 3861.0 -97.0Q3817 -47 3817.0 -33.5Q3817 -20 3827.5 -20.0Q3838 -20 3880 -48Q3955 -98 4018 -149L4040 -167Q4048 -172 4053.5 -172.0Q4059 -172 4059 -166V-163Q3848 13 3798 13Q3769 13 3769 -11Q3769 -31 3798.0 -70.0Q3827 -109 3827.0 -112.5Q3827 -116 3824.5 -116.0Q3822 -116 3742.5 -59.0Q3663 -2 3648 -2Q3641 -2 3636.0 -7.5Q3631 -13 3631 -19Q3631 -37 3674 -92Q3717 -146 3717 -151Q3717 -156 3711 -156Q3704 -156 3569 -46L3519 -6Q3506 5 3499.5 5.0Q3493 5 3487.0 1.5Q3481 -2 3481.0 -9.0Q3481 -16 3498.5 -43.0Q3516 -70 3544 -109Q3587 -167 3587 -174Z M4142 -120Q4136 -120 4136.0 -124.5Q4136 -129 4143 -135Q4176 -162 4176 -184Q4176 -198 4151 -200Q4106 -199 4043.5 -135.0Q3981 -71 3981 -39Q3981 -28 3993.5 -28.0Q4006 -28 4027 -45Q4046 -57 4098 -105Q4110 -117 4121 -117Q4135 -117 4135 -104Q4135 -99 4132.0 -96.0Q4129 -93 4121.0 -83.5Q4113 -74 4107 -66Q4089 -40 4089 -32Q4089 -12 4105 -12Q4126 -12 4184.0 -50.5Q4242 -89 4290 -128L4338 -166Q4345 -171 4351.0 -171.0Q4357 -171 4357 -164V-162Q4280 -97 4194.5 -40.0Q4109 17 4082 17Q4050 17 4050 -17Q4050 -25 4053.0 -32.0Q4056 -39 4056.0 -42.0Q4056 -45 4054 -46Q4051 -46 4015.5 -19.0Q3980 8 3953.5 8.0Q3927 8 3927.0 -20.0Q3927 -48 3964.5 -95.5Q4002 -143 4065.0 -182.0Q4128 -221 4188 -221Q4202 -221 4211.5 -214.0Q4221 -207 4221.0 -192.5Q4221 -178 4192.0 -149.0Q4163 -120 4142 -120Z M4745 -163Q4534 13 4484 13Q4455 13 4455.0 -11.0Q4455 -35 4476.5 -68.0Q4498 -101 4519.5 -126.5Q4541 -152 4541.0 -157.0Q4541 -162 4538 -162Q4445 -100 4427.5 -86.0Q4410 -72 4370.5 -40.0Q4331 -8 4319.0 0.0Q4307 8 4293 8Q4279 8 4279 -4Q4279 -18 4335 -92Q4389 -166 4389 -175Q4389 -177 4385.5 -177.0Q4382 -177 4299 -116L4295 -131Q4366 -188 4391.0 -204.0Q4416 -220 4431.5 -220.0Q4447 -220 4447 -205Q4447 -195 4390.5 -123.5Q4334 -52 4334.0 -46.5Q4334 -41 4337.5 -41.0Q4341 -41 4451.5 -121.5Q4562 -202 4586 -202Q4593 -202 4599.5 -196.5Q4606 -191 4606 -186Q4606 -174 4553.0 -106.5Q4500 -39 4500.0 -30.0Q4500 -21 4512.5 -21.0Q4525 -21 4566 -48Q4641 -97 4704 -149L4726 -167Q4733 -172 4739.0 -172.0Q4745 -172 4745 -166Z"/></svg><p class="me-txt"><a href="mailto:hej@webbglans.se">hej@webbglans.se</a></p></div>
-        </div>
-      </div>
-      <div>
-        
-        <form id="form" novalidate data-v2-form>
-<p class="v2-form-intro">Sex fält, cirka en minut. Skicka inga lösenord.</p>
-<div class="field"><label for="f-company">Företagets namn</label><input id="f-company" name="company" type="text" autocomplete="organization" required   aria-describedby="e-company"><div class="err" id="e-company" aria-live="polite"></div></div>
-<div class="field"><label for="f-url">Hemsidans adress</label><input id="f-url" name="url" type="url" autocomplete="url" required inputmode="url" placeholder="www.exempel.se" aria-describedby="e-url"><div class="err" id="e-url" aria-live="polite"></div></div>
-<div class="field"><label for="f-name">Kontaktperson</label><input id="f-name" name="contact" type="text" autocomplete="name" required   aria-describedby="e-contact"><div class="err" id="e-contact" aria-live="polite"></div></div>
-<div class="field"><label for="f-mail">E-post</label><input id="f-mail" name="email" type="email" autocomplete="email" required   aria-describedby="e-email"><div class="err" id="e-email" aria-live="polite"></div></div>
-<fieldset class="field v2-fs" id="g-scope" role="radiogroup" aria-required="true" aria-describedby="e-scope"><legend>Vad vill ni ungefär göra?</legend><div class="v2-opts"><label class="v2-opt" for="f-scope-0"><input type="radio" id="f-scope-0" name="scope" value="Rusta upp hela hemsidan"><span>Rusta upp hela hemsidan</span></label><label class="v2-opt" for="f-scope-1"><input type="radio" id="f-scope-1" name="scope" value="Rusta upp vissa sidor"><span>Rusta upp vissa sidor</span></label><label class="v2-opt" for="f-scope-2"><input type="radio" id="f-scope-2" name="scope" value="Bara fräscha upp utseendet"><span>Bara fräscha upp utseendet</span></label><label class="v2-opt" for="f-scope-3"><input type="radio" id="f-scope-3" name="scope" value="Vet ej än"><span>Vet ej än</span></label></div><div class="err" id="e-scope" aria-live="polite"></div></fieldset>
-<div class="field"><label for="f-worst">Vad fungerar sämst i dag? <span>(1–2 meningar)</span></label><textarea id="f-worst" name="worst" rows="3" maxlength="600" aria-describedby="e-worst"></textarea><div class="err" id="e-worst" aria-live="polite"></div></div>
-<details class="v2-more"><summary>Berätta mer <span>(valfritt)</span></summary>
-<div class="field"><label for="f-phone">Telefon <span>(valfritt)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"    aria-describedby="e-phone"><div class="err" id="e-phone" aria-live="polite"></div></div>
-<fieldset class="field v2-fs" id="g-extras" aria-describedby="e-extras"><legend>Något utöver hemsidan? <span>(flera val)</span></legend><div class="v2-opts"><label class="v2-opt" for="f-extras-0"><input type="checkbox" id="f-extras-0" name="extras" value="Fräscha upp logotypen"><span>Fräscha upp logotypen</span></label><label class="v2-opt" for="f-extras-1"><input type="checkbox" id="f-extras-1" name="extras" value="Nya bilder"><span>Nya bilder</span></label><label class="v2-opt" for="f-extras-2"><input type="checkbox" id="f-extras-2" name="extras" value="Inget av detta"><span>Inget av detta</span></label><label class="v2-opt" for="f-extras-3"><input type="checkbox" id="f-extras-3" name="extras" value="Vet ej"><span>Vet ej</span></label></div><div class="err" id="e-extras" aria-live="polite"></div></fieldset>
-<fieldset class="field v2-fs" id="g-deadline" aria-describedby="e-deadline"><legend>När vill ni vara klara? <span>(valfritt)</span></legend><div class="v2-opts"><label class="v2-opt" for="f-deadline-0"><input type="radio" id="f-deadline-0" name="deadline" value="Inom en månad"><span>Inom en månad</span></label><label class="v2-opt" for="f-deadline-1"><input type="radio" id="f-deadline-1" name="deadline" value="Inom 2–3 månader"><span>Inom 2–3 månader</span></label><label class="v2-opt" for="f-deadline-2"><input type="radio" id="f-deadline-2" name="deadline" value="Ingen brådska"><span>Ingen brådska</span></label><label class="v2-opt" for="f-deadline-3"><input type="radio" id="f-deadline-3" name="deadline" value="Ett visst datum"><span>Ett visst datum</span></label></div><div class="v2-date" id="v2-date" hidden><label for="f-date">Vilket datum?</label><input id="f-date" name="deadline_date" type="date"></div><div class="err" id="e-deadline" aria-live="polite"></div></fieldset>
-</details>
-<div class="v2-hp" aria-hidden="true"><label for="f-website2">Lämna detta fält tomt</label><input id="f-website2" name="website2" type="text" tabindex="-1" autocomplete="off"></div>
-<p class="v2-gdpr">Uppgifterna används bara för att planera arbetet och raderas när uppdraget är avslutat. <a href="integritet.html" id="integritetspolicy-lank">Läs vår integritetspolicy</a></p>
-<button class="btn" type="submit">Skicka in er sajt för en kostnadsfri snabbgranskning <span class="dot" aria-hidden="true">→</span></button>
-
-</form>
-<div class="ok" id="ok" role="status" tabindex="-1"><strong>Tack!</strong> Jag tittar på er hemsida och hör av mig inom några dagar.</div>
-      </div>
+    <div class="v2-band-in">
+      <div><span class="kicker">Nästa steg</span><h2 id="h-band" style="margin-top:18px">Nyfiken på vad er sajt <i>kan bli?</i></h2>
+      <p class="lead" style="margin-top:14px">Fast pris från 4 000 kr + 1 000 kr per sida. Allt börjar med en kostnadsfri snabbgranskning – utan förpliktelser.</p></div>
+      <div class="v2-band-btns"><a class="btn" href="granskning.html">Kostnadsfri granskning <span class="dot" aria-hidden="true">→</span></a><a class="btn ghost" href="pris.html">Se priser</a><a class="v2-band-link" href="sa-jobbar-vi.html">Så jobbar vi →</a></div>
     </div>
   </div>
 </section>
@@ -946,7 +806,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   <div class="wrap">
     <div class="foot">
       <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp befintliga hemsidor – varmare, tydligare, snabbare.</p></div>
-      <div><h2 class="foot-h">Sidor</h2><ul><li><a href="#forvandling">Före & efter</a></li><li><a href="#process">Så jobbar vi</a></li><li><a href="#tjanster">Pris</a></li><li><a href="#analys">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
+      <div><h2 class="foot-h">Sidor</h2><ul><li><a href="#forvandling">Före & efter</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
       <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:hej@webbglans.se">hej@webbglans.se</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
     </div>
     <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span></span><span><a href="#top">Till toppen ↑</a></span></div>
@@ -1029,7 +889,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   { const sg=document.querySelector('.me-sig'); if (sg && 'IntersectionObserver' in window) { const o=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ sg.classList.add('signed'); o.disconnect(); } },{threshold:.6}); o.observe(sg); } else if (sg) sg.classList.add('signed'); }
   /* ---------- card stack (cinematic) ---------- */
   // ponytail: klick/svep-styrd istället för scroll-jacking; korten flyger fortfarande iväg
-  {
+  if (document.querySelector('.stack')) { // ponytail: kortleken finns bara på startsidan
   const stack = document.querySelector('.stack'), cards = [...stack.querySelectorAll('.dk')].reverse(), sts = stack.querySelectorAll('.st'), dots = stack.querySelectorAll('.dots button');
   const deck = stack.querySelector('.deck'), prevB = stack.querySelector('.dk-prev'), nextB = stack.querySelector('.dk-next');
   const rest = [[0,0,-2],[14,10,3],[28,20,-4],[42,30,2]]; // y offset px, scale%, rotation by depth
@@ -1074,6 +934,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   if (motion && art && matchMedia('(pointer:fine)').matches) art.addEventListener('pointermove', e => { const b=art.getBoundingClientRect(), x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5; art.style.transform=`rotateY(${x*8}deg) rotateX(${-y*8}deg)`; });
 
   /* ---------- springy before/after slider (native range = keyboard + SR) ---------- */
+  if (document.getElementById('ba')) { // ponytail: före/efter finns bara på startsidan
   const ba = document.getElementById('ba'), rg = document.getElementById('baRange'), bub = ba.querySelector('.ba-bubble');
   let pos = 50, vel = 0, target = 50, raf = 0, touched = false;
   const paint = () => { ba.style.setProperty('--pos', pos.toFixed(2)+'%'); ba.style.setProperty('--sq', (1 + clamp(Math.abs(vel)*.012,0,.22)).toFixed(3)); ba.style.setProperty('--rot', (vel*.6).toFixed(1)+'deg'); };
@@ -1105,6 +966,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
       const seq=[[600,32],[1150,66],[1700,50]]; seq.forEach(([t,v]) => setTimeout(() => { if(!touched) go(v); }, t)); } }, {threshold:.6});
     so.observe(ba);
   }
+  } // slut på före/efter-skyddet
 
   /* ---------- form (demo, no backend) ---------- */
   /* v1-formuläret ersatt av formulär 1 (se v2-skriptet längst ned) */
