@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mejlsignatur – Webbglans</title>
+<style>
+body{margin:0;background:#F4EFE6;font:16px/1.5 system-ui,sans-serif;color:#2C302C;padding:32px 16px}
+.w{max-width:640px;margin:0 auto}
+.box{background:#fff;border-radius:16px;padding:28px;margin:18px 0;box-shadow:0 20px 40px -30px rgba(44,48,44,.5)}
+ol{padding-left:20px}
+button{font:inherit;font-weight:600;background:#455B47;color:#fff;border:0;border-radius:999px;padding:12px 20px;cursor:pointer}
+.ok{color:#455B47;font-weight:600;margin-left:10px}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>Mejlsignatur</h1>
+<p>Kopiera signaturen nedan och klistra in den i Gmail: <b>Inställningar → Se alla inställningar → Allmänt → Signatur</b>. Välj den sedan som standard för oliver@webbglans.se och hej@webbglans.se.</p>
+<button id="copy" type="button">Kopiera signaturen</button><span class="ok" id="ok" hidden>Kopierad ✓</span>
+
+<div class="box">
+<!-- SIGNATUR START -->
+<div id="sig">
+<table cellpadding="0" cellspacing="0" border="0" style="font-family:Georgia,'Times New Roman',serif;color:#2C302C;border-collapse:collapse">
+<tr>
+<td style="vertical-align:top;padding:0 16px 0 0">
+<img src="https://oliverhedman1995-eng.github.io/ombonad-test/oliver.jpg?v=2" width="72" height="72" alt="Oliver" style="display:block;width:72px;height:72px;border-radius:50%;border:0">
+</td>
+<td style="vertical-align:top;padding:0 0 0 16px;border-left:2px solid #F3DE95">
+<img src="https://oliverhedman1995-eng.github.io/ombonad-test/signatur-namn.png" width="150" height="31" alt="Oliver Hedman" style="display:block;width:150px;height:auto;border:0;margin:0 0 4px">
+<div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#565C55">
+Grundare, <b style="color:#455B47">Webbglans</b><br>
+<a href="mailto:oliver@webbglans.se" style="color:#455B47;text-decoration:none">oliver@webbglans.se</a> · <a href="https://webbglans.se" style="color:#455B47;text-decoration:none">webbglans.se</a><br>
+<span style="font-family:Georgia,'Times New Roman',serif;font-style:italic;color:#2C302C">Samma hemsida. Ny glans.</span>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<!-- SIGNATUR SLUT -->
+</div>
+<p style="font-size:14px;color:#565C55">Lägg gärna till telefonnummer under e-postraden om du vill bli uppringd. Bilderna ligger på sajten, så de syns hos mottagaren.</p>
+</div>
+<script>
+document.getElementById('copy').onclick=async()=>{const el=document.getElementById('sig');
+ try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([el.innerHTML],{type:'text/html'}),'text/plain':new Blob([el.innerText],{type:'text/plain'})})]);}
+ catch(e){const r=document.createRange();r.selectNode(el);const s=getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy');s.removeAllRanges();}
+ document.getElementById('ok').hidden=false;};
+</script>
+</body>
+</html>
