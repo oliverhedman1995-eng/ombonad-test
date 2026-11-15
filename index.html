@@ -906,9 +906,9 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <div class="v2-hp" aria-hidden="true"><label for="f-website2">Lämna detta fält tomt</label><input id="f-website2" name="website2" type="text" tabindex="-1" autocomplete="off"></div>
 <p class="v2-gdpr">Uppgifterna används bara för att planera arbetet och raderas när uppdraget är avslutat. <a href="integritet.html" id="integritetspolicy-lank">Läs vår integritetspolicy</a></p>
 <button class="btn" type="submit">Skicka in er sajt för en kostnadsfri snabbgranskning <span class="dot" aria-hidden="true">→</span></button>
-<p class="demo-note">Demoläge: formuläret skickar ingenting ännu. Kopplas till Google Forms via <code>FORM_CONFIG</code> ([GOOGLE FORMS ACTION]).</p>
+
 </form>
-<div class="ok" id="ok" role="status" tabindex="-1"><strong>Tack!</strong> Jag tittar på er hemsida och hör av mig inom några dagar. <span class="v2-ok-demo">(Demoläge – inget har skickats.)</span></div>
+<div class="ok" id="ok" role="status" tabindex="-1"><strong>Tack!</strong> Jag tittar på er hemsida och hör av mig inom några dagar.</div>
       </div>
     </div>
   </div>
@@ -1093,19 +1093,19 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
    3. Fyll i nedan och sätt mode: "google".
    ============================================================ */
 window.FORM_CONFIG = {
-  mode: "demo",                                 // "demo" | "google"
-  action: "[GOOGLE FORMS ACTION]",              // https://docs.google.com/forms/d/e/<ID>/formResponse
+  mode: "google",
+  action: "https://docs.google.com/forms/d/e/1FAIpQLSciZCEC0ne8ByiZr95BK-sowPlzIkTdYC9TKnddrL6cfPHABw/formResponse",
   entries: {
-    company:  "entry.[ID]",  // 1 Företagets namn
-    url:      "entry.[ID]",  // 2 Hemsidans adress
-    contact:  "entry.[ID]",  // 3 Kontaktperson
-    email:    "entry.[ID]",  // 4 E-post
-    phone:    "entry.[ID]",  // 5 Telefon
-    scope:    "entry.[ID]",  // 6 Vad vill ni ungefär göra?
-    worst:    "entry.[ID]",  // 7 Vad fungerar sämst i dag?
-    extras:   "entry.[ID]",  // 8 Något utöver hemsidan? (flera val)
-    deadline: "entry.[ID]",  // 9 När vill ni vara klara?
-    deadline_date: "entry.[ID]" // 9b Datum (om "Ett visst datum")
+    company:  "entry.704977064",   // Företagets namn
+    url:      "entry.1269172444",  // Hemsidans adress
+    contact:  "entry.1658085910",  // Kontaktperson
+    email:    "entry.1397112807",  // E-post
+    phone:    "entry.1120959486",  // Telefon
+    scope:    "entry.1138997194",  // Vad vill ni ungefär göra?
+    worst:    "entry.1947887762",  // Vad fungerar sämst i dag?
+    extras:   "entry.30376995",    // Något utöver hemsidan? (kryssen slås ihop till en rad)
+    deadline: "entry.1213924098",  // När vill ni vara klara?
+    deadline_date: "entry.636910994" // Önskat datum
   }
 };
 </script>
@@ -1194,7 +1194,7 @@ window.FORM_CONFIG = {
       const fd = new FormData(), E = C.entries, add = (k, v) => { if (E[k] && v) fd.append(E[k], v); };
       add('company', val('f-company')); add('url', u.value); add('contact', val('f-name')); add('email', val('f-mail')); add('phone', val('f-phone'));
       add('scope', f.querySelector('input[name="scope"]:checked')?.value); add('worst', val('f-worst'));
-      $$('input[name="extras"]:checked', f).forEach(c => add('extras', c.value));
+      add('extras', $$('input[name="extras"]:checked', f).map(c => c.value).join(', ')); // kortsvarsfält tar ett värde
       add('deadline', f.querySelector('input[name="deadline"]:checked')?.value); add('deadline_date', val('f-date'));
       try { await fetch(C.action, {method:'POST', mode:'no-cors', body:fd}); } catch (_) {}
       ok.querySelector('.v2-ok-demo')?.remove();
