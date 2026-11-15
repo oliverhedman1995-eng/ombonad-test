@@ -209,6 +209,39 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 /* before / after */
 .ba{position:relative;aspect-ratio:16/9;border-radius:34px;overflow:hidden;background:var(--paper);box-shadow:0 40px 90px -50px rgba(44,48,44,.6);--pos:50%;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .ba-pane{position:absolute;inset:0}
+/* efter-sidan lever: blob som byter form, svävande märken, glimtande knapp, gnistor vid förvandling */
+.b-site{position:relative}
+.b-badge{position:absolute;right:4%;bottom:5%;background:#C9CCD3;color:#3A3D45;font:600 clamp(10px,1vw,13px) Arial,sans-serif;padding:6px 10px;border:1px solid #9EA3AE}
+.a-pic{position:relative;animation:blobMorph 9s ease-in-out infinite}
+.a-orb{position:absolute;width:26%;aspect-ratio:1;border-radius:50%;background:#fff;opacity:.55;top:18%;left:22%;filter:blur(6px);animation:orb 6s ease-in-out infinite}
+@keyframes blobMorph{0%,100%{border-radius:40% 60% 55% 45%/50% 45% 55% 50%}50%{border-radius:58% 42% 45% 55%/42% 58% 42% 58%}}
+@keyframes orb{50%{transform:translate(70%,60%)}}
+.a-btn{position:relative;overflow:hidden}
+.a-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);animation:btnShine 3.2s 1s ease-in-out infinite}
+@keyframes btnShine{0%,60%{transform:translateX(-120%)}80%,100%{transform:translateX(120%)}}
+.a-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:3%;margin-top:5%}
+.a-cards div{background:#fff;border-radius:14px;padding:5% 6%;box-shadow:0 10px 24px -18px rgba(44,48,44,.6);display:grid;gap:2px;font-size:clamp(9px,.9vw,12px);color:var(--ink-2)}
+.a-cards i{font-style:normal;color:var(--sage-d);font-size:clamp(12px,1.3vw,18px)}
+.a-cards b{font:600 clamp(11px,1.2vw,16px) var(--disp);color:var(--ink)}
+.a-badge{position:absolute;background:var(--sage-d);color:#fff;font:600 clamp(10px,1vw,13px)/1 var(--sans);padding:8px 12px;border-radius:999px;box-shadow:0 12px 24px -12px rgba(44,48,44,.7);animation:floaty 5s ease-in-out infinite}
+.a-speed{right:5%;top:16%}
+.a-acc{right:12%;bottom:28%;background:var(--butter);color:#4D3F12;animation-delay:-2.5s}
+@keyframes floaty{50%{transform:translateY(-8px)}}
+.a-spark{position:absolute;width:18px;height:18px;opacity:0;pointer-events:none;background:#E9C95A;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%)}
+.a-spark.s1{left:20%;top:22%}.a-spark.s2{left:58%;top:12%;width:26px;height:26px}.a-spark.s3{left:42%;top:70%;width:14px;height:14px}
+.ba-after::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);transform:translateX(-110%)}
+.ba.shine .ba-after::after{animation:paneShine 1.2s ease forwards}
+.ba.shine .a-spark{animation:sparkPop 1.4s ease forwards}.ba.shine .a-spark.s2{animation-delay:.2s}.ba.shine .a-spark.s3{animation-delay:.4s}
+@keyframes paneShine{to{transform:translateX(110%)}}
+@keyframes sparkPop{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.2) rotate(60deg)}100%{opacity:0;transform:scale(.4) rotate(120deg)}}
+.ba-ctrl{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.ba-b{min-height:46px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:600 15px var(--sans);cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.ba-b:hover{transform:translateY(-2px);box-shadow:0 10px 20px -14px rgba(44,48,44,.6)}
+.ba-b[aria-pressed="true"]{background:var(--sage-l);border-color:var(--sage)}
+.ba-magic{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
+.ba-magic:hover{background:#3A4E3C}
+@media (max-width:700px){.a-cards{grid-template-columns:1fr 1fr}.a-cards div:last-child{display:none}.a-speed{top:auto;bottom:6%;right:4%}.a-acc{display:none}.b-badge{bottom:4%}}
+@media (prefers-reduced-motion:reduce){.a-pic,.a-orb,.a-btn::after,.a-badge{animation:none!important}}
 .ba-after{clip-path:inset(0 0 0 var(--pos))}
 .b-site{height:100%;background:#E8E6E1;font-family:"Times New Roman",serif;color:#333}
 .b-top{background:#5f6f8f;color:#fff;padding:2.2% 3%;font:bold clamp(13px,1.8vw,24px) Arial,sans-serif;display:flex;justify-content:space-between;align-items:baseline}
@@ -219,7 +252,7 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .b-main h4{margin:0 0 8px;font-size:clamp(16px,2vw,26px);color:#7a2f2f}
 .b-img{float:right;width:34%;aspect-ratio:4/3;background:#cbc8c0;margin:0 0 10px 14px;display:grid;place-items:center;color:#888;font:11px Arial}
 .b-warn{display:inline-block;margin-top:10px;color:#a00;font:italic clamp(9px,.9vw,12px) Arial}
-.a-site{height:100%;background:linear-gradient(160deg,#FFFDF8,#F3EEE3);padding:3.5% 5%;font-family:var(--sans);color:var(--ink)}
+.a-site{position:relative;overflow:hidden;height:100%;background:linear-gradient(160deg,#FFFDF8,#F3EEE3);padding:3.5% 5%;font-family:var(--sans);color:var(--ink)}
 .a-nav{display:flex;justify-content:space-between;align-items:center;font-size:clamp(10px,1vw,14px);color:var(--ink-2)}
 .a-nav b{font:600 clamp(14px,1.6vw,20px) var(--disp);font-variation-settings:"SOFT" 100;color:var(--ink)}
 .a-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:5%;margin-top:6%;align-items:center}
@@ -485,6 +518,30 @@ html:not(.motion) .v2-pause{display:none}
   header.site{position:sticky}
   header.site .v2-menu{position:absolute}
 }
+/* mobilmeny v3: rund knapp som får plats, kort som glider in, mörkad bakgrund */
+@media (max-width:860px){
+  .nav{gap:8px;padding:8px 8px 8px 14px}
+  .nav .logo{font-size:19px;gap:8px;min-width:0}
+  .nav .logo .mk{width:28px;height:28px;border-radius:10px}
+  .v2-hbtn{margin-left:auto!important;margin-right:0!important;white-space:nowrap}
+  .js .v2-menu-btn{width:44px;height:44px;min-width:44px;padding:0;justify-content:center;border-radius:50%;flex:none;background:var(--sage-d);border-color:var(--sage-d);color:#fff}
+  .v2-menu-btn .v2-menu-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .v2-burger{width:18px;gap:5px}
+  header.site .v2-menu{position:fixed;left:12px;right:12px;top:80px;border:1px solid var(--line);border-radius:26px;background:var(--paper);padding:8px 20px 20px;max-height:calc(100dvh - 100px);overflow:auto;box-shadow:0 30px 60px -20px rgba(44,48,44,.45);transform-origin:top right;animation:menuIn .32s cubic-bezier(.2,.9,.3,1.2)}
+  .nav .v2-menu ul{display:block!important}
+  .v2-menu li a{min-height:58px;font:500 22px/1.2 var(--disp)!important;justify-content:space-between;animation:menuItem .35s ease both}
+  .v2-menu li a::after{content:"→";font:500 18px var(--sans);color:var(--sage-d);transition:transform .2s}
+  .v2-menu li a:active::after{transform:translateX(4px)}
+  .v2-menu li:nth-child(1) a{animation-delay:.04s}.v2-menu li:nth-child(2) a{animation-delay:.08s}.v2-menu li:nth-child(3) a{animation-delay:.12s}.v2-menu li:nth-child(4) a{animation-delay:.16s}.v2-menu li:nth-child(5) a{animation-delay:.2s}
+  .v2-menu li:last-child a{border-bottom:0}
+  .v2-menu-cta{min-height:56px;font-size:17px}
+  html.v2-menu-open{overflow:hidden}
+  html.v2-menu-open body::before{content:"";position:fixed;inset:0;background:rgba(44,48,44,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:45;animation:fadeIn .25s ease}
+}
+@keyframes menuIn{from{opacity:0;transform:translateY(-10px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes menuItem{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){header.site .v2-menu,.v2-menu li a,html.v2-menu-open body::before{animation:none!important;opacity:1!important}}
 @media (min-width:861px){.v2-menu{display:none!important}}
 /* Mobil: läsbarhet och klickytor */
 @media (max-width:860px){
@@ -622,6 +679,7 @@ html:not(.motion) .blob{position:fixed}
             <div class="b-side">» Startsida<br>» Om företaget<br>» Våra tjänster<br>» Prislista (PDF)<br>» Gästbok<br>» Kontakta oss</div>
             <div class="b-main"><div class="b-img">bild.jpg</div><h4>Välkommen!</h4>Här på vår hemsida kan du läsa om allt vi gör. Vi har funnits sedan länge och erbjuder många olika tjänster till både företag och privatpersoner. Läs mer i menyn till vänster eller ladda ner vår prislista.<br><span class="b-warn">Sidan visas bäst i 1024×768</span></div>
           </div>
+          <span class="b-badge">🐢 Laddar på 6,2 s</span>
         </div>
       </div>
       <div class="ba-pane ba-after" aria-hidden="true">
@@ -630,13 +688,22 @@ html:not(.motion) .blob{position:fixed}
           <div class="a-hero">
             <div><h4>Hjälp som gör skillnad – i hela regionen.</h4><p>Vi tar hand om det praktiska så att ni kan fokusera på det viktiga.</p><span class="a-btn">Boka ett samtal →</span>
               <div class="a-stats"><div><b>Snabb</b>laddning</div><div><b>Tydlig</b>meny</div><div><b>Mobil</b>först</div></div></div>
-            <div class="a-pic"></div>
+            <div class="a-pic"><span class="a-orb"></span></div>
           </div>
+          <div class="a-cards"><div><i aria-hidden="true">✦</i><b>Tjänster</b><span>Tydligt utbud</span></div><div><i aria-hidden="true">◎</i><b>Om oss</b><span>Människorna bakom</span></div><div><i aria-hidden="true">→</i><b>Kontakt</b><span>Svar inom en dag</span></div></div>
+          <span class="a-badge a-speed">⚡ Laddar på 0,9 s</span>
+          <span class="a-badge a-acc">✓ Tillgänglig</span>
+          <span class="a-spark s1"></span><span class="a-spark s2"></span><span class="a-spark s3"></span>
         </div>
       </div>
             <div class="ba-line"></div>
       <div class="ba-knob"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 9l-6 6 6 6M19 9l6 6-6 6"/></svg></div>
             <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" step="1" aria-label="Jämför före och efter: andel som visar före-versionen" aria-describedby="ba-desc" aria-valuetext="50 procent före">
+    </div>
+    <div class="ba-ctrl" role="group" aria-label="Visa före eller efter">
+      <button type="button" class="ba-b" data-ba="100">Före</button>
+      <button type="button" class="ba-b" data-ba="0">Efter</button>
+      <button type="button" class="ba-b ba-magic">✨ Förvandla</button>
     </div>
     <p class="sr" id="ba-desc">Före: tät text, sidomeny och varningsruta. Efter: tydlig rubrik, luft, en knapp och en bild.</p>
     <div class="ba-note"><span><span class="tag">Exempel</span>&nbsp; Riktiga före och efter-bilder från kunder publiceras här när de har godkänt det.</span></div>
@@ -962,6 +1029,22 @@ html:not(.motion) .blob{position:fixed}
   rg.addEventListener('focus', () => ba.classList.add('focus')); rg.addEventListener('blur', () => ba.classList.remove('focus'));
   ['pointerdown','keydown','input'].forEach(ev => rg.addEventListener(ev, () => { if(!touched){ touched=true; bub.classList.add('gone'); } }));
   paint();
+  /* knappar: Före / Efter / Förvandla */
+  const bbs = [...document.querySelectorAll('.ba-b[data-ba]')];
+  const mark = v => bbs.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.ba === v)));
+  const setTo = v => { touched = true; if (bub) bub.classList.add('gone'); rg.value = v; go(v); mark(v); };
+  bbs.forEach(b => b.addEventListener('click', () => setTo(+b.dataset.ba)));
+  rg.addEventListener('input', () => mark(-1));
+  const magic = document.querySelector('.ba-magic');
+  if (magic) magic.addEventListener('click', () => {
+    touched = true; if (bub) bub.classList.add('gone'); ba.classList.remove('shine'); mark(-1);
+    if (!motion) { setTo(0); return; }
+    rg.value = 100; go(100);
+    const t0 = performance.now() + 450, dur = 1700;
+    const tick = now => { const k = Math.min(1, Math.max(0, (now - t0) / dur)), e = 1 - Math.pow(1 - k, 3), v = Math.round(100 - 100 * e);
+      rg.value = v; go(v); if (k < 1) requestAnimationFrame(tick); else { mark(0); void ba.offsetWidth; ba.classList.add('shine'); } };
+    requestAnimationFrame(tick);
+  });
   if (motion && 'IntersectionObserver' in window) {
     const so = new IntersectionObserver(es => { if (es[0].isIntersecting) { so.disconnect();
       const seq=[[600,32],[1150,66],[1700,50]]; seq.forEach(([t,v]) => setTimeout(() => { if(!touched) go(v); }, t)); } }, {threshold:.6});
