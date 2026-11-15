@@ -599,6 +599,7 @@ html:not(.motion) .blob{position:fixed}
   #ba .a-stats{grid-template-columns:1fr!important}
 }
 
+html.motion #forvandling:not(.vis) *{animation-play-state:paused!important}
 </style>
 </head>
 <body>
@@ -964,18 +965,26 @@ html:not(.motion) .blob{position:fixed}
     return {x:lerp(a.x,b.x,e), y:lerp(a.y,b.y,e), s:lerp(a.s,b.s,e), c:a.c.map((v,j)=>lerp(v,b.c[j],e)), r:a.r.map((v,j)=>lerp(v,b.r[j],e))};
   };
   if (motion) {
-    const loop = t => {
-      const g = blobTarget();
+    // ponytail: ritar bara när något rör sig (scroll/resize) – tidigare 60 bilder/s även i vila
+    let w = blob.offsetWidth, raf = 0, tgt = null;
+    const near = (a,b) => Math.abs(a.x-b.x)+Math.abs(a.y-b.y)+Math.abs(a.s-b.s) < .0005 && a.r.every((v,j)=>Math.abs(v-b.r[j])<.05);
+    const loop = () => {
+      const g = tgt || blobTarget(); tgt = null;
       if (!cur) cur = JSON.parse(JSON.stringify(g));
       const f = .08; cur.x=lerp(cur.x,g.x,f); cur.y=lerp(cur.y,g.y,f); cur.s=lerp(cur.s,g.s,f); cur.c=cur.c.map((v,j)=>lerp(v,g.c[j],f)); cur.r=cur.r.map((v,j)=>lerp(v,g.r[j],f));
-      const w = blob.offsetWidth;
-      blob.style.transform = `translate3d(${(cur.x*innerWidth - w/2).toFixed(1)}px,${(cur.y*innerHeight - w/2).toFixed(1)}px,0) scale(${cur.s.toFixed(3)}) rotate(${(t*.004)%360}deg)`;
-      path.setAttribute('d', blobD(cur.r, t)); path.setAttribute('fill', `rgb(${cur.c.map(Math.round).join(',')})`);
-      requestAnimationFrame(loop);
+      blob.style.transform = `translate3d(${(cur.x*innerWidth - w/2).toFixed(1)}px,${(cur.y*innerHeight - w/2).toFixed(1)}px,0) scale(${cur.s.toFixed(3)})`;
+      path.setAttribute('d', blobD(cur.r, 0)); path.setAttribute('fill', `rgb(${cur.c.map(Math.round).join(',')})`);
+      raf = near(cur, g) ? 0 : requestAnimationFrame(() => { tgt = blobTarget(); loop(); });
     };
-    requestAnimationFrame(loop);
+    const kick = () => { if (!raf) raf = requestAnimationFrame(() => { tgt = blobTarget(); loop(); }); };
+    addEventListener('scroll', kick, {passive:true});
+    addEventListener('resize', () => { w = blob.offsetWidth; kick(); }, {passive:true});
+    kick();
   } else { path.setAttribute('d', blobD(K[0].r, 0)); }
 
+
+  /* ponytail: dekoranimationer i före/efter körs bara när sektionen syns */
+  if ('IntersectionObserver' in window) { const fv=document.getElementById('forvandling'); if (fv) new IntersectionObserver(es=>fv.classList.toggle('vis',es[0].isIntersecting)).observe(fv); }
   /* ---------- card stack (cinematic) ---------- */
   // ponytail: klick/svep-styrd istället för scroll-jacking; korten flyger fortfarande iväg
   {
