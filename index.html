@@ -98,7 +98,7 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .nav ul a{display:block;text-decoration:none;font-weight:500;font-size:15px;padding:9px 14px;border-radius:999px;color:var(--ink-2);transition:background .25s,color .25s}
 .nav ul a:hover{background:var(--sage-l);color:var(--ink)}
 .nav .btn{padding:12px 18px;font-size:15px}
-@media (max-width:900px){.nav ul{display:none}}
+@media (max-width:860px){.nav>ul{display:none}}
 @media (max-width:420px){.nav .btn{padding:11px 14px;font-size:14px}.logo{font-size:19px}}
 
 /* hero */
@@ -272,8 +272,8 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .dial circle{fill:none;stroke-width:10;stroke-linecap:round}
 .dial .bg{stroke:rgba(255,255,255,.12)}
 .dial .fg{stroke:var(--butter);stroke-dasharray:314;stroke-dashoffset:calc(314 - 314 * var(--v,0));transition:stroke-dashoffset 1.6s var(--ease)}
-.dial .val{position:absolute;inset:0;display:grid;place-items:center;font:600 30px/1 var(--disp);font-variation-settings:"SOFT" 100;color:#fff}
-.dial .val small{font:500 13px var(--sans);color:#C8D3C5;margin-left:2px}
+.dial .val{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;font:600 30px/1 var(--disp);font-variation-settings:"SOFT" 100;color:#fff}
+.dial .val small{font:500 13px var(--sans);color:#C8D3C5}
 .dial .k{font-weight:700}
 .dial .d{font-size:14px;color:#C8D3C5;margin-top:4px}
 .results-box .tag{margin-bottom:22px}
@@ -285,7 +285,7 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .measure .m-why b{color:var(--butter)}
 @media (max-width:760px){.measure{grid-template-columns:1fr}}
 .disc{display:flex;gap:12px;margin-top:26px;font-size:14px;color:#D5DED2;max-width:80ch}
-@media (max-width:960px){.dials{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:960px){.dials{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:440px){.dial .ring{width:104px;height:104px}.dial{padding:20px 12px}}
 
 /* audiences */
@@ -333,6 +333,20 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .cta::after{content:"";position:absolute;width:340px;height:340px;right:-120px;top:-140px;border-radius:50%;background:var(--butter);opacity:.6;z-index:0}
 .cta>*{position:relative;z-index:1}
 .cta ol{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:12px;counter-reset:c}
+.cta>div:first-child{position:sticky;top:110px;align-self:start}
+.me{display:flex;gap:16px;align-items:flex-start;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+.me-pic{flex:none;width:64px;height:64px;border-radius:50%;background:var(--butter);color:var(--sage-d);display:grid;place-items:center;font:500 28px/1 var(--disp);overflow:hidden}
+.me-pic img{width:100%;height:100%;object-fit:cover}
+.me-name{font:600 17px/1.3 var(--sans);margin:2px 0 4px}
+.me-txt{margin:0 0 6px;color:var(--ink-2);font-size:15px;line-height:1.5}
+.me-txt a{color:var(--sage-d);font-weight:600}
+.v2-more{border:1px solid var(--line);border-radius:16px;padding:0 18px;margin:4px 0 18px}
+.v2-more summary{cursor:pointer;min-height:52px;display:flex;align-items:center;font-weight:600;list-style:none}
+.v2-more summary::-webkit-details-marker{display:none}
+.v2-more summary::after{content:"+";margin-left:auto;font-size:22px;color:var(--sage-d)}
+.v2-more[open] summary::after{content:"–"}
+.v2-more summary span{font-weight:400;color:var(--ink-2);margin-left:6px}
+.v2-more[open]{padding-bottom:6px}
 .cta ol li{counter-increment:c;display:flex;gap:14px;align-items:center;font-weight:500}
 .cta ol li::before{content:counter(c);flex:none;width:36px;height:36px;border-radius:50%;background:var(--sage-l);color:var(--sage-d);display:grid;place-items:center;font:600 16px var(--disp)}
 form{display:grid;gap:16px}
@@ -354,7 +368,8 @@ form{display:grid;gap:16px}
 .ok.show path{animation:draw .7s .2s var(--ease) forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 html:not(.motion) .ok path{stroke-dashoffset:0}
-@media (max-width:900px){.cta{grid-template-columns:1fr;border-radius:32px}}
+@media (max-width:900px){.cta{grid-template-columns:1fr;border-radius:32px}
+.cta>div:first-child{position:static}}
 
 footer{padding:70px 0 40px}
 .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-top:40px;border-top:1.5px dashed var(--line)}
@@ -440,7 +455,10 @@ html{scroll-padding-top:88px}
 .v2-date{margin-top:10px}
 .v2-hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
 .v2-gdpr{font-size:14px;line-height:1.5;margin:0}
-.v2-gdpr a{display:inline-block;padding:12px 0;min-height:44px;text-decoration:underline;text-underline-offset:3px}
+.hb-short{display:none}
+.k-short{display:none}
+@media (max-width:520px){.k-long{display:none}.k-short{display:inline}}
+.v2-gdpr a{display:block;width:fit-content;padding:10px 0;min-height:44px;text-decoration:underline;text-underline-offset:3px}
 .demo-note code{font-size:.95em}
 .v2-ok-demo{display:block;margin-top:6px;opacity:.9;font-size:14px}
 .field input,.field textarea,.field select{border-color:var(--v-field-line)!important}
@@ -498,7 +516,9 @@ html:not(.motion) .blob{position:fixed}
 .dial .d{color:#E3EBDF}
 .o-site .h{background:#4F5D7A!important}.o-site .ph{color:#555!important}
 @media (max-width:860px){
-  .v2-hbtn{display:none}
+  .v2-hbtn{padding:10px 14px!important;font-size:14px!important;min-height:44px;margin-left:auto;margin-right:8px}
+  .v2-hbtn .hb-long{display:none}
+  .v2-hbtn .hb-short{display:inline}
   .tag,.ba-label,.kicker,.stack-ill,.dial small,.res small,small{font-size:14px!important}
   .hero-art{overflow:visible;padding:0 10px}
   .hero-art .c3{inset:auto 4% 2% 30%}
@@ -529,7 +549,7 @@ html:not(.motion) .blob{position:fixed}
     <nav class="nav" aria-label="Huvudmeny">
       <a class="logo" href="#top"><span class="mk" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="6" fill="none" stroke="#455B47" stroke-width="2.6"/></svg></span><span data-brand>Webbglans</span></a>
       <ul><li><a href="#forvandling">Före & efter</a></li><li><a href="#process">Så jobbar vi</a></li><li><a href="#darfor">Därför oss</a></li><li><a href="#tjanster">Pris</a></li><li><a href="#fragor">Frågor</a></li></ul>
-      <a class="btn v2-hbtn" href="#analys">Kostnadsfri granskning</a>
+      <a class="btn v2-hbtn" href="#analys"><span class="hb-long">Kostnadsfri granskning</span><span class="hb-short">Granskning</span></a>
       <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="#forvandling">Före & efter</a></li><li><a href="#process">Så jobbar vi</a></li><li><a href="#darfor">Därför oss</a></li><li><a href="#tjanster">Pris</a></li><li><a href="#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="#analys">Kostnadsfri granskning <span aria-hidden="true">→</span></a></div>
     </nav>
   </div>
@@ -540,11 +560,11 @@ html:not(.motion) .blob{position:fixed}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <span class="kicker fade">Upprustning av befintliga hemsidor · Holmsund/Umeå</span>
+        <span class="kicker fade"><span class="k-long">Upprustning av befintliga hemsidor · </span><span class="k-short">Hemsidor · </span>Holmsund/Umeå</span>
         <h1 id="h-hero" aria-label="Samma hemsida. Ny glans."><span aria-hidden="true"><span class="w" style="--i:0">Samma</span> <span class="w" style="--i:1">hemsida.</span><br><span class="w" style="--i:2">Ny</span> <span class="w" style="--i:3"><i class="glint">glans.<svg class="spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg><svg class="spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg></i></span></span></h1>
         <p class="lead fade">Vi rustar upp sajten ni redan har – varmare, tydligare och snabbare, i samma plattform. Ingen ny sajt från noll, inget nytt system att lära sig.</p>
         <div class="hero-cta fade">
-          <a class="btn" href="#analys">Skicka in er sajt för en kostnadsfri snabbgranskning <span class="dot" aria-hidden="true">→</span></a>
+          <a class="btn" href="#analys">Få en kostnadsfri granskning <span class="dot" aria-hidden="true">→</span></a>
           <a class="btn soft" href="#forvandling">Se före & efter</a>
         </div>
         <ul class="chips fade">
@@ -578,11 +598,11 @@ html:not(.motion) .blob{position:fixed}
     </div>
     <div class="deck" aria-hidden="true">
       <div class="dk" data-k="3"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">4 · Klart</span><div class="bd n-site"><div class="t">Välkommen in – vi hjälper er hela vägen.</div><p>Tydligt erbjudande och en självklar nästa knapp.</p><span class="b">Boka tid →</span><div class="r"><i></i><i></i><i></i></div><div class="checks"><span>Snabbare</span><span>Tydligare</span><span>Tillgänglig</span></div></div></div>
-      <div class="dk" data-k="2"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">3 · Ombonat</span><div class="bd n-site"><div class="t">Välkommen in – vi hjälper er hela vägen.</div><p>Tydligt erbjudande och en självklar nästa knapp.</p><span class="b">Boka tid →</span><div class="r"><i></i><i></i><i></i></div></div></div>
+      <div class="dk" data-k="2"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">3 · Putsat</span><div class="bd n-site"><div class="t">Välkommen in – vi hjälper er hela vägen.</div><p>Tydligt erbjudande och en självklar nästa knapp.</p><span class="b">Boka tid →</span><div class="r"><i></i><i></i><i></i></div></div></div>
       <div class="dk" data-k="1"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">2 · Granskning</span><div class="bd o-site"><div class="h">VÄLKOMMEN TILL VÅR HEMSIDA!!</div><div class="m"><div class="side">» Start<br>» Om oss<br>» Prislista<br>» Gästbok</div><div><div class="ph">bild.jpg</div>Text som fortsätter länge utan rubriker och utan tydlig väg vidare.</div></div><span class="note" style="left:8%;top:6%;transform:rotate(-4deg)">Otydlig rubrik</span><span class="note" style="right:8%;top:40%;transform:rotate(3deg)">Tung bild · 2,4 MB</span><span class="note" style="left:28%;bottom:10%;transform:rotate(-2deg)">Ingen tydlig knapp</span></div></div>
       <div class="dk" data-k="0"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">1 · Idag</span><div class="bd o-site"><div class="h">VÄLKOMMEN TILL VÅR HEMSIDA!!</div><div class="m"><div class="side">» Start<br>» Om oss<br>» Prislista<br>» Gästbok</div><div><div class="ph">bild.jpg</div>Text som fortsätter länge utan rubriker och utan tydlig väg vidare. Kontakta oss via länken längst ner.</div></div></div></div>
     </div>
-    <span class="stack-ill">Illustration – påhittat exempel</span>
+    <span class="stack-ill">Exempel</span>
   </div>
 </section>
 
@@ -619,7 +639,7 @@ html:not(.motion) .blob{position:fixed}
             <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" step="1" aria-label="Jämför före och efter: andel som visar före-versionen" aria-describedby="ba-desc" aria-valuetext="50 procent före">
     </div>
     <p class="sr" id="ba-desc">Före: tät text, sidomeny och varningsruta. Efter: tydlig rubrik, luft, en knapp och en bild.</p>
-    <div class="ba-note"><span><span class="tag">Illustration</span>&nbsp; Påhittat exempel för att visa idén – inte ett riktigt kunduppdrag.</span><span>Riktiga case publiceras här när kunder har godkänt det.</span></div>
+    <div class="ba-note"><span><span class="tag">Exempel</span>&nbsp; Riktiga före och efter-bilder från kunder publiceras här när de har godkänt det.</span></div>
   </div>
 </section>
 
@@ -633,7 +653,7 @@ html:not(.motion) .blob{position:fixed}
     <div class="v2-proc"><ol class="v2-tl" aria-label="Arbetsgången i åtta steg">
 <li class="v2-ph rv"><p class="v2-ph-h"><span class="v2-ph-n">Fas 1</span> <span class="v2-ph-t">Kontakt och granskning</span></p><ol class="v2-steps">
 <li class="v2-step" value="1"><span class="v2-step-n" aria-hidden="true">01</span><h3 class="v2-step-h"><span class="sr">Steg 1: </span>Första kontakt</h3><p>Ni fyller i formuläret längre ned. Det tar cirka 2 minuter.</p></li>
-<li class="v2-step" value="2"><span class="v2-step-n" aria-hidden="true">02</span><h3 class="v2-step-h"><span class="sr">Steg 2: </span>Kostnadsfri snabbgranskning</h3><p>Vi går igenom sajten och skickar de tre viktigaste förbättringarna på vanlig svenska, mätvärden för hastighet på mobil (PageSpeed) och tillgänglighet (WAVE) och ett ungefärligt pris. Svar inom några arbetsdagar, utan förpliktelser. Ligger sajten utanför vad vi gör får ni ett ärligt nej.</p></li>
+<li class="v2-step" value="2"><span class="v2-step-n" aria-hidden="true">02</span><h3 class="v2-step-h"><span class="sr">Steg 2: </span>Kostnadsfri snabbgranskning</h3><p>Ni får de tre viktigaste förbättringarna, mätvärden från PageSpeed och WAVE och ett ungefärligt pris – inom några arbetsdagar. Passar sajten inte oss får ni ett ärligt nej.</p></li>
 </ol></li>
 <li class="v2-ph rv"><p class="v2-ph-h"><span class="v2-ph-n">Fas 2</span> <span class="v2-ph-t">Plan och avtal</span></p><ol class="v2-steps">
 <li class="v2-step" value="3"><span class="v2-step-n" aria-hidden="true">03</span><h3 class="v2-step-h"><span class="sr">Steg 3: </span>Era önskemål</h3><p>Ni fyller i formulär 2, cirka 10–15 minuter. Varje önskemål blir en numrerad punkt i en kravlista.</p></li>
@@ -679,7 +699,6 @@ html:not(.motion) .blob{position:fixed}
         <div><span class="kicker">Mätbara resultat</span><h2 id="h-res" style="margin-top:20px">Vi mäter före. <i>Och efter.</i></h2></div>
         <p class="lead">Vi mäter med PageSpeed och WAVE före och efter. Så här kan mätvärdena se ut.</p>
       </div>
-      <span class="tag">Exempelvärden – inte verkliga kundresultat</span>
       <div class="dials">
         <div class="dial" style="--t:.67"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50"/></svg><div class="val"><span data-count="1.6" data-dec="1">1,6</span><small>s</small></div></div><div class="k">Laddtid (LCP)</div><div class="d">Exempel: från 4,8 s</div></div>
         <div class="dial" style="--t:.96"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50"/></svg><div class="val"><span data-count="96">96</span><small>/100</small></div></div><div class="k">Prestanda</div><div class="d">Exempel: från 41</div></div>
@@ -698,7 +717,7 @@ html:not(.motion) .blob{position:fixed}
           <p class="m-why"><b>För er:</b> en sajt som fungerar för alla. För offentlig sektor är det lagkrav, och sedan 2025 gäller krav även för många tjänster mot konsumenter.</p>
         </div>
       </div>
-      <p class="disc"><span aria-hidden="true">ⓘ</span><span>Siffrorna är illustrativa exempel på vilka mått vi följer upp (Lighthouse/Core Web Vitals). De är inte resultat från ett verkligt uppdrag. Er kostnadsfria snabbgranskning visar era egna utgångsvärden.</span></p>
+      <p class="disc"><span aria-hidden="true">ⓘ</span><span>Siffrorna ovan är exempel på hur mätvärdena kan se ut. Er kostnadsfria granskning visar era egna värden.</span></p>
     </div>
   </div>
 </section>
@@ -745,8 +764,8 @@ html:not(.motion) .blob{position:fixed}
     <li><b>Tidplan</b> cirka 5–6 veckor.</li>
   </ul>
   <div class="v2-incl">
-    <div><h3>Ingår</h3><ul class="v2-yes"><li>Upprustning i den plattform ni redan har: WordPress (även Avada och Elementor), Wix och Squarespace</li><li>Ni behåller domän, webbhotell, e-post och innehåll</li><li>Uppfräschning av er befintliga logotyp, om det går att göra på ett bra sätt</li></ul></div>
-    <div><h3>Ingår inte</h3><ul class="v2-no"><li>Ny sajt från grunden eller byte av plattform</li><li>Webbutik, betalning eller inloggning för kunder</li><li>Flytt av domän, webbhotell eller e-post</li><li>Att skriva nya texter (ni äger texterna, vi lägger in dem)</li><li>Juridisk rådgivning</li><li>En helt ny logotyp</li><li>Löpande underhåll – kan avtalas separat</li></ul></div>
+    <div><h3>Ingår</h3><ul class="v2-yes"><li>Upprustning i den plattform ni redan har: WordPress (även Avada och Elementor), Wix eller Squarespace</li><li>Fördjupad genomgång av sajten</li><li>Backup och testkopia innan vi ändrar något</li><li>Två förslag på ny känsla att välja mellan</li><li>Mätning med PageSpeed och WAVE före och efter</li><li>Kontroll, publicering och en enkel instruktion</li><li>Uppfräschning av er befintliga logotyp, om det går att göra bra</li><li>Ni behåller domän, webbhotell, e-post och innehåll</li></ul></div>
+    <div><h3>Ingår inte</h3><ul class="v2-no"><li>Ny sajt från grunden eller byte av plattform</li><li>Webbutik, betalning eller kundinloggning</li><li>Flytt av domän, webbhotell eller e-post</li><li>Nya texter – ni äger texterna, vi lägger in dem</li><li>En helt ny logotyp</li></ul></div>
   </div>
 </div>
   </div>
@@ -779,23 +798,29 @@ html:not(.motion) .blob{position:fixed}
         <span class="kicker">Kostnadsfri snabbgranskning</span>
         <h2 id="h-form" style="margin-top:20px">Skicka in er sajt. <i>Vi visar vad som kan bli bättre.</i></h2>
         <p class="lead" style="margin-top:18px">Tre konkreta förbättringar, mätvärden för hastighet och tillgänglighet, och ett ungefärligt pris. Utan förpliktelser.</p>
-        <ol><li>Ni fyller i formuläret – cirka 2 minuter</li><li>Vi går igenom sajten</li><li>Ni får svar inom några arbetsdagar</li></ol>
+        <ol><li>Ni fyller i formuläret – cirka en minut</li><li>Vi går igenom sajten</li><li>Ni får svar inom några arbetsdagar</li></ol>
+        <div class="me">
+          <div class="me-pic" aria-hidden="true">O</div><!-- byt mot <img src="oliver.jpg" alt=""> när fotot finns -->
+          <div><p class="me-name">Oliver, Webbglans</p><p class="me-txt">Jag driver Webbglans från Holmsund. Ni pratar med samma person hela vägen – från granskning till publicering.</p><p class="me-txt"><a href="mailto:hej@webbglans.se">hej@webbglans.se</a></p></div>
+        </div>
       </div>
       <div>
         
         <form id="form" novalidate data-v2-form>
-<p class="v2-form-intro">Det tar cirka 2 minuter. Skicka inga lösenord.</p>
+<p class="v2-form-intro">Sex fält, cirka en minut. Skicka inga lösenord.</p>
 <div class="field"><label for="f-company">Företagets namn</label><input id="f-company" name="company" type="text" autocomplete="organization" required   aria-describedby="e-company"><div class="err" id="e-company" aria-live="polite"></div></div>
 <div class="field"><label for="f-url">Hemsidans adress</label><input id="f-url" name="url" type="url" autocomplete="url" required inputmode="url" placeholder="www.exempel.se" aria-describedby="e-url"><div class="err" id="e-url" aria-live="polite"></div></div>
 <div class="field"><label for="f-name">Kontaktperson</label><input id="f-name" name="contact" type="text" autocomplete="name" required   aria-describedby="e-contact"><div class="err" id="e-contact" aria-live="polite"></div></div>
 <div class="field"><label for="f-mail">E-post</label><input id="f-mail" name="email" type="email" autocomplete="email" required   aria-describedby="e-email"><div class="err" id="e-email" aria-live="polite"></div></div>
-<div class="field"><label for="f-phone">Telefon <span>(valfritt)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"    aria-describedby="e-phone"><div class="err" id="e-phone" aria-live="polite"></div></div>
 <fieldset class="field v2-fs" id="g-scope" role="radiogroup" aria-required="true" aria-describedby="e-scope"><legend>Vad vill ni ungefär göra?</legend><div class="v2-opts"><label class="v2-opt" for="f-scope-0"><input type="radio" id="f-scope-0" name="scope" value="Rusta upp hela hemsidan"><span>Rusta upp hela hemsidan</span></label><label class="v2-opt" for="f-scope-1"><input type="radio" id="f-scope-1" name="scope" value="Rusta upp vissa sidor"><span>Rusta upp vissa sidor</span></label><label class="v2-opt" for="f-scope-2"><input type="radio" id="f-scope-2" name="scope" value="Bara fräscha upp utseendet"><span>Bara fräscha upp utseendet</span></label><label class="v2-opt" for="f-scope-3"><input type="radio" id="f-scope-3" name="scope" value="Vet ej än"><span>Vet ej än</span></label></div><div class="err" id="e-scope" aria-live="polite"></div></fieldset>
 <div class="field"><label for="f-worst">Vad fungerar sämst i dag? <span>(1–2 meningar)</span></label><textarea id="f-worst" name="worst" rows="3" maxlength="600" aria-describedby="e-worst"></textarea><div class="err" id="e-worst" aria-live="polite"></div></div>
+<details class="v2-more"><summary>Berätta mer <span>(valfritt)</span></summary>
+<div class="field"><label for="f-phone">Telefon <span>(valfritt)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"    aria-describedby="e-phone"><div class="err" id="e-phone" aria-live="polite"></div></div>
 <fieldset class="field v2-fs" id="g-extras" aria-describedby="e-extras"><legend>Något utöver hemsidan? <span>(flera val)</span></legend><div class="v2-opts"><label class="v2-opt" for="f-extras-0"><input type="checkbox" id="f-extras-0" name="extras" value="Fräscha upp logotypen"><span>Fräscha upp logotypen</span></label><label class="v2-opt" for="f-extras-1"><input type="checkbox" id="f-extras-1" name="extras" value="Nya bilder"><span>Nya bilder</span></label><label class="v2-opt" for="f-extras-2"><input type="checkbox" id="f-extras-2" name="extras" value="Inget av detta"><span>Inget av detta</span></label><label class="v2-opt" for="f-extras-3"><input type="checkbox" id="f-extras-3" name="extras" value="Vet ej"><span>Vet ej</span></label></div><div class="err" id="e-extras" aria-live="polite"></div></fieldset>
 <fieldset class="field v2-fs" id="g-deadline" aria-describedby="e-deadline"><legend>När vill ni vara klara? <span>(valfritt)</span></legend><div class="v2-opts"><label class="v2-opt" for="f-deadline-0"><input type="radio" id="f-deadline-0" name="deadline" value="Inom en månad"><span>Inom en månad</span></label><label class="v2-opt" for="f-deadline-1"><input type="radio" id="f-deadline-1" name="deadline" value="Inom 2–3 månader"><span>Inom 2–3 månader</span></label><label class="v2-opt" for="f-deadline-2"><input type="radio" id="f-deadline-2" name="deadline" value="Ingen brådska"><span>Ingen brådska</span></label><label class="v2-opt" for="f-deadline-3"><input type="radio" id="f-deadline-3" name="deadline" value="Ett visst datum"><span>Ett visst datum</span></label></div><div class="v2-date" id="v2-date" hidden><label for="f-date">Vilket datum?</label><input id="f-date" name="deadline_date" type="date"></div><div class="err" id="e-deadline" aria-live="polite"></div></fieldset>
+</details>
 <div class="v2-hp" aria-hidden="true"><label for="f-website2">Lämna detta fält tomt</label><input id="f-website2" name="website2" type="text" tabindex="-1" autocomplete="off"></div>
-<p class="v2-gdpr">Uppgifterna används bara för att planera arbetet och raderas när uppdraget är avslutat. <a href="#integritetspolicy" id="integritetspolicy-lank">Läs vår integritetspolicy [INTEGRITETSPOLICY]</a></p>
+<p class="v2-gdpr">Uppgifterna används bara för att planera arbetet och raderas när uppdraget är avslutat. <a href="integritet.html" id="integritetspolicy-lank">Läs vår integritetspolicy</a></p>
 <button class="btn" type="submit">Skicka in er sajt för en kostnadsfri snabbgranskning <span class="dot" aria-hidden="true">→</span></button>
 <p class="demo-note">Demoläge: formuläret skickar ingenting ännu. Kopplas till Google Forms via <code>FORM_CONFIG</code> ([GOOGLE FORMS ACTION]).</p>
 </form>
@@ -811,9 +836,9 @@ html:not(.motion) .blob{position:fixed}
     <div class="foot">
       <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp befintliga hemsidor – varmare, tydligare, snabbare.</p></div>
       <div><h2 class="foot-h">Sidor</h2><ul><li><a href="#forvandling">Före & efter</a></li><li><a href="#process">Så jobbar vi</a></li><li><a href="#tjanster">Pris</a></li><li><a href="#analys">Kostnadsfri granskning</a></li><li><a href="#integritetspolicy">Integritetspolicy [INTEGRITETSPOLICY]</a></li></ul></div>
-      <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li>[E-POST]</li><li>[ORG.NR]</li></ul></div>
+      <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:hej@webbglans.se">hej@webbglans.se</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
     </div>
-    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span> · Prototyp (utkast 4)</span><span><a href="#top">Till toppen ↑</a></span></div>
+    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span></span><span><a href="#top">Till toppen ↑</a></span></div>
   </div>
 </footer>
 
