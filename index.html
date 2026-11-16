@@ -708,7 +708,18 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
 .v2-why li{padding-bottom:20px!important}
 .v2-opt{padding-inline:11px!important}
 /* Hover på knappar växer jämnt från mitten, ingen lyftning */
-.btn:hover{transform:scale(1.03)!important}.ba-b:hover{transform:scale(1.03)!important}.btn,.ba-b{transform-origin:50% 50%}.v2-band-in{padding-top:calc(clamp(28px,5vw,56px) - 7px)!important;padding-bottom:calc(clamp(28px,5vw,56px) - 4px)!important}.om-me .me{padding-bottom:calc(clamp(22px,4vw,40px) - 9px)!important}
+/* Hover: alla knappar växer exakt 4 px åt alla håll (ring i knappens egen färg), oavsett knappens storlek. Texten står still. */
+.btn:hover,.ba-b:hover{transform:none!important}
+.btn{transition:box-shadow .25s ease!important}
+.btn:hover{box-shadow:0 0 0 4px var(--sage-d),0 14px 28px -14px rgba(69,91,71,.8)!important}
+.btn.soft:hover{box-shadow:inset 0 0 0 1.5px var(--paper),0 0 0 2.5px var(--paper),0 0 0 4px var(--line),0 14px 28px -16px rgba(44,48,44,.5)!important}
+.v2-band-btns .btn:hover{box-shadow:0 0 0 4px var(--butter)!important}
+.v2-band-btns .btn.ghost:hover{box-shadow:0 0 0 2px var(--sage-d),0 0 0 4px rgba(244,239,230,.5)!important}
+.ba-b{transition:box-shadow .2s ease,background .2s!important}
+.ba-b:hover{border-color:var(--paper);box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--line)!important}
+.ba-b[aria-pressed="true"]:hover{border-color:var(--sage-l);box-shadow:0 0 0 3px var(--sage-l),0 0 0 4px var(--sage)!important}
+.ba-b.ba-magic:hover{border-color:#3A4E3C;box-shadow:0 0 0 4px #3A4E3C!important}
+.own-a{transition:box-shadow .25s ease,background .2s}.own-a:hover{box-shadow:0 0 0 4px #FFFDF8}.v2-band-in{padding-top:calc(clamp(28px,5vw,56px) - 7px)!important;padding-bottom:calc(clamp(28px,5vw,56px) - 4px)!important}.om-me .me{padding-bottom:calc(clamp(22px,4vw,40px) - 9px)!important}
 .v2-opt:has(input:checked){padding-inline:10px!important}
 </style>
 </head>
