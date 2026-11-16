@@ -699,7 +699,10 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
 
 /* Lika avstånd till kanten (2026-11-16): loggan lika långt från vänster som uppåt/nedåt, knappar lika höga */
 .v2-hbtn{min-height:44px}
-.nav{padding-left:17px!important;padding-right:17px!important}
+/* Loggans sexhörning lika hög som knapparna (44 px synligt, viewBox-luft 3/44 räknad), allt lika långt från kanten */
+.nav .logo .gem{width:51px!important;height:51px!important;margin:-3.5px 0;flex:none}
+.nav{padding-left:4px!important;padding-right:10px!important}
+@media (max-width:700px){.nav{padding-left:2px!important;padding-right:8px!important}}
 .hero-cta .btn,.v2-band-btns .btn{min-height:60px}
 .v2-step{padding-bottom:16px!important}
 .v2-why li{padding-bottom:20px!important}
