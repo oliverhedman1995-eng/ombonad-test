@@ -7,18 +7,18 @@
      UTKAST 4 – "Ombonad" · PROTOTYP, inte publicerad.
      Mjuk, varm nordisk riktning: linne, salvia, smörgult, rundade former.
      Byt företagsnamn: ändra window.BRAND nedan (+ <title>/meta).
-     Inga externa JS-bibliotek – all rörelse är vanilla JS och
+     Inga externa JS-bibliotek | all rörelse är vanilla JS och
      stängs av vid prefers-reduced-motion. Utan JS syns allt innehåll.
      ============================================================ -->
-<title>Webbglans – vi rustar upp befintliga hemsidor</title>
-<meta name="description" content="Samma hemsida. Ny glans. Vi rustar upp hemsidor ni redan har – i WordPress, Wix eller Squarespace – utan att börja om från noll.">
+<title>Webbglans | Vi rustar upp befintliga hemsidor</title>
+<meta name="description" content="Samma hemsida. Ny glans. Vi rustar upp hemsidor ni redan har i WordPress, Wix eller Squarespace, utan att börja om från noll.">
 <meta name="theme-color" content="#F4EFE6">
-<meta property="og:title" content="Webbglans – vi rustar upp befintliga hemsidor">
-<meta property="og:description" content="Samma hemsida. Ny glans. Vi rustar upp hemsidor ni redan har – i WordPress, Wix eller Squarespace – utan att börja om från noll.">
+<meta property="og:title" content="Webbglans | Vi rustar upp befintliga hemsidor">
+<meta property="og:description" content="Samma hemsida. Ny glans. Vi rustar upp hemsidor ni redan har i WordPress, Wix eller Squarespace, utan att börja om från noll.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://webbglans.se/og.jpg?v=2">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Webbglans – Samma hemsida. Ny glans.">
+<meta property="og:image:alt" content="Webbglans | Samma hemsida. Ny glans.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="brand/ikon-32.png" sizes="32x32" type="image/png">
@@ -152,7 +152,7 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .ribbon{overflow:hidden;padding:18px 0;background:var(--sage-d);color:#F4EFE6;transform:rotate(-1.5deg) scaleX(1.04);position:relative;z-index:1}
 .ribbon .tr{display:flex;gap:44px;width:max-content;font:500 22px/1 var(--disp);font-variation-settings:"SOFT" 100}
 .motion .ribbon .tr{animation:mq 36s linear infinite}
-.ribbon .tr span::after{content:"✦";margin-left:44px;color:var(--butter);font-size:16px}
+.ribbon .tr span::after{content:"·";margin-left:44px;color:var(--butter);font-size:16px}
 @keyframes mq{to{transform:translateX(-50%)}}
 .ribbon-note{text-align:center;font-size:14px;color:var(--ink-2);margin-top:26px}
 
@@ -673,6 +673,30 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 @media (max-width:860px){.own{grid-template-columns:1fr}.own-s{flex-wrap:wrap}.own-a{justify-self:start}}
 .own-cta{margin:16px 0 0;font-size:15px;color:#E3EBDF}.own-cta a{color:var(--butter);font-weight:600;text-underline-offset:4px;white-space:nowrap}.own-cta a:hover{color:#FFFDF8}
 </style>
+<style id="typo-fix">
+/* Typografi och mellanrum, sista ordet. Se skillen: inga pillerkickers, balanserade rubriker. */
+h1,h2,h3,h4,.res-h,.dial .k{text-wrap:balance}
+p,li,.lead{text-wrap:pretty}
+.kicker{background:none!important;padding:0!important;border-radius:0!important;box-shadow:none!important;font:600 13px/1.4 var(--sans)!important;letter-spacing:.1em!important}
+.kicker{display:inline-block!important}.kicker::before{display:none!important}.dial small{text-wrap:balance}
+.results-box .kicker,.v2-band .kicker{color:var(--butter)!important}
+.sec-head h2,.v2-band-in h2{margin-top:12px!important}
+.flat .st{margin-bottom:44px}
+.flat .st p{margin-top:14px}
+.btn{line-height:1.25!important}.tag{font-size:12px!important}
+/* Fast textskala: dator 13/15/17/20/30/60/92, mobil 13/15/16/18/24/34/46 */
+:root{--t1:13px;--t2:15px;--t3:17px;--t4:20px;--t5:30px}
+@media (max-width:700px){:root{--t3:16px;--t4:18px;--t5:24px}}
+.chips li,.chips b,.ba-note,.ba-note *,.dial .d,th,label,legend,.field span,.hb-short,.hb-long,.v2-pr-d,.v2-ph-t,.v2-mailnote,.v2-form-intro,.v2-opt span,.dk-ctrl button,.ba-b,.own-cta,.own-cta a,.own-t p,.v2-menu-lbl{font-size:var(--t2)!important}
+.btn,.v2-pr-facts li,.v2-pr-facts b,.v2-tl-note,.v2-tl-note b,.rv p,.v2-step p,.me-txt,.me-txt a,.v2-pr-ex p,.v2-pr-ex b,.dial .k,.st p,.skip,.v2-band-link{font-size:var(--t3)!important}
+.lead,.v2-get h3,.v2-focus h3,summary,.v2-step-h,.au h3,.aud h3,.own-t h3,.me-name,.own-s b{font-size:var(--t4)!important}
+.dial .val span,.m-item h3,.rv h3,td{font-size:var(--t5)!important}
+.tag,.stack-ill,.own-s span,.foot-h,.legal,.legal *,.v2-ph-n,.v2-pr-ex-h,.v2-pr-moms{font-size:var(--t1)!important}
+.wm,.wm i{font-size:20px!important}
+@media (max-width:700px){.wm,.wm i{font-size:18px!important}}
+.big{font-size:clamp(34px,4.2vw,60px)!important}
+small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden="true"] h4{text-wrap:wrap!important}@media (min-width:701px){.a-hero h4{padding-top:16px}}.b-top small{font-size:clamp(9px,.9vw,12px)!important}@media (max-width:700px){.b-top small{display:none}}.v2-gdpr,.v2-gdpr a{font-size:var(--t2)!important}.v2-get b,.v2-get li,.v2-get p{font-size:var(--t3)!important}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Hoppa till innehållet</a>
@@ -696,20 +720,20 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
       <div>
         <span class="kicker fade"><span class="k-long">Upprustning av befintliga hemsidor · </span><span class="k-short">Hemsidor · </span>Holmsund/Umeå</span>
         <h1 id="h-hero" aria-label="Samma hemsida. Ny glans."><span aria-hidden="true"><span class="w" style="--i:0">Samma</span> <span class="w" style="--i:1">hemsida.</span><br><span class="w" style="--i:2">Ny</span> <span class="w" style="--i:3"><i class="glint">glans.<svg class="spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg><svg class="spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.6 16.4 11.1 24 12 16.4 12.9 12.9 16.4 12 24 11.1 16.4 7.6 12.9 0 12 7.6 11.1 11.1 7.6 12 0Z"/></svg></i></span></span></h1>
-        <p class="lead fade">Vi rustar upp sajten ni redan har – varmare, tydligare och snabbare, i samma plattform. Ingen ny sajt från noll, inget nytt system att lära sig.</p>
+        <p class="lead fade">Vi rustar upp sajten ni redan har, i den plattform ni redan använder. Ni behåller innehåll, domän och inloggning. Det som ändras är hur sajten ser ut och hur snabbt den laddar.</p>
         <div class="hero-cta fade">
           <a class="btn" href="granskning.html">Få en kostnadsfri granskning <span class="dot" aria-hidden="true">→</span></a>
           <a class="btn soft" href="#forvandling">Se före & efter</a>
         </div>
         <ul class="chips fade">
-          <li><b>Samma</b> plattform: WordPress, Wix, Squarespace</li><li><b>Mätbart</b> före & efter</li><li><b>Fast pris</b> 4 000 kr + 1 000 kr/sida</li>
+          <li><b>WordPress, Wix</b> eller <b>Squarespace</b></li><li><b>Fast pris</b> 4 000 kr + 1 000 kr/sida</li>
         </ul>
       </div>
       <figure class="hero-art" aria-hidden="true">
         <div class="card c1"><div class="old"><b>VÄLKOMMEN!!</b><span></span><span style="width:70%"></span><span></span><span style="width:50%"></span></div></div>
         <div class="card c2"><div class="bar"><i></i><i></i><i></i></div><div class="in"><div class="t"></div><div class="t2"></div><div class="s"></div><div class="s b"></div><span class="pill"></span><div class="row"><i></i><i></i><i></i></div></div></div>
         <div class="card c3"><small>Exempel</small><b>Varmare.<br>Snabbare.</b></div>
-        <figcaption class="ill">Illustration</figcaption>
+        
       </figure>
     </div>
   </div>
@@ -720,10 +744,10 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
     <div>
       <span class="kicker" id="h-stack">Från matt till blank</span>
       <div class="stack-text">
-        <div class="st on" data-i="0"><h2>Det börjar med det <i>ni redan har.</i></h2><p>Innehållet, domänen och plattformen finns redan. Oftast behövs ingen ny sajt – bara omsorg.</p></div>
-        <div class="st" data-i="1"><h2>Vi hittar det som <i>skaver.</i></h2><p>Tunga bilder, otydliga budskap och knappar som ingen ser. Vi mäter, listar och prioriterar.</p></div>
-        <div class="st" data-i="2"><h2>Sen putsar vi <i>fram glansen.</i></h2><p>Ny typografi, luft, färg och fart. Samma sajt i grunden – men en helt annan känsla.</p></div>
-        <div class="st" data-i="3"><h2>Och mäter <i>igen.</i></h2><p>Vi mäter med PageSpeed och WAVE före och efter, går igenom resultatet och gör en enkel överlämning.</p></div>
+        <div class="st on" data-i="0"><h2>Det börjar med det ni redan har.</h2><p>Innehållet, domänen och plattformen finns redan. Oftast räcker det att göra om det som finns.</p></div>
+        <div class="st" data-i="1"><h2>Vi hittar det som skaver.</h2><p>Tunga bilder, otydliga budskap och knappar som ingen ser. Vi mäter, listar och prioriterar.</p></div>
+        <div class="st" data-i="2"><h2>Sen putsar vi fram glansen.</h2><p>Vi byter typsnitt, ger texten luft, ser över färgerna och gör sidorna lättare. Grunden är densamma.</p></div>
+        <div class="st" data-i="3"><h2>Och mäter igen.</h2><p>Vi mäter med PageSpeed och WAVE före och efter, går igenom resultatet och gör en enkel överlämning.</p></div>
       </div>
       <div class="dots" role="group" aria-label="Välj steg"><button type="button" class="on" aria-label="Steg 1" aria-current="step"></button><button type="button" aria-label="Steg 2"></button><button type="button" aria-label="Steg 3"></button><button type="button" aria-label="Steg 4"></button></div>
       <div class="dk-ctrl"><button type="button" class="dk-prev">← Tillbaka</button><button type="button" class="dk-next pri">Nästa steg →</button></div>
@@ -736,11 +760,11 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
         <div class="res-row"><span>Laddtid</span><b><s>4,8 s</s> → 1,6 s</b></div>
         <div class="checks"><span>Snabbare</span><span>Tydligare</span><span>Tillgänglig</span></div>
       </div></div>
-      <div class="dk" data-k="2"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">3 · Putsat</span><div class="bd n-site"><div class="t">Hantverk med omsorg – sedan 1998.</div><p>Ett tydligt erbjudande, luft runt texten och en knapp som syns.</p><span class="b">Begär offert →</span><div class="r"><i></i><i></i><i></i></div><div class="sw"><em>Aa</em><i style="background:#455B47"></i><i style="background:#F3DE95"></i><i style="background:#F4EFE6"></i></div></div></div>
+      <div class="dk" data-k="2"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">3 · Putsat</span><div class="bd n-site"><div class="t">Hantverk med omsorg sedan 1998.</div><p>Ett tydligt erbjudande, luft runt texten och en knapp som syns.</p><span class="b">Begär offert →</span><div class="r"><i></i><i></i><i></i></div><div class="sw"><em>Aa</em><i style="background:#455B47"></i><i style="background:#F3DE95"></i><i style="background:#F4EFE6"></i></div></div></div>
       <div class="dk" data-k="1"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">2 · Granskning</span><div class="bd rp">
         <div class="rp-h">Snabbgranskning <small>exempel.se</small></div>
         <div class="rp-m"><div><b class="bad">41</b><span>PageSpeed</span></div><div><b class="bad">12</b><span>WAVE-fel</span></div><div><b class="mid">4,8 s</b><span>Laddtid</span></div></div>
-        <ol class="rp-l"><li>Otydlig rubrik – besökaren förstår inte vad ni gör</li><li>Tunga bilder – 2,4 MB på startsidan</li><li>Ingen tydlig knapp för att ta kontakt</li></ol>
+        <ol class="rp-l"><li>Otydlig rubrik: besökaren förstår inte vad ni gör</li><li>Tunga bilder: 2,4 MB på startsidan</li><li>Ingen tydlig knapp för att ta kontakt</li></ol>
       </div></div>
       <div class="dk" data-k="0"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">1 · Idag</span><div class="bd o-site"><div class="h">VÄLKOMMEN TILL VÅR HEMSIDA!!</div><div class="m"><div class="side">» Start<br>» Om oss<br>» Prislista<br>» Gästbok</div><div><div class="ph">bild.jpg</div>Text som fortsätter länge utan rubriker och utan tydlig väg vidare. Kontakta oss via länken längst ner.</div></div></div></div>
     </div>
@@ -751,8 +775,8 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <section class="sec" id="forvandling" data-blob="2" aria-labelledby="h-ba">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="kicker">Före & efter</span><h2 id="h-ba" style="margin-top:20px">Dra och känn <i>skillnaden.</i></h2></div>
-      <p class="lead">Samma innehåll, samma plattform – ny struktur, varmare typografi och snabbare laddning. Dra i knappen eller använd piltangenterna.</p>
+      <div><span class="kicker">Före & efter</span><h2 id="h-ba" style="margin-top:20px">Dra i reglaget och jämför</h2></div>
+      <p class="lead">Samma innehåll och plattform, men med ny struktur, nya typsnitt och kortare laddtid. Dra i knappen eller använd piltangenterna.</p>
     </div>
     <div class="v2-ba-labels" aria-hidden="true"><span class="ba-label l">← Före</span><span class="ba-label r">Efter →</span></div>
     <div class="ba rv" id="ba" data-shot="ba">
@@ -763,19 +787,19 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
             <div class="b-side">» Startsida<br>» Om företaget<br>» Våra tjänster<br>» Prislista (PDF)<br>» Gästbok<br>» Kontakta oss</div>
             <div class="b-main"><div class="b-img">bild.jpg</div><h4>Välkommen!</h4>Här på vår hemsida kan du läsa om allt vi gör. Vi har funnits sedan länge och erbjuder många olika tjänster till både företag och privatpersoner. Läs mer i menyn till vänster eller ladda ner vår prislista.<br><span class="b-warn">Sidan visas bäst i 1024×768</span></div>
           </div>
-          <span class="b-badge">🐢 Laddar på 6,2 s</span>
+          <span class="b-badge">Laddar på 6,2 s</span>
         </div>
       </div>
       <div class="ba-pane ba-after" aria-hidden="true">
         <div class="a-site">
           <div class="a-nav"><b>Exempelföretaget</b><span>Tjänster · Om oss · Kontakt</span></div>
           <div class="a-hero">
-            <div><h4>Hjälp som gör skillnad – i hela regionen.</h4><p>Vi tar hand om det praktiska så att ni kan fokusera på det viktiga.</p><span class="a-btn">Boka ett samtal →</span>
+            <div><h4>Hjälp som gör skillnad i hela regionen.</h4><p>Vi tar hand om det praktiska så att ni kan fokusera på det viktiga.</p><span class="a-btn">Boka ett samtal →</span>
               <div class="a-stats"><div><b>Snabb</b>laddning</div><div><b>Tydlig</b>meny</div><div><b>Mobil</b>först</div></div></div>
             <div class="a-pic"><span class="a-orb"></span></div>
           </div>
-          <div class="a-cards"><div><i aria-hidden="true">✦</i><b>Tjänster</b><span>Tydligt utbud</span></div><div><i aria-hidden="true">◎</i><b>Om oss</b><span>Människorna bakom</span></div><div><i aria-hidden="true">→</i><b>Kontakt</b><span>Svar inom en dag</span></div></div>
-          <span class="a-badge a-speed">⚡ Laddar på 0,9 s</span>
+          <div class="a-cards"><div><i aria-hidden="true">→</i><b>Tjänster</b><span>Tydligt utbud</span></div><div><i aria-hidden="true">→</i><b>Om oss</b><span>Människorna bakom</span></div><div><i aria-hidden="true">→</i><b>Kontakt</b><span>Svar inom en dag</span></div></div>
+          <span class="a-badge a-speed">Laddar på 0,9 s</span>
           <span class="a-badge a-acc">✓ Tillgänglig</span>
           <span class="a-spark s1"></span><span class="a-spark s2"></span><span class="a-spark s3"></span>
         </div>
@@ -787,7 +811,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
     <div class="ba-ctrl" role="group" aria-label="Visa före eller efter">
       <button type="button" class="ba-b" data-ba="100">Före</button>
       <button type="button" class="ba-b" data-ba="0">Efter</button>
-      <button type="button" class="ba-b ba-magic">✨ Förvandla</button>
+      <button type="button" class="ba-b ba-magic">Förvandla</button>
     </div>
     <p class="sr" id="ba-desc">Före: tät text, sidomeny och varningsruta. Efter: tydlig rubrik, luft, en knapp och en bild.</p>
     <div class="ba-note"><span><span class="tag">Exempel</span>&nbsp; Riktiga före och efter-bilder från kunder publiceras här när de har godkänt det.</span></div>
@@ -798,8 +822,8 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   <div class="wrap">
     <div class="results-box rv">
       <div class="sec-head" style="margin-bottom:34px">
-        <div><span class="kicker">Mätbara resultat</span><h2 id="h-res" style="margin-top:20px">Vi mäter före. <i>Och efter.</i></h2></div>
-        <p class="lead">Vi mäter med PageSpeed och WAVE före och efter. Så här kan mätvärdena se ut.</p>
+        <div><span class="kicker">Mätbara resultat</span><h2 id="h-res" style="margin-top:20px">Vi mäter före och efter</h2></div>
+        <p class="lead">Siffrorna kommer från PageSpeed och WAVE. Så här kan de se ut efter en upprustning.</p>
       </div>
       <div class="dials">
         <div class="dial" style="--t:.67"><div class="ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50"/><circle class="fg" cx="60" cy="60" r="50"/></svg><div class="val"><span data-count="1.6" data-dec="1">1,6</span><small>s</small></div></div><div class="k">Laddtid (LCP)</div><div class="d">Exempel: från 4,8 s</div></div>
@@ -830,7 +854,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
         </ul>
         <a class="own-a" href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwebbglans.se%2F&amp;form_factor=mobile" target="_blank" rel="noopener">Mät själv <span aria-hidden="true">→</span><span class="sr"> (öppnas i ny flik)</span></a>
       </div>
-      <p class="own-cta">Undrar ni vad er sajt får? Vi mäter den och förklarar vad siffrorna betyder – kostnadsfritt. <a href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></p>
+      <p class="own-cta">Undrar ni vad er sajt får? Vi mäter den gratis och förklarar vad siffrorna betyder. <a href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></p>
     </div>
   </div>
 </section>
@@ -838,10 +862,10 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <section class="sec" id="for-vem" data-blob="5" style="padding-top:0" aria-labelledby="h-aud">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="kicker">För vem</span><h2 id="h-aud" style="margin-top:20px">För alla som har en sajt <i>som förtjänar mer.</i></h2></div>
+      <div><span class="kicker">För vem</span><h2 id="h-aud" style="margin-top:20px">Vem vi hjälper</h2></div>
     </div>
     <div class="aud">
-      <article class="au rv"><div class="ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l2-6h16l2 6M4 11h20v12H4zM11 23v-6h6v6"/></svg></div><h3>Småföretag</h3><p>Hantverkare, butiker, kaféer och byråer som behöver en sajt som säljer – inte bara finns.</p></article>
+      <article class="au rv"><div class="ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l2-6h16l2 6M4 11h20v12H4zM11 23v-6h6v6"/></svg></div><h3>Småföretag</h3><p>Hantverkare, butiker, kaféer och byråer som vill att sajten ger fler kunder.</p></article>
       <article class="au rv d1"><div class="ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="4"/><circle cx="19" cy="11" r="3"/><path d="M3 23c0-4 3-7 7-7s7 3 7 7M17 17c4 0 8 2 8 6"/></svg></div><h3>Föreningar</h3><p>Idrott, kultur och organisationer som vill bli lättare att hitta, förstå och engagera sig i.</p></article>
       <article class="au rv d2"><div class="ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11L14 4l11 7M5 11v10M10 11v10M18 11v10M23 11v10M3 24h22"/></svg></div><h3>Offentlig sektor</h3><p>Verksamheter med krav på tillgänglighet (WCAG) och tydlig information för alla.</p></article>
     </div>
@@ -851,8 +875,8 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <section class="sec v2-band" data-blob="6" style="padding-top:0" aria-labelledby="h-band">
   <div class="wrap">
     <div class="v2-band-in">
-      <div><span class="kicker">Nästa steg</span><h2 id="h-band" style="margin-top:18px">Nyfiken på vad er sajt <i>kan bli?</i></h2>
-      <p class="lead" style="margin-top:14px">Fast pris från 4 000 kr + 1 000 kr per sida. Allt börjar med en kostnadsfri snabbgranskning – utan förpliktelser.</p></div>
+      <div><span class="kicker">Nästa steg</span><h2 id="h-band" style="margin-top:18px">Vad kan er sajt bli?</h2>
+      <p class="lead" style="margin-top:14px">Fast pris från 4 000 kr + 1 000 kr per sida. Först gör vi en kostnadsfri snabbgranskning, sedan bestämmer ni om ni vill gå vidare.</p></div>
       <div class="v2-band-btns"><a class="btn" href="granskning.html">Kostnadsfri granskning <span class="dot" aria-hidden="true">→</span></a><a class="btn ghost" href="pris.html">Se priser</a><a class="v2-band-link" href="sa-jobbar-vi.html">Så jobbar vi →</a></div>
     </div>
   </div>
@@ -862,7 +886,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp befintliga hemsidor – varmare, tydligare, snabbare.</p></div>
+      <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp hemsidor som redan finns.</p></div>
       <div><h2 class="foot-h">Sidor</h2><ul><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
       <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
     </div>

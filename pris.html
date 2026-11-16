@@ -7,18 +7,18 @@
      UTKAST 4 – "Ombonad" · PROTOTYP, inte publicerad.
      Mjuk, varm nordisk riktning: linne, salvia, smörgult, rundade former.
      Byt företagsnamn: ändra window.BRAND nedan (+ <title>/meta).
-     Inga externa JS-bibliotek – all rörelse är vanilla JS och
+     Inga externa JS-bibliotek | all rörelse är vanilla JS och
      stängs av vid prefers-reduced-motion. Utan JS syns allt innehåll.
      ============================================================ -->
-<title>Pris – Webbglans</title>
+<title>Pris | Webbglans</title>
 <meta name="description" content="Öppet och fast pris: grundavgift 4 000 kr + 1 000 kr per sida, exkl. moms. Faktura efter publicering.">
 <meta name="theme-color" content="#F4EFE6">
-<meta property="og:title" content="Pris – Webbglans">
+<meta property="og:title" content="Pris | Webbglans">
 <meta property="og:description" content="Öppet och fast pris: grundavgift 4 000 kr + 1 000 kr per sida, exkl. moms. Faktura efter publicering.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://webbglans.se/og.jpg?v=2">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Webbglans – Samma hemsida. Ny glans.">
+<meta property="og:image:alt" content="Webbglans | Samma hemsida. Ny glans.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="brand/ikon-32.png" sizes="32x32" type="image/png">
@@ -152,7 +152,7 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .ribbon{overflow:hidden;padding:18px 0;background:var(--sage-d);color:#F4EFE6;transform:rotate(-1.5deg) scaleX(1.04);position:relative;z-index:1}
 .ribbon .tr{display:flex;gap:44px;width:max-content;font:500 22px/1 var(--disp);font-variation-settings:"SOFT" 100}
 .motion .ribbon .tr{animation:mq 36s linear infinite}
-.ribbon .tr span::after{content:"✦";margin-left:44px;color:var(--butter);font-size:16px}
+.ribbon .tr span::after{content:"·";margin-left:44px;color:var(--butter);font-size:16px}
 @keyframes mq{to{transform:translateX(-50%)}}
 .ribbon-note{text-align:center;font-size:14px;color:var(--ink-2);margin-top:26px}
 
@@ -643,6 +643,30 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 .v2-menu li a[aria-current="page"]::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--butter);box-shadow:0 0 0 2px var(--sage-d);margin-right:12px;flex:none}
 .v2-menu li a[aria-current="page"]{justify-content:flex-start!important}.v2-menu li a[aria-current="page"]::after{margin-left:auto}
 </style>
+<style id="typo-fix">
+/* Typografi och mellanrum, sista ordet. Se skillen: inga pillerkickers, balanserade rubriker. */
+h1,h2,h3,h4,.res-h,.dial .k{text-wrap:balance}
+p,li,.lead{text-wrap:pretty}
+.kicker{background:none!important;padding:0!important;border-radius:0!important;box-shadow:none!important;font:600 13px/1.4 var(--sans)!important;letter-spacing:.1em!important}
+.kicker{display:inline-block!important}.kicker::before{display:none!important}.dial small{text-wrap:balance}
+.results-box .kicker,.v2-band .kicker{color:var(--butter)!important}
+.sec-head h2,.v2-band-in h2{margin-top:12px!important}
+.flat .st{margin-bottom:44px}
+.flat .st p{margin-top:14px}
+.btn{line-height:1.25!important}.tag{font-size:12px!important}
+/* Fast textskala: dator 13/15/17/20/30/60/92, mobil 13/15/16/18/24/34/46 */
+:root{--t1:13px;--t2:15px;--t3:17px;--t4:20px;--t5:30px}
+@media (max-width:700px){:root{--t3:16px;--t4:18px;--t5:24px}}
+.chips li,.chips b,.ba-note,.ba-note *,.dial .d,th,label,legend,.field span,.hb-short,.hb-long,.v2-pr-d,.v2-ph-t,.v2-mailnote,.v2-form-intro,.v2-opt span,.dk-ctrl button,.ba-b,.own-cta,.own-cta a,.own-t p,.v2-menu-lbl{font-size:var(--t2)!important}
+.btn,.v2-pr-facts li,.v2-pr-facts b,.v2-tl-note,.v2-tl-note b,.rv p,.v2-step p,.me-txt,.me-txt a,.v2-pr-ex p,.v2-pr-ex b,.dial .k,.st p,.skip,.v2-band-link{font-size:var(--t3)!important}
+.lead,.v2-get h3,.v2-focus h3,summary,.v2-step-h,.au h3,.aud h3,.own-t h3,.me-name,.own-s b{font-size:var(--t4)!important}
+.dial .val span,.m-item h3,.rv h3,td{font-size:var(--t5)!important}
+.tag,.stack-ill,.own-s span,.foot-h,.legal,.legal *,.v2-ph-n,.v2-pr-ex-h,.v2-pr-moms{font-size:var(--t1)!important}
+.wm,.wm i{font-size:20px!important}
+@media (max-width:700px){.wm,.wm i{font-size:18px!important}}
+.big{font-size:clamp(34px,4.2vw,60px)!important}
+small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden="true"] h4{text-wrap:wrap!important}@media (min-width:701px){.a-hero h4{padding-top:16px}}.b-top small{font-size:clamp(9px,.9vw,12px)!important}@media (max-width:700px){.b-top small{display:none}}.v2-gdpr,.v2-gdpr a{font-size:var(--t2)!important}.v2-get b,.v2-get li,.v2-get p{font-size:var(--t3)!important}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Hoppa till innehållet</a>
@@ -663,7 +687,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <section class="sec" id="tjanster" data-blob="6" style="padding-top:clamp(120px,14vw,170px)" aria-labelledby="h-srv">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="kicker">Pris</span><h1 id="h-srv" style="margin-top:20px">Öppet pris. <i>Fast pris.</i></h1></div>
+      <div><span class="kicker">Pris</span><h1 id="h-srv" style="margin-top:20px">Vad det kostar</h1></div>
       <p class="lead">Alla uppdrag börjar med en kostnadsfri snabbgranskning. Sedan får ni ett fast pris enligt prismodellen nedan.</p>
     </div>
     <div class="v2-price rv">
@@ -689,7 +713,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   <div class="v2-incl">
     <div class="v2-get"><h3>Det här får ni</h3><ul class="v2-yes">
       <li><b>Samma plattform, ny glans</b>Vi rustar upp sajten där den redan bor: WordPress (även Avada och Elementor), Wix eller Squarespace.</li>
-      <li><b>Ni behåller allt</b>Domän, webbhotell, e-post och innehåll – precis som i dag.</li>
+      <li><b>Ni behåller allt</b>Domän, webbhotell, e-post och innehåll, precis som i dag.</li>
       <li><b>Tryggt från första klicket</b>Grundlig genomgång, full backup och en testkopia innan något ändras.</li>
       <li><b>Två förslag att välja mellan</b>Ett nära dagens sajt och ett mer nytänkande. Ni bestämmer.</li>
       <li><b>Mätbart bättre</b>PageSpeed och WAVE före och efter, så ni ser skillnaden i siffror.</li>
@@ -700,7 +724,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
       <li>Nya sajter från grunden eller byte av plattform</li>
       <li>Webbutiker, betalningar och kundinloggning</li>
       <li>Flytt av domän, webbhotell eller e-post</li>
-      <li>Nyskrivna texter – era ord är era, vi ger dem rätt ram</li>
+      <li>Nyskrivna texter (era ord förblir era)</li>
       <li>Helt nya logotyper</li>
     </ul><p class="v2-tip">Behöver ni något av det? Säg till, så tipsar vi om rätt person.</p></div>
   </div>
@@ -713,14 +737,14 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
     <span class="kicker">Vanliga frågor</span><h2 id="h-faq" style="margin:20px 0 40px">Bra att veta.</h2>
     <div class="faq">
       <details><summary>Måste vi byta plattform eller bygga en ny sajt?</summary><p>Nej. Vi rustar upp hemsidan i den plattform ni redan har: WordPress (även med Avada eller Elementor), Wix eller Squarespace. Ni behåller domän, webbhotell, e-post och innehåll.</p></details>
-      <details><summary>Vad ingår i den kostnadsfria snabbgranskningen?</summary><p>De tre viktigaste förbättringarna på vanlig svenska, mätvärden för hastighet på mobil (PageSpeed) och tillgänglighet (WAVE) och ett ungefärligt pris. Ni får svar inom några arbetsdagar, utan förpliktelser. Det är ingen full rapport, video eller möte – den fördjupade genomgången ingår i grundavgiften när uppdraget blir av.</p></details>
+      <details><summary>Vad ingår i den kostnadsfria snabbgranskningen?</summary><p>De tre viktigaste förbättringarna på vanlig svenska, mätvärden för hastighet på mobil (PageSpeed) och tillgänglighet (WAVE) och ett ungefärligt pris. Ni får svar inom några arbetsdagar, utan förpliktelser. Det är ingen full rapport, video eller möte. Den fördjupade genomgången ingår i grundavgiften när uppdraget blir av.</p></details>
       <details><summary>Vad kostar en upprustning?</summary><p>Grundavgift 4 000 kr plus 1 000 kr per sida som rustas upp, exklusive moms. Fem sidor blir alltså 9 000 kr. Sidor som tas bort eller bara byter namn kostar inget. Tillägg utöver avtalet kostar 800 kr/tim och görs bara efter ert ok.</p></details>
       <details><summary>När betalar vi?</summary><p>Fakturan skickas efter publicering, med 30 dagars betalningstid.</p></details>
       <details><summary>Hur lång tid tar det?</summary><p>Cirka 5–6 veckor. Takten styrs mest av hur snabbt texter och bilder kommer in, och ni får tid att fundera mellan stegen.</p></details>
       <details><summary>Ligger sajten nere under arbetet?</summary><p>Nej. Vi tar en fullständig backup och arbetar i en testkopia. Inget syns för besökarna förrän ni har godkänt.</p></details>
-      <details><summary>Hur når vi er?</summary><p>Det mesta sköter vi via mejl – ni svarar när det passar er, och allt finns samlat skriftligt. Jag svarar inom en arbetsdag, oftast samma kväll. Vill ni hellre prata? Då bokar vi ett kort samtal eller videomöte en kväll eller helg som passar er.</p></details>
+      <details><summary>Hur når vi er?</summary><p>Det mesta sköter vi via mejl, så ni svarar när det passar er, och allt finns samlat skriftligt. Jag svarar inom en arbetsdag, oftast samma kväll. Vill ni hellre prata? Då bokar vi ett kort samtal eller videomöte en kväll eller helg som passar er.</p></details>
       <details><summary>Behöver ni våra lösenord?</summary><p>Nej. Ni lägger till oss som användare i er plattform, så att inga lösenord behöver skickas.</p></details>
-      <details><summary>Skriver ni nya texter eller gör en ny logotyp?</summary><p>Nej. Era texter förblir era – ni granskar dem och vi lägger in dem. Vi gör ingen helt ny logotyp, men vi kan fräscha upp den ni har om det går att göra på ett bra sätt.</p></details>
+      <details><summary>Skriver ni nya texter eller gör en ny logotyp?</summary><p>Nej. Era texter förblir era. Ni granskar dem och vi lägger in dem. Vi gör ingen helt ny logotyp, men vi kan fräscha upp den ni har om det går att göra på ett bra sätt.</p></details>
       <details><summary>Ingår underhåll?</summary><p>Nej, löpande underhåll ingår inte. Det kan avtalas separat.</p></details>
       <details><summary>Hur jobbar ni med tillgänglighet?</summary><p>Vi arbetar mot WCAG 2.1 nivå AA och mäter med WAVE före och efter. Vi ger ingen juridisk rådgivning, men ni ser i kravlistan exakt vad som är åtgärdat.</p></details>
     </div>
@@ -730,8 +754,8 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <section class="sec v2-band" data-blob="6" style="padding-top:0" aria-labelledby="h-band">
   <div class="wrap">
     <div class="v2-band-in">
-      <div><span class="kicker">Nästa steg</span><h2 id="h-band" style="margin-top:18px">Nyfiken på vad er sajt <i>kan bli?</i></h2>
-      <p class="lead" style="margin-top:14px">Fast pris från 4 000 kr + 1 000 kr per sida. Allt börjar med en kostnadsfri snabbgranskning – utan förpliktelser.</p></div>
+      <div><span class="kicker">Nästa steg</span><h2 id="h-band" style="margin-top:18px">Vad kan er sajt bli?</h2>
+      <p class="lead" style="margin-top:14px">Fast pris från 4 000 kr + 1 000 kr per sida. Först gör vi en kostnadsfri snabbgranskning, sedan bestämmer ni om ni vill gå vidare.</p></div>
       <div class="v2-band-btns"><a class="btn" href="granskning.html">Kostnadsfri granskning <span class="dot" aria-hidden="true">→</span></a><a class="btn ghost" href="pris.html">Se priser</a><a class="v2-band-link" href="sa-jobbar-vi.html">Så jobbar vi →</a></div>
     </div>
   </div>
@@ -741,7 +765,7 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp befintliga hemsidor – varmare, tydligare, snabbare.</p></div>
+      <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp hemsidor som redan finns.</p></div>
       <div><h2 class="foot-h">Sidor</h2><ul><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html" aria-current="page">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
       <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
     </div>
