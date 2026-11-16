@@ -636,6 +636,25 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 .om-me .me-txt{font-size:clamp(16px,1.6vw,19px);line-height:1.6}.om-me .me-name{font-size:clamp(20px,2vw,26px)}
 .om-me .me-sig{height:60px}
 @media (max-width:600px){.om-me .me{flex-direction:column;align-items:flex-start}}
+.rp{background:#FFFDF8;font-family:var(--sans);color:var(--ink)}
+.rp-h{font:600 clamp(15px,1.8vw,22px)/1.1 var(--disp);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.rp-h small{font:500 12px var(--sans);color:var(--ink-2)}
+.rp-m{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:6%}
+.rp-m div{background:var(--linen);border-radius:14px;padding:10px 12px}
+.rp-m b{display:block;font:600 clamp(18px,2.2vw,28px)/1 var(--disp)}.rp-m .bad{color:#A4462A}.rp-m .mid{color:#8A6A1B}
+.rp-m span{font-size:11px;color:var(--ink-2)}
+.rp-l{margin:6% 0 0;padding-left:20px;font-size:clamp(11px,1vw,13.5px);line-height:1.45;display:grid;gap:6px}
+.rp-l li::marker{color:var(--sage-d);font-weight:700}
+.n-site .sw{position:absolute;left:6%;bottom:7%;display:flex;gap:6px;align-items:center}
+.n-site .sw em{font:italic 600 18px/1 var(--disp);color:var(--sage-d);margin-right:4px}
+.n-site .sw i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.res{background:linear-gradient(180deg,#FFFDF8,#F1F5EE)}
+.res-h{font:600 clamp(16px,2vw,24px)/1.1 var(--disp);margin-bottom:5%}
+.res-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-top:1px solid var(--line);font-size:clamp(12px,1.1vw,14px);color:var(--ink-2)}
+.res-row b{font:600 clamp(18px,2.2vw,28px)/1 var(--disp);color:var(--sage-d)}
+.res-row s{color:#9A8F80;font-weight:500;font-size:.7em;margin-right:4px}
+.res .checks{right:6%;bottom:6%}
+@media (max-width:600px){.res .checks{display:none}}
 </style>
 </head>
 <body>
@@ -693,9 +712,19 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
       <div class="dk-ctrl"><button type="button" class="dk-prev">← Tillbaka</button><button type="button" class="dk-next pri">Nästa steg →</button></div>
     </div>
     <div class="deck" aria-hidden="true">
-      <div class="dk" data-k="3"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">4 · Klart</span><div class="bd n-site"><div class="t">Välkommen in – vi hjälper er hela vägen.</div><p>Tydligt erbjudande och en självklar nästa knapp.</p><span class="b">Boka tid →</span><div class="r"><i></i><i></i><i></i></div><div class="checks"><span>Snabbare</span><span>Tydligare</span><span>Tillgänglig</span></div></div></div>
-      <div class="dk" data-k="2"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">3 · Putsat</span><div class="bd n-site"><div class="t">Välkommen in – vi hjälper er hela vägen.</div><p>Tydligt erbjudande och en självklar nästa knapp.</p><span class="b">Boka tid →</span><div class="r"><i></i><i></i><i></i></div></div></div>
-      <div class="dk" data-k="1"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">2 · Granskning</span><div class="bd o-site"><div class="h">VÄLKOMMEN TILL VÅR HEMSIDA!!</div><div class="m"><div class="side">» Start<br>» Om oss<br>» Prislista<br>» Gästbok</div><div><div class="ph">bild.jpg</div>Text som fortsätter länge utan rubriker och utan tydlig väg vidare.</div></div><span class="note" style="left:8%;top:6%;transform:rotate(-4deg)">Otydlig rubrik</span><span class="note" style="right:8%;top:40%;transform:rotate(3deg)">Tung bild · 2,4 MB</span><span class="note" style="left:28%;bottom:10%;transform:rotate(-2deg)">Ingen tydlig knapp</span></div></div>
+      <div class="dk" data-k="3"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">4 · Mätt igen</span><div class="bd res">
+        <div class="res-h">Före → efter</div>
+        <div class="res-row"><span>PageSpeed, mobil</span><b><s>41</s> → 96</b></div>
+        <div class="res-row"><span>Fel i WAVE</span><b><s>12</s> → 0</b></div>
+        <div class="res-row"><span>Laddtid</span><b><s>4,8 s</s> → 1,6 s</b></div>
+        <div class="checks"><span>Snabbare</span><span>Tydligare</span><span>Tillgänglig</span></div>
+      </div></div>
+      <div class="dk" data-k="2"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">3 · Putsat</span><div class="bd n-site"><div class="t">Hantverk med omsorg – sedan 1998.</div><p>Ett tydligt erbjudande, luft runt texten och en knapp som syns.</p><span class="b">Begär offert →</span><div class="r"><i></i><i></i><i></i></div><div class="sw"><em>Aa</em><i style="background:#455B47"></i><i style="background:#F3DE95"></i><i style="background:#F4EFE6"></i></div></div></div>
+      <div class="dk" data-k="1"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">2 · Granskning</span><div class="bd rp">
+        <div class="rp-h">Snabbgranskning <small>exempel.se</small></div>
+        <div class="rp-m"><div><b class="bad">41</b><span>PageSpeed</span></div><div><b class="bad">12</b><span>WAVE-fel</span></div><div><b class="mid">4,8 s</b><span>Laddtid</span></div></div>
+        <ol class="rp-l"><li>Otydlig rubrik – besökaren förstår inte vad ni gör</li><li>Tunga bilder – 2,4 MB på startsidan</li><li>Ingen tydlig knapp för att ta kontakt</li></ol>
+      </div></div>
       <div class="dk" data-k="0"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">1 · Idag</span><div class="bd o-site"><div class="h">VÄLKOMMEN TILL VÅR HEMSIDA!!</div><div class="m"><div class="side">» Start<br>» Om oss<br>» Prislista<br>» Gästbok</div><div><div class="ph">bild.jpg</div>Text som fortsätter länge utan rubriker och utan tydlig väg vidare. Kontakta oss via länken längst ner.</div></div></div></div>
     </div>
     <span class="stack-ill">Exempel</span>
@@ -900,11 +929,11 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
     const y = lerp(A[0],Bq[0],dt), sc = 1 - lerp(A[1],Bq[1],dt)/400, rot = lerp(A[2],Bq[2],dt);
     if (i < 3 && out > 0) {
       const e = ease(out);
-      c.style.transform = `translate3d(${e*-30}%,${e*-115}%,0) rotate(${rot + e*-16}deg) scale(${sc})`; c.style.opacity = 1 - clamp((out-.6)/.4,0,1);
+      c.style.transform = `translate3d(${e*38}%,${e*-105}%,0) rotate(${rot + e*14}deg) scale(${sc})`; // ponytail: åt höger, bort från texten c.style.opacity = 1 - clamp((out-.6)/.4,0,1);
     } else { c.style.transform = `translate3d(0,${-y}px,0) rotate(${rot}deg) scale(${sc})`; c.style.opacity = 1; }
     c.style.zIndex = 10 - i;
   });
-  const tick = () => { dkCur += (dkT - dkCur) * .09; if (Math.abs(dkT - dkCur) < .002) dkCur = dkT; draw(dkCur); raf = dkCur === dkT ? 0 : requestAnimationFrame(tick); };
+  const tick = () => { dkCur += (dkT - dkCur) * .14; if (Math.abs(dkT - dkCur) < .002) dkCur = dkT; draw(dkCur); raf = dkCur === dkT ? 0 : requestAnimationFrame(tick); };
   const ui = () => {
     sts.forEach((el,k)=>el.classList.toggle('on',k===dkT));
     dots.forEach((el,k)=>{ el.classList.toggle('on',k===dkT); k===dkT ? el.setAttribute('aria-current','step') : el.removeAttribute('aria-current'); });
