@@ -661,6 +661,16 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 .v2-menu li a[aria-current="page"]{color:var(--sage-d)!important;font-weight:600!important}
 .v2-menu li a[aria-current="page"]::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--butter);box-shadow:0 0 0 2px var(--sage-d);margin-right:12px;flex:none}
 .v2-menu li a[aria-current="page"]{justify-content:flex-start!important}.v2-menu li a[aria-current="page"]::after{margin-left:auto}
+.own{margin-top:22px;display:grid;grid-template-columns:minmax(0,1.1fr) auto auto;gap:clamp(16px,3vw,36px);align-items:center;background:rgba(255,253,248,.07);border:1px solid rgba(243,222,149,.35);border-radius:24px;padding:clamp(18px,3vw,26px) clamp(18px,3vw,30px)}
+.own-t h3{margin:0;font:500 clamp(18px,2vw,22px)/1.2 var(--disp);color:#FFFDF8}
+.own-t p{margin:6px 0 0;font-size:14px;color:#D5DED2}
+.own-s{list-style:none;margin:0;padding:0;display:flex;gap:clamp(10px,2vw,22px)}
+.own-s li{display:grid;justify-items:center;gap:6px;min-width:64px}
+.own-s b{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;border:3px solid var(--butter);color:#FFFDF8;font:600 17px/1 var(--sans)}
+.own-s span{font-size:12px;color:#D5DED2;text-align:center}
+.own-a{justify-self:end;display:inline-flex;gap:8px;align-items:center;background:var(--butter);color:var(--sage-d);font-weight:600;text-decoration:none;padding:12px 18px;border-radius:999px;white-space:nowrap}
+.own-a:hover{background:#FFFDF8}
+@media (max-width:860px){.own{grid-template-columns:1fr}.own-s{flex-wrap:wrap}.own-a{justify-self:start}}
 </style>
 </head>
 <body>
@@ -808,7 +818,17 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
           <p class="m-why"><b>För er:</b> en sajt som fungerar för alla. För offentlig sektor är det lagkrav, och sedan 2025 gäller krav även för många tjänster mot konsumenter.</p>
         </div>
       </div>
-      <p class="disc"><span aria-hidden="true">ⓘ</span><span>Siffrorna ovan är exempel på hur mätvärdena kan se ut. Er kostnadsfria granskning visar era egna värden. <b>Den här sajten får själv 100/100 i PageSpeed på mobil</b> – i prestanda, tillgänglighet, bästa praxis och SEO.</span></p>
+      <p class="disc"><span aria-hidden="true">ⓘ</span><span>Siffrorna ovan är exempel på hur mätvärdena kan se ut. Er kostnadsfria granskning visar era egna värden.</span></p>
+      <div class="own">
+        <div class="own-t"><h3>Vår egen sajt, mätt med samma verktyg</h3><p>Google PageSpeed på mobil. Uppmätt november 2026.</p></div>
+        <ul class="own-s" aria-label="Webbglans egna mätvärden">
+          <li><b>100</b><span>Prestanda</span></li>
+          <li><b>100</b><span>Tillgänglighet</span></li>
+          <li><b>100</b><span>Bästa praxis</span></li>
+          <li><b>100</b><span>SEO</span></li>
+        </ul>
+        <a class="own-a" href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwebbglans.se%2F&amp;form_factor=mobile" target="_blank" rel="noopener">Mät själv <span aria-hidden="true">→</span><span class="sr"> (öppnas i ny flik)</span></a>
+      </div>
     </div>
   </div>
 </section>
