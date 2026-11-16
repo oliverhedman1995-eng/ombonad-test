@@ -657,6 +657,10 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 @media (max-width:600px){.res .checks{display:none}}
 .nav ul a[aria-current="page"]{background:var(--sage-l);color:var(--sage-d);font-weight:600}
 .v2-hbtn[aria-current="page"]{box-shadow:0 0 0 3px var(--butter)}
+.v2-menu li a{background:none!important;border-radius:0!important;padding:0 2px!important}
+.v2-menu li a[aria-current="page"]{color:var(--sage-d)!important;font-weight:600!important}
+.v2-menu li a[aria-current="page"]::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--butter);box-shadow:0 0 0 2px var(--sage-d);margin-right:12px;flex:none}
+.v2-menu li a[aria-current="page"]{justify-content:flex-start!important}.v2-menu li a[aria-current="page"]::after{margin-left:auto}
 </style>
 </head>
 <body>
@@ -924,14 +928,14 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
   const stack = document.querySelector('.stack'), cards = [...stack.querySelectorAll('.dk')].reverse(), sts = stack.querySelectorAll('.st'), dots = stack.querySelectorAll('.dots button');
   const deck = stack.querySelector('.deck'), prevB = stack.querySelector('.dk-prev'), nextB = stack.querySelector('.dk-next');
   const rest = [[0,0,-2],[14,10,3],[28,20,-4],[42,30,2]]; // y offset px, scale%, rotation by depth
-  let dkT = 0, dkCur = 0, raf = 0;
+  let dkT = 0, dkCur = 0, raf = 0; const narrow = matchMedia('(max-width:860px)');
   const draw = prog => cards.forEach((c,i) => {
     const out = clamp(prog - i, 0, 1), depth = Math.max(0, i - prog);
     const d0 = Math.floor(depth), dt = depth - d0, A = rest[Math.min(3,d0)], Bq = rest[Math.min(3,d0+1)];
     const y = lerp(A[0],Bq[0],dt), sc = 1 - lerp(A[1],Bq[1],dt)/400, rot = lerp(A[2],Bq[2],dt);
     if (i < 3 && out > 0) {
       const e = ease(out);
-      c.style.transform = `translate3d(${e*38}%,${e*-105}%,0) rotate(${rot + e*14}deg) scale(${sc})`; // ponytail: åt höger, bort från texten c.style.opacity = 1 - clamp((out-.6)/.4,0,1);
+      c.style.transform = narrow.matches ? `translate3d(${e*125}%,${e*-8}%,0) rotate(${rot + e*10}deg) scale(${sc})` : `translate3d(${e*38}%,${e*-105}%,0) rotate(${rot + e*14}deg) scale(${sc})`; // ponytail: mobil = i sidled, dator = uppåt-höger; aldrig över texten c.style.opacity = 1 - clamp((out-.6)/.4,0,1);
     } else { c.style.transform = `translate3d(0,${-y}px,0) rotate(${rot}deg) scale(${sc})`; c.style.opacity = 1; }
     c.style.zIndex = 10 - i;
   });
@@ -1040,9 +1044,9 @@ window.FORM_CONFIG = {
   const mb = $('.v2-menu-btn'), mn = $('#v2-menu');
   if (mb && mn) {
     const items = () => [mb, ...$$('a,button', mn)].filter(x => x.offsetParent !== null || x === mb);
-    const open = () => { mn.hidden = false; mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); ($('a', mn)||mb).focus(); };
+    const open = (kb) => { mn.hidden = false; mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); if (kb) ($('a', mn)||mb).focus(); };
     const close = (back=true) => { mn.hidden = true; mb.setAttribute('aria-expanded','false'); mb.querySelector('.v2-menu-lbl').textContent='Meny'; document.documentElement.classList.remove('v2-menu-open'); if (back) mb.focus(); };
-    mb.addEventListener('click', () => mb.getAttribute('aria-expanded') === 'true' ? close() : open());
+    mb.addEventListener('click', ev => mb.getAttribute('aria-expanded') === 'true' ? close() : open(ev.detail === 0));
     mn.addEventListener('click', ev => { if (ev.target.closest('a')) close(false); });
     document.addEventListener('keydown', ev => {
       if (mb.getAttribute('aria-expanded') !== 'true') return;

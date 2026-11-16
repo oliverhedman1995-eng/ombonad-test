@@ -638,6 +638,10 @@ html.motion .me-sig.signed path{animation:sigDraw 2.2s cubic-bezier(.6,.05,.3,1)
 @media (max-width:600px){.om-me .me{flex-direction:column;align-items:flex-start}}
 .nav ul a[aria-current="page"]{background:var(--sage-l);color:var(--sage-d);font-weight:600}
 .v2-hbtn[aria-current="page"]{box-shadow:0 0 0 3px var(--butter)}
+.v2-menu li a{background:none!important;border-radius:0!important;padding:0 2px!important}
+.v2-menu li a[aria-current="page"]{color:var(--sage-d)!important;font-weight:600!important}
+.v2-menu li a[aria-current="page"]::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--butter);box-shadow:0 0 0 2px var(--sage-d);margin-right:12px;flex:none}
+.v2-menu li a[aria-current="page"]{justify-content:flex-start!important}.v2-menu li a[aria-current="page"]::after{margin-left:auto}
 </style>
 </head>
 <body>
@@ -919,9 +923,9 @@ window.FORM_CONFIG = {
   const mb = $('.v2-menu-btn'), mn = $('#v2-menu');
   if (mb && mn) {
     const items = () => [mb, ...$$('a,button', mn)].filter(x => x.offsetParent !== null || x === mb);
-    const open = () => { mn.hidden = false; mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); ($('a', mn)||mb).focus(); };
+    const open = (kb) => { mn.hidden = false; mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); if (kb) ($('a', mn)||mb).focus(); };
     const close = (back=true) => { mn.hidden = true; mb.setAttribute('aria-expanded','false'); mb.querySelector('.v2-menu-lbl').textContent='Meny'; document.documentElement.classList.remove('v2-menu-open'); if (back) mb.focus(); };
-    mb.addEventListener('click', () => mb.getAttribute('aria-expanded') === 'true' ? close() : open());
+    mb.addEventListener('click', ev => mb.getAttribute('aria-expanded') === 'true' ? close() : open(ev.detail === 0));
     mn.addEventListener('click', ev => { if (ev.target.closest('a')) close(false); });
     document.addEventListener('keydown', ev => {
       if (mb.getAttribute('aria-expanded') !== 'true') return;
