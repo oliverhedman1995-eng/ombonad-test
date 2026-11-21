@@ -543,13 +543,31 @@ html:not(.motion) .v2-pause{display:none}
   .v2-menu li:last-child a{border-bottom:0}
   .v2-menu-cta{min-height:56px;font-size:17px}
   html.v2-menu-open{overflow:hidden}
-  html.v2-menu-open body::before{content:"";position:fixed;inset:0;background:rgba(44,48,44,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:45;animation:fadeIn .25s ease}
 }
 @keyframes menuIn{from{opacity:0;transform:translateY(-10px) scale(.96)}to{opacity:1;transform:none}}
 @keyframes menuItem{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}}
-@media (prefers-reduced-motion:reduce){header.site .v2-menu,.v2-menu li a,html.v2-menu-open body::before{animation:none!important;opacity:1!important}}
 @media (min-width:861px){.v2-menu{display:none!important}}
+/* Menyerna glider: mobilmenyn rullas fram och tillbaka, länkarna kommer en i taget, mörkningen tonas */
+header.site .nav{transition:box-shadow .35s ease}
+header.site.skuggad .nav{box-shadow:0 18px 40px -18px rgba(44,48,44,.55),inset 0 0 0 1px rgba(222,214,198,.7)}
+.v2-pill{position:absolute;left:0;top:0;height:0;width:0;border-radius:999px;background:var(--sage-l);opacity:0;pointer-events:none;z-index:-1;transition:transform .4s cubic-bezier(.2,.8,.2,1),width .4s cubic-bezier(.2,.8,.2,1),opacity .25s}
+.nav>ul.has-pill{position:relative;z-index:0}
+.nav>ul.has-pill a:hover{background:none}
+@media (max-width:860px){
+  .js header.site .v2-menu{animation:none;clip-path:inset(0 0 100% 0 round 26px);opacity:0;transform:translateY(-10px);visibility:hidden;transition:clip-path .45s cubic-bezier(.2,.8,.2,1),opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s linear .45s}
+  .js header.site .v2-menu.on{clip-path:inset(0 0 0 0 round 26px);opacity:1;transform:none;visibility:visible;transition-delay:0s}
+  .js .v2-menu li a,.js .v2-menu .v2-menu-cta{animation:none;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+  .js .v2-menu.on li a,.js .v2-menu.on .v2-menu-cta{opacity:1;transform:none}
+  .js .v2-menu.on li:nth-child(1) a{transition-delay:.07s}.js .v2-menu.on li:nth-child(2) a{transition-delay:.12s}.js .v2-menu.on li:nth-child(3) a{transition-delay:.17s}.js .v2-menu.on li:nth-child(4) a{transition-delay:.22s}.js .v2-menu.on li:nth-child(5) a{transition-delay:.27s}.js .v2-menu.on .v2-menu-cta{transition-delay:.32s}
+  .js body::after{content:"";position:fixed;inset:0;background:rgba(44,48,44,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:45;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility 0s linear .35s}
+  .js.v2-menu-open body::after{opacity:1;visibility:visible;transition-delay:0s}
+  .v2-burger i{transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+}
+@media (prefers-reduced-motion:reduce){
+  header.site .v2-menu,.v2-menu li a,.v2-menu .v2-menu-cta,body::after,.v2-burger i,header.site .nav{animation:none!important;transition:none!important}
+  .v2-pill{display:none}
+}
 /* Mobil: läsbarhet och klickytor */
 @media (max-width:860px){
   body{font-size:16px}
@@ -963,10 +981,13 @@ window.FORM_CONFIG = {
   const mb = $('.v2-menu-btn'), mn = $('#v2-menu');
   if (mb && mn) {
     const items = () => [mb, ...$$('a,button', mn)].filter(x => x.offsetParent !== null || x === mb);
-    const open = (kb) => { mn.hidden = false; mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); if (kb) ($('a', mn)||mb).focus(); };
-    const close = (back=true) => { mn.hidden = true; mb.setAttribute('aria-expanded','false'); mb.querySelector('.v2-menu-lbl').textContent='Meny'; document.documentElement.classList.remove('v2-menu-open'); if (back) mb.focus(); };
+    const open = (kb) => { mn.classList.add('on'); mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); if (kb) ($('a', mn)||mb).focus(); };
+    const close = (back=true) => { mn.classList.remove('on'); mb.setAttribute('aria-expanded','false'); mb.querySelector('.v2-menu-lbl').textContent='Meny'; document.documentElement.classList.remove('v2-menu-open'); if (back) mb.focus(); };
     mb.addEventListener('click', ev => mb.getAttribute('aria-expanded') === 'true' ? close() : open(ev.detail === 0));
     mn.addEventListener('click', ev => { if (ev.target.closest('a')) close(false); });
+    // Klick utanför menyn stänger den
+    document.addEventListener('click', ev => { if (mb.getAttribute('aria-expanded') === 'true' && !mn.contains(ev.target) && !mb.contains(ev.target)) close(false); });
+    mn.hidden = false; // ponytail: utan skript står menyn kvar dold med hidden; med skript sköter klassen on synligheten
     document.addEventListener('keydown', ev => {
       if (mb.getAttribute('aria-expanded') !== 'true') return;
       if (ev.key === 'Escape') { ev.preventDefault(); close(); return; }
@@ -976,6 +997,16 @@ window.FORM_CONFIG = {
     });
     matchMedia('(min-width: 861px)').addEventListener?.('change', m => { if (m.matches) close(false); });
   }
+  // --- Menyraden får skugga när man har skrollat ---
+  { const hd = $('header.site'); if (hd) { let s = null; const f = () => { const v = scrollY > 8; if (v !== s) { s = v; hd.classList.toggle('skuggad', v); } }; addEventListener('scroll', f, {passive:true}); f(); } }
+  // --- Huvudmenyn: en markering glider till länken man pekar på ---
+  { const ul = $('.nav>ul');
+    if (ul && matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const pill = document.createElement('span'); pill.className = 'v2-pill'; pill.setAttribute('aria-hidden', 'true'); ul.appendChild(pill); ul.classList.add('has-pill');
+      const to = a => { pill.style.top = a.offsetTop + 'px'; pill.style.height = a.offsetHeight + 'px'; pill.style.width = a.offsetWidth + 'px'; pill.style.transform = 'translateX(' + a.offsetLeft + 'px)'; };
+      $$('a', ul).forEach(a => { a.addEventListener('pointerenter', () => { if (pill.style.opacity !== '1') { pill.style.transition = 'none'; to(a); pill.offsetWidth; pill.style.transition = ''; } to(a); pill.style.opacity = '1'; }); a.addEventListener('focus', () => { to(a); pill.style.opacity = '1'; }); a.addEventListener('blur', () => { pill.style.opacity = '0'; }); });
+      ul.addEventListener('pointerleave', () => { pill.style.opacity = '0'; });
+    } }
   // --- Pausknapp för allt som loopar (WCAG 2.2.2) ---
   $$('[data-v2-pause]').forEach(btn => {
     const tgt = document.querySelector(btn.dataset.v2Pause);

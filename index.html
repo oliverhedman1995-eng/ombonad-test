@@ -210,6 +210,86 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .flat .deck{aspect-ratio:auto;display:grid;gap:18px}
 .flat .dk{position:relative;inset:auto;aspect-ratio:4/3.3}
 .flat .stack-ill{position:static;text-align:right;margin-top:-10px}
+/* Upprustningen: en påhittad gammal sajt (havsbastun Vinterhamn) rustas upp till en mörk, exklusiv minisajt medan man skrollar. Standardläget (utan skript) är den färdiga sajten. */
+@font-face{font-family:'RM Disp';font-weight:600 800;font-display:swap;src:url(demo/kafe/fonts/bricolage-latin.woff2) format('woff2')}
+@font-face{font-family:'RM Mono';font-weight:400;font-display:swap;src:url(demo/kafe/fonts/dmmono-latin.woff2) format('woff2')}
+.rm{--vd:Arial,sans-serif;--vm:ui-monospace,Menlo,monospace;position:relative;aspect-ratio:16/11;border-radius:22px;overflow:hidden;background:#10171A;box-shadow:0 40px 80px -40px rgba(16,23,26,.7),0 0 0 1px rgba(222,214,198,.9);container-type:inline-size;font-family:var(--sans);color:var(--ink);line-height:1.3}
+.rm.fonts{--vd:'RM Disp',Arial,sans-serif;--vm:'RM Mono',ui-monospace,Menlo,monospace}
+.rm-bar{position:relative;z-index:3;height:7cqw;display:flex;align-items:center;gap:1.2cqw;padding:0 2.6cqw;background:var(--linen-2)}
+.rm-bar i{width:1.6cqw;height:1.6cqw;border-radius:50%;background:#CFC6B4}
+.rm-url{margin-left:2cqw;width:46%;height:4.2cqw;border-radius:99px;background:rgba(255,253,248,.8);font-size:2.1cqw;line-height:4.2cqw;padding:0 2cqw;color:var(--ink-2);white-space:nowrap;overflow:hidden}
+.rm-page{position:absolute;inset:7cqw 0 0 0;overflow:hidden}
+/* Den gamla sajten */
+.rm-old{position:absolute;inset:0;z-index:1;background:#fff;font-family:"Times New Roman",Times,serif;color:#222;opacity:0}
+.o-head{margin:2cqw 3cqw 0;background:#2F4F7F;color:#fff;font:700 3cqw/1 Arial,Helvetica,sans-serif;letter-spacing:.02em;padding:2.9cqw 2cqw;text-align:center;min-height:8.8cqw;white-space:nowrap}
+.o-body{display:grid;grid-template-columns:21% 1fr;gap:3cqw;padding:3cqw}
+.o-side{background:#E6E6E6;padding:2cqw;font-size:2.2cqw;line-height:1.7}
+.o-img{height:17cqw;display:grid;place-items:center;font:2.1cqw Arial,sans-serif;color:#444;border:1px solid #B5B5B5;background:repeating-linear-gradient(45deg,#DCDCDC 0 1cqw,#E9E9E9 1cqw 2cqw)}
+.o-main p{font-size:2.2cqw;line-height:1.35;margin:2cqw 0 1.4cqw}
+.o-link{font-size:2.1cqw;color:#0645AD;text-decoration:underline}
+/* Den nya sajten */
+.rm-new{position:absolute;inset:0;background:#10171A;color:#F2EEE6;overflow:hidden}
+.v-scroll{position:absolute;left:0;right:0;top:0;will-change:transform}
+.v-hero{position:relative;height:61.75cqw;overflow:hidden}
+.v-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:70% 55%;will-change:transform}
+.v-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,14,17,.82) 0%,rgba(9,14,17,.45) 48%,rgba(9,14,17,0) 75%),linear-gradient(0deg,rgba(9,14,17,.7),rgba(9,14,17,0) 45%)}
+.v-snow{position:absolute;inset:-20% 0 0;opacity:0;pointer-events:none;will-change:transform;background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 .22cqw,transparent .32cqw),radial-gradient(circle,rgba(255,255,255,.6) 0 .16cqw,transparent .26cqw),radial-gradient(circle,rgba(255,255,255,.45) 0 .12cqw,transparent .2cqw);background-size:14cqw 14cqw,9cqw 11cqw,6cqw 7cqw;background-position:0 0,4cqw 3cqw,2cqw 5cqw}
+.v-nav{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:3.2cqw;padding:3.4cqw 4.5cqw;font:400 1.8cqw/1 var(--vm);letter-spacing:.08em;text-transform:uppercase;color:#D9E2E4}
+.v-nav b{font:800 2.8cqw/1 var(--vd);letter-spacing:.16em;color:#fff;margin-right:auto}
+.v-nav em{font-style:normal;color:#10171A;background:#E8A54B;border-radius:99px;padding:1.2cqw 2.2cqw}
+.v-copy{position:absolute;left:4.5cqw;bottom:6.5cqw;width:62%}
+.v-eye{display:block;font:400 1.8cqw/1 var(--vm);letter-spacing:.14em;text-transform:uppercase;color:#E8A54B}
+.v-h{margin-top:1.8cqw;font:800 8.6cqw/.92 var(--vd);letter-spacing:-.035em;color:#fff;min-height:1.84em}
+.v-caret{display:inline-block;width:.06em;height:.78em;margin-left:.04em;vertical-align:-.04em;background:#E8A54B;opacity:0}
+.v-caret.on{opacity:1;animation:rmBlink 1s steps(1) infinite}
+.v-cta{display:flex;gap:1.6cqw;margin-top:3cqw}
+.v-b1{background:#E8A54B;color:#10171A;font-weight:700;font-size:2.1cqw;border-radius:99px;padding:1.8cqw 3cqw}
+.v-b2{border:1px solid rgba(255,255,255,.45);color:#fff;font-weight:600;font-size:2.1cqw;border-radius:99px;padding:1.8cqw 3cqw}
+.v-card{position:absolute;right:4.5cqw;bottom:6.5cqw;display:grid;grid-template-columns:auto 1fr;column-gap:1.4cqw;row-gap:.6cqw;align-items:center;padding:2cqw 2.6cqw;border-radius:2cqw;background:rgba(16,23,26,.78);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.v-dot{grid-row:span 2;width:1.4cqw;height:1.4cqw;border-radius:50%;background:#7BD88F;box-shadow:0 0 0 .7cqw rgba(123,216,143,.2)}
+.v-card b{font:700 2.2cqw/1 var(--vd);color:#fff}
+.v-card span:last-child{font:400 1.7cqw/1 var(--vm);color:#C9D6D9}
+.v-tick{overflow:hidden;white-space:nowrap;border-block:1px solid rgba(255,255,255,.12);padding:2.2cqw 0;font:700 3cqw/1 var(--vd);letter-spacing:-.01em;color:#F2EEE6}
+.v-tick-in{display:inline-block;will-change:transform}
+.v-tick i{font-style:normal;color:#E8A54B;margin:0 2cqw}
+.v-sec{display:grid;grid-template-columns:1fr .8fr .8fr;gap:3cqw;align-items:end;padding:5cqw 4.5cqw}
+.v-sec-t b{display:block;margin-top:1.6cqw;font:800 4.6cqw/.98 var(--vd);letter-spacing:-.03em;color:#fff}
+.v-sec-t p{margin-top:1.8cqw;font-size:2cqw;line-height:1.5;color:#C9D6D9}
+.v-sec figure{margin:0;border-radius:1.6cqw;overflow:hidden;aspect-ratio:4/5}
+.v-sec img{width:100%;height:115%;object-fit:cover;display:block}
+.v-f2{transform:translateY(-6cqw)}
+/* Granskningen och verktygen */
+.rm-scan{position:absolute;left:0;right:0;top:0;height:14%;z-index:2;background:linear-gradient(180deg,transparent,rgba(243,222,149,.55) 85%,#C9A227 100%);opacity:0;pointer-events:none}
+.rm-mk{position:absolute;left:0;top:0;z-index:2;opacity:0;pointer-events:none}
+.rm-mk i{position:absolute;inset:0;border:.45cqw solid #B42318;border-radius:1.4cqw;box-shadow:0 0 0 .6cqw rgba(180,35,24,.15)}
+.rm-mk em{position:absolute;left:0;top:calc(100% + .9cqw);font:600 1.9cqw/1 var(--sans);font-style:normal;white-space:nowrap;color:#fff;background:#B42318;border-radius:99px;padding:.9cqw 1.6cqw}
+.rm-tool{position:absolute;right:4cqw;top:13cqw;z-index:2;display:flex;align-items:center;gap:1.4cqw;padding:1.3cqw 1.8cqw;border-radius:99px;background:var(--paper);box-shadow:0 1.6cqw 4cqw -1.6cqw rgba(0,0,0,.6),0 0 0 1px var(--line);opacity:0}
+.rm-aa{font:800 3.2cqw/1 var(--vd);letter-spacing:-.03em;color:#10171A}
+.rm-tl{font-size:1.9cqw;font-weight:600;color:var(--ink)}
+.rm-sw{display:flex;gap:.6cqw}.rm-sw i{width:2.6cqw;height:2.6cqw;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.rm-score{position:absolute;right:3.4cqw;bottom:3.4cqw;z-index:2;display:flex;align-items:center;gap:2.4cqw;padding:2.2cqw 3cqw 2.2cqw 2.2cqw;border-radius:2.6cqw;background:var(--paper);box-shadow:0 2cqw 5cqw -2cqw rgba(0,0,0,.7),0 0 0 1px var(--line)}
+.rm-ring{position:relative;width:12cqw;height:12cqw}
+.rm-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.rm-ring circle{fill:none;stroke:var(--linen-2);stroke-width:4}
+.rm-ring .rm-arc{stroke:var(--sage-d);stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:4}
+.rm-ps{position:absolute;inset:0;display:grid;place-items:center;font:600 3.8cqw/1 var(--sans);color:var(--ink)}
+.rm-rows{display:grid;gap:.9cqw;font-size:2cqw;color:var(--ink-2)}
+.rm-rows b{color:var(--sage-d);margin-left:.6cqw}
+.rm-r0{font-weight:600;color:var(--ink)}
+.rm-sheen{position:absolute;inset:0;z-index:2;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.35) 50%,transparent 62%);transform:translateX(-110%);pointer-events:none}
+.stack.anim{height:500vh}
+.anim .stack-sticky{position:sticky;top:0;height:100vh;height:100svh;padding-top:92px;padding-bottom:28px}
+@media (min-width:861px){.anim .stack-sticky{grid-template-columns:.86fr 1.14fr}.anim .stack-text{min-height:340px}}
+.anim .stack-ill{bottom:24px}
+@media (max-width:860px){
+  .anim .stack-sticky{padding-top:84px;padding-bottom:16px;gap:14px;align-content:center}
+  .anim .stack-text{min-height:232px}
+  .anim .st{top:34px}
+  .anim .st h2{font-size:clamp(28px,8vw,36px)}
+  .anim .st p{margin-top:10px}
+  .anim .stack-ill{display:none}
+}
+@keyframes rmBlink{50%{opacity:0}}
 @media (min-width:861px){.flat .stack-sticky{align-items:start}.flat .stack-text{margin-top:20px}}
 @media (max-width:860px){.stack-sticky{grid-template-columns:1fr}}
 
@@ -543,13 +623,31 @@ html:not(.motion) .v2-pause{display:none}
   .v2-menu li:last-child a{border-bottom:0}
   .v2-menu-cta{min-height:56px;font-size:17px}
   html.v2-menu-open{overflow:hidden}
-  html.v2-menu-open body::before{content:"";position:fixed;inset:0;background:rgba(44,48,44,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:45;animation:fadeIn .25s ease}
 }
 @keyframes menuIn{from{opacity:0;transform:translateY(-10px) scale(.96)}to{opacity:1;transform:none}}
 @keyframes menuItem{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}}
-@media (prefers-reduced-motion:reduce){header.site .v2-menu,.v2-menu li a,html.v2-menu-open body::before{animation:none!important;opacity:1!important}}
 @media (min-width:861px){.v2-menu{display:none!important}}
+/* Menyerna glider: mobilmenyn rullas fram och tillbaka, länkarna kommer en i taget, mörkningen tonas */
+header.site .nav{transition:box-shadow .35s ease}
+header.site.skuggad .nav{box-shadow:0 18px 40px -18px rgba(44,48,44,.55),inset 0 0 0 1px rgba(222,214,198,.7)}
+.v2-pill{position:absolute;left:0;top:0;height:0;width:0;border-radius:999px;background:var(--sage-l);opacity:0;pointer-events:none;z-index:-1;transition:transform .4s cubic-bezier(.2,.8,.2,1),width .4s cubic-bezier(.2,.8,.2,1),opacity .25s}
+.nav>ul.has-pill{position:relative;z-index:0}
+.nav>ul.has-pill a:hover{background:none}
+@media (max-width:860px){
+  .js header.site .v2-menu{animation:none;clip-path:inset(0 0 100% 0 round 26px);opacity:0;transform:translateY(-10px);visibility:hidden;transition:clip-path .45s cubic-bezier(.2,.8,.2,1),opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s linear .45s}
+  .js header.site .v2-menu.on{clip-path:inset(0 0 0 0 round 26px);opacity:1;transform:none;visibility:visible;transition-delay:0s}
+  .js .v2-menu li a,.js .v2-menu .v2-menu-cta{animation:none;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+  .js .v2-menu.on li a,.js .v2-menu.on .v2-menu-cta{opacity:1;transform:none}
+  .js .v2-menu.on li:nth-child(1) a{transition-delay:.07s}.js .v2-menu.on li:nth-child(2) a{transition-delay:.12s}.js .v2-menu.on li:nth-child(3) a{transition-delay:.17s}.js .v2-menu.on li:nth-child(4) a{transition-delay:.22s}.js .v2-menu.on li:nth-child(5) a{transition-delay:.27s}.js .v2-menu.on .v2-menu-cta{transition-delay:.32s}
+  .js body::after{content:"";position:fixed;inset:0;background:rgba(44,48,44,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:45;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility 0s linear .35s}
+  .js.v2-menu-open body::after{opacity:1;visibility:visible;transition-delay:0s}
+  .v2-burger i{transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+}
+@media (prefers-reduced-motion:reduce){
+  header.site .v2-menu,.v2-menu li a,.v2-menu .v2-menu-cta,body::after,.v2-burger i,header.site .nav{animation:none!important;transition:none!important}
+  .v2-pill{display:none}
+}
 /* Mobil: läsbarhet och klickytor */
 @media (max-width:860px){
   body{font-size:16px}
@@ -853,23 +951,46 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
         <div class="st" data-i="3"><h2>Och mäter igen.</h2><p>Vi mäter med PageSpeed och WAVE före och efter, går igenom resultatet och gör en enkel överlämning.</p></div>
       </div>
       <div class="dots" role="group" aria-label="Välj steg"><button type="button" class="on" aria-label="Steg 1" aria-current="step"></button><button type="button" aria-label="Steg 2"></button><button type="button" aria-label="Steg 3"></button><button type="button" aria-label="Steg 4"></button></div>
-      <div class="dk-ctrl"><button type="button" class="dk-prev">← Tillbaka</button><button type="button" class="dk-next pri">Nästa steg →</button></div>
     </div>
-    <div class="deck" aria-hidden="true">
-      <div class="dk" data-k="3"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">4 · Mätt igen</span><div class="bd res">
-        <div class="res-h">Före → efter</div>
-        <div class="res-row"><span>PageSpeed, mobil</span><b><s>41</s> → 96</b></div>
-        <div class="res-row"><span>Fel i WAVE</span><b><s>12</s> → 0</b></div>
-        <div class="res-row"><span>Laddtid</span><b><s>4,8 s</s> → 1,6 s</b></div>
-        <div class="checks"><span>Snabbare</span><span>Tydligare</span><span>Tillgänglig</span></div>
-      </div></div>
-      <div class="dk" data-k="2"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">3 · Putsat</span><div class="bd n-site"><div class="t">Hantverk med omsorg sedan 1998.</div><p>Ett tydligt erbjudande, luft runt texten och en knapp som syns.</p><span class="b">Begär offert →</span><div class="r"><i></i><i></i><i></i></div><div class="sw"><em>Aa</em><i style="background:#455B47"></i><i style="background:#F3DE95"></i><i style="background:#F4EFE6"></i></div></div></div>
-      <div class="dk" data-k="1"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">2 · Granskning</span><div class="bd rp">
-        <div class="rp-h">Snabbgranskning <small>exempel.se</small></div>
-        <div class="rp-m"><div><b class="bad">41</b><span>PageSpeed</span></div><div><b class="bad">12</b><span>WAVE-fel</span></div><div><b class="mid">4,8 s</b><span>Laddtid</span></div></div>
-        <ol class="rp-l"><li>Otydlig rubrik: besökaren förstår inte vad ni gör</li><li>Tunga bilder: 2,4 MB på startsidan</li><li>Ingen tydlig knapp för att ta kontakt</li></ol>
-      </div></div>
-      <div class="dk" data-k="0"><div class="bar"><i></i><i></i><i></i></div><span class="lbl">1 · Idag</span><div class="bd o-site"><div class="h">VÄLKOMMEN TILL VÅR HEMSIDA!!</div><div class="m"><div class="side">» Start<br>» Om oss<br>» Prislista<br>» Gästbok</div><div><div class="ph">bild.jpg</div>Text som fortsätter länge utan rubriker och utan tydlig väg vidare. Kontakta oss via länken längst ner.</div></div></div></div>
+    <div class="rm" aria-hidden="true">
+      <div class="rm-bar"><i></i><i></i><i></i><span class="rm-url">bastunvinterhamn.se</span></div>
+      <div class="rm-page">
+        <div class="rm-old">
+          <div class="o-head"><span class="o-ht">VÄLKOMMEN TILL VINTERHAMNS BASTU!!</span></div>
+          <div class="o-body">
+            <div class="o-side">» Start<br>» Bastun<br>» Priser (PDF)<br>» Gästbok<br>» Hitta hit</div>
+            <div class="o-main"><div class="o-img">bastun_2017_ny.jpg</div><p>Här kan du läsa om vår bastu vid havet. Vi har öppet de flesta kvällar och det går bra att ringa för bokning. Ta med egen handduk. Priser finns i prislistan som du kan ladda ner i menyn till vänster.</p><span class="o-link">Ring för bokning</span></div>
+          </div>
+        </div>
+        <div class="rm-new">
+          <div class="v-scroll">
+            <div class="v-hero">
+              <img class="v-bg" src="demo/rm/hav-960.webp" srcset="demo/rm/hav-640.webp 640w, demo/rm/hav-960.webp 960w" sizes="(max-width:860px) 100vw, 680px" width="960" height="540" alt="" loading="lazy" decoding="async">
+              <div class="v-shade"></div>
+              <div class="v-snow"></div>
+              <div class="v-nav"><b>VINTERHAMN</b><span>Bastun</span><span>Kallbad</span><span>Priser</span><em>Boka</em></div>
+              <div class="v-copy"><span class="v-eye">Vedeldad bastu vid havet</span><div class="v-h"><span class="v-ht">Värm dig vid havet.</span><i class="v-caret"></i></div><div class="v-cta"><span class="v-b1">Boka en kväll →</span><span class="v-b2">Se priser</span></div></div>
+              <div class="v-card"><span class="v-dot"></span><b>Ikväll 18–21</b><span>4 platser kvar</span></div>
+            </div>
+            <div class="v-tick"><div class="v-tick-in">Vedeldat <i>✦</i> Kallbad i isvaken <i>✦</i> Handdukar ingår <i>✦</i> Öppet året runt <i>✦</i> Vedeldat <i>✦</i> Kallbad i isvaken <i>✦</i> Handdukar ingår <i>✦</i> Öppet året runt <i>✦</i></div></div>
+            <div class="v-sec">
+              <div class="v-sec-t"><span class="v-eye">Kvällens ritual</span><b>Varmt, kallt, varmt igen.</b><p>Tre rundor i bastun och två dopp i isvaken. Kaminen tänds klockan fem.</p></div>
+              <figure class="v-f1"><img src="demo/rm/kamin-480.webp" width="480" height="600" alt="" loading="lazy" decoding="async"></figure>
+              <figure class="v-f2"><img src="demo/rm/isvak-480.webp" width="480" height="600" alt="" loading="lazy" decoding="async"></figure>
+            </div>
+          </div>
+        </div>
+        <div class="rm-scan"></div>
+        <span class="rm-mk" data-t=".o-head"><i></i><em>Otydlig rubrik</em></span>
+        <span class="rm-mk" data-t=".o-img"><i></i><em>Tung bild, 2,4 MB</em></span>
+        <span class="rm-mk" data-t=".o-link"><i></i><em>Ingen bokningsknapp</em></span>
+        <div class="rm-tool"><span class="rm-aa">Aa</span><span class="rm-tl">Nytt typsnitt</span><span class="rm-sw"><i style="background:#10171A"></i><i style="background:#E8A54B"></i><i style="background:#D6E6EA"></i></span></div>
+        <div class="rm-score">
+          <div class="rm-ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle class="rm-arc" cx="20" cy="20" r="17" pathLength="100"/></svg><b class="rm-ps">41</b></div>
+          <div class="rm-rows"><span class="rm-r0">PageSpeed, mobil</span><span>Fel i WAVE <b class="rm-wv">12</b></span><span>Laddtid <b class="rm-lt">4,8 s</b></span></div>
+        </div>
+        <div class="rm-sheen"></div>
+      </div>
     </div>
     <span class="stack-ill">Exempel</span>
   </div>
@@ -1071,46 +1192,76 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
 
   /* namnteckningen skrivs fram när den syns */
   { const sg=document.querySelector('.me-sig'); if (sg && 'IntersectionObserver' in window) { const o=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ sg.classList.add('signed'); o.disconnect(); } },{threshold:.6}); o.observe(sg); } else if (sg) sg.classList.add('signed'); }
-  /* ---------- card stack (cinematic) ---------- */
-  // ponytail: klick/svep-styrd istället för scroll-jacking; korten flyger fortfarande iväg
-  if (document.querySelector('.stack')) { // ponytail: kortleken finns bara på startsidan
-  const stack = document.querySelector('.stack'), cards = [...stack.querySelectorAll('.dk')].reverse(), sts = stack.querySelectorAll('.st'), dots = stack.querySelectorAll('.dots button');
-  const deck = stack.querySelector('.deck'), prevB = stack.querySelector('.dk-prev'), nextB = stack.querySelector('.dk-next');
-  const rest = [[0,0,-2],[14,10,3],[28,20,-4],[42,30,2]]; // y offset px, scale%, rotation by depth
-  let dkT = 0, dkCur = 0, raf = 0; const narrow = matchMedia('(max-width:860px)');
-  const draw = prog => cards.forEach((c,i) => {
-    const out = clamp(prog - i, 0, 1), depth = Math.max(0, i - prog);
-    const d0 = Math.floor(depth), dt = depth - d0, A = rest[Math.min(3,d0)], Bq = rest[Math.min(3,d0+1)];
-    const y = lerp(A[0],Bq[0],dt), sc = 1 - lerp(A[1],Bq[1],dt)/400, rot = lerp(A[2],Bq[2],dt);
-    if (i < 3 && out > 0) {
-      const e = ease(out);
-      c.style.transform = narrow.matches ? `translate3d(${e*125}%,${e*-8}%,0) rotate(${rot + e*10}deg) scale(${sc})` : `translate3d(${e*38}%,${e*-105}%,0) rotate(${rot + e*14}deg) scale(${sc})`; // ponytail: mobil = i sidled, dator = uppåt-höger; aldrig över texten c.style.opacity = 1 - clamp((out-.6)/.4,0,1);
-    } else { c.style.transform = `translate3d(0,${-y}px,0) rotate(${rot}deg) scale(${sc})`; c.style.opacity = 1; }
-    c.style.zIndex = 10 - i;
-  });
-  const tick = () => { dkCur += (dkT - dkCur) * .14; if (Math.abs(dkT - dkCur) < .002) dkCur = dkT; draw(dkCur); raf = dkCur === dkT ? 0 : requestAnimationFrame(tick); };
-  const ui = () => {
-    sts.forEach((el,k)=>el.classList.toggle('on',k===dkT));
-    dots.forEach((el,k)=>{ el.classList.toggle('on',k===dkT); k===dkT ? el.setAttribute('aria-current','step') : el.removeAttribute('aria-current'); });
-    prevB.disabled = dkT === 0; nextB.textContent = dkT === 3 ? 'Börja om ↺' : 'Nästa steg →';
-  };
-  const go = n => { dkT = (n + 4) % 4; ui(); if (!raf) raf = requestAnimationFrame(tick); };
-  nextB.addEventListener('click', () => go(dkT + 1));
-  prevB.addEventListener('click', () => go(dkT - 1));
-  dots.forEach((d,k) => d.addEventListener('click', () => go(k)));
-  let sx = null;
-  deck.addEventListener('pointerdown', e => { sx = e.clientX; });
-  deck.addEventListener('pointerup', e => {
-    if (sx === null || stack.classList.contains('flat')) return;
-    const dx = e.clientX - sx; sx = null;
-    go(dx > 40 ? dkT - 1 : dkT + 1); // tryck eller svep vänster = nästa, svep höger = tillbaka
-  });
-  const updStack = () => {
-    const flat = window.__flat || !motion; stack.classList.toggle('flat', flat);
-    if (flat) { cards.forEach(c=>{c.style.transform='';c.style.opacity='';}); sts.forEach(el=>el.classList.add('on')); return; }
-    ui(); draw(dkCur);
-  };
-  addEventListener('resize', updStack); updStack();
+  /* ---------- Upprustningen: skrollen styr animationen, stegtexterna följer med ---------- */
+  // ponytail: ren DOM och tre bilder. Allt räknas fram ur skrollens läge, så det går lika bra baklänges. Reducera rörelse visar den färdiga sajten och alla fyra stegen.
+  if (document.querySelector('.stack')) { // ponytail: avsnittet finns bara på startsidan
+  const stack = document.querySelector('.stack'), sts = [...stack.querySelectorAll('.st')], dots = [...stack.querySelectorAll('.dots button')];
+  const rm = stack.querySelector('.rm'), q = s => rm.querySelector(s), qa = s => [...rm.querySelectorAll(s)];
+  const E = {old: q('.rm-old'), side: q('.o-side'), ht: q('.o-ht'), main: q('.o-main'), nw: q('.rm-new'), sc: q('.v-scroll'), hero: q('.v-hero'), bg: q('.v-bg'),
+    snow: q('.v-snow'), nav: q('.v-nav'), eye: q('.v-copy .v-eye'), nh: q('.v-ht'), caret: q('.v-caret'), cta: q('.v-cta'), card: q('.v-card'), tick: q('.v-tick-in'),
+    figs: qa('.v-sec img'), sect: q('.v-sec-t'), scan: q('.rm-scan'), mks: qa('.rm-mk'), tool: q('.rm-tool'),
+    score: q('.rm-score'), arc: q('.rm-arc'), ps: q('.rm-ps'), wv: q('.rm-wv'), lt: q('.rm-lt'), sheen: q('.rm-sheen')};
+  const OLD = E.ht.textContent, NEW = E.nh.textContent;
+  const S = (k, a, b) => { const t = clamp((k - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+  const set = (el, op, tf) => { el.style.opacity = op.toFixed(3); el.style.transform = tf; };
+  let anim = null, raf2 = 0, steg = -1, last = -1;
+  const setSteg = k => { if (k === steg) return; steg = k;
+    sts.forEach((el, i) => el.classList.toggle('on', i === k));
+    dots.forEach((el, i) => { el.classList.toggle('on', i === k); i === k ? el.setAttribute('aria-current', 'step') : el.removeAttribute('aria-current'); }); };
+  // Ringarna i granskningen läggs runt de gamla delarna
+  const place = () => { const pb = q('.rm-page').getBoundingClientRect(), pad = pb.width * .012;
+    E.mks.forEach(m => { const r = q(m.dataset.t).getBoundingClientRect();
+      Object.assign(m.style, {left: (r.left - pb.left - pad) + 'px', top: (r.top - pb.top - pad) + 'px', width: (r.width + pad * 2) + 'px', height: (r.height + pad * 2) + 'px'}); }); };
+  function render(p){
+    const a = S(p, .24, .42), b = S(p, .46, .72), d = S(p, .74, .9), c = S(p, .86, .98);
+    // 2 · Granskning: en skanning går över sidan och problemen ringas in
+    set(E.scan, Math.sin(Math.PI * S(a, 0, .4)) * .9, 'translateY(' + (S(a, 0, .4) * 640 - 100) + '%)');
+    E.mks.forEach((m, i) => { const k = S(a, .3 + i * .2, .42 + i * .2) * (1 - S(b, 0, .1)); set(m, k, 'scale(' + (1.15 - .15 * k) + ')'); });
+    // 3 · Putsning: det gamla plockas bort, sidan blir mörk, bilden öppnas, ny rubrik skrivs i nytt typsnitt
+    E.old.style.opacity = (1 - S(b, .16, .24)).toFixed(3);
+    set(E.side, 1, 'translateX(' + (-120 * S(b, .02, .14)) + '%)');
+    const del = Math.round(OLD.length * (1 - S(b, .02, .16))); if (E.ht.textContent.length !== del) E.ht.textContent = OLD.slice(0, del);
+    set(E.main, 1 - S(b, .08, .18), 'translateY(' + (8 * S(b, .08, .18)) + '%)');
+    E.nw.style.opacity = S(b, .14, .24).toFixed(3);
+    const op = S(b, .18, .38), ins = ((1 - op) * 46).toFixed(2);
+    E.hero.style.clipPath = 'inset(' + ins + '% ' + ins + '% ' + ins + '% ' + ins + '% round ' + (4 * (1 - op)).toFixed(2) + 'cqw)';
+    E.bg.style.transform = 'scale(' + (1.22 - .1 * op - .12 * S(p, .6, 1)).toFixed(4) + ')';
+    E.snow.style.opacity = (S(b, .34, .55) * .9).toFixed(3);
+    E.snow.style.transform = 'translate3d(0,' + (p * 16).toFixed(3) + '%,0)'; // ponytail: flyttas som lager i stället för att ritas om
+    set(E.tool, S(b, .2, .28) * (1 - S(b, .86, .96)), 'translateY(' + (30 * (1 - S(b, .2, .28))) + '%) scale(' + (.9 + .1 * S(b, .2, .28)) + ')');
+    set(E.nav, S(b, .28, .4), 'translateY(' + (-60 * (1 - S(b, .28, .4))) + '%)');
+    set(E.eye, S(b, .34, .42), 'translateY(' + (60 * (1 - S(b, .34, .42))) + '%)');
+    const typ = Math.round(NEW.length * S(b, .38, .62)); if (E.nh.textContent.length !== typ) E.nh.textContent = NEW.slice(0, typ);
+    E.caret.classList.toggle('on', b > .36 && b < .7);
+    set(E.cta, S(b, .6, .7), 'translateY(' + (40 * (1 - S(b, .6, .7))) + '%)');
+    set(E.card, S(b, .68, .8), 'translateX(' + (30 * (1 - S(b, .68, .8))) + '%)');
+    // 4 · Minisajten skrollar till nästa avsnitt, löpsedeln rör sig, sedan mäts sidan
+    E.sc.style.transform = 'translateY(' + (-50 * d).toFixed(3) + 'cqw)';
+    E.tick.style.transform = 'translateX(' + (-30 * S(p, .55, 1)).toFixed(3) + '%)';
+    E.figs.forEach((im, i) => { im.style.transform = 'translateY(' + (-12 * d + i * 3 * (1 - d)).toFixed(3) + '%)'; });
+    set(E.sect, S(d, .3, .8), 'translateY(' + (20 * (1 - S(d, .3, .8))) + '%)');
+    set(E.score, S(c, 0, .2), 'translateY(' + (30 * (1 - S(c, 0, .2))) + '%)');
+    const g = S(c, .15, .7), ps = Math.round(41 + 55 * g); if (E.ps.textContent !== String(ps)) E.ps.textContent = ps;
+    E.arc.style.strokeDashoffset = (100 - ps).toFixed(1);
+    const wv = String(Math.round(12 * (1 - g))); if (E.wv.textContent !== wv) E.wv.textContent = wv;
+    const lt = (4.8 - 3.2 * g).toFixed(1).replace('.', ',') + ' s'; if (E.lt.textContent !== lt) E.lt.textContent = lt;
+    E.sheen.style.transform = 'translateX(' + (-110 + 220 * S(c, .72, 1)) + '%)';
+  }
+  const prog = () => { const r = stack.getBoundingClientRect(), range = stack.offsetHeight - innerHeight; return range > 0 ? clamp(-r.top / range, 0, 1) : 0; };
+  const tickR = () => { raf2 = 0; const p = prog(); setSteg(Math.min(3, Math.floor(p * 4))); const k = Math.round(p * 2000); if (k !== last) { last = k; render(p); } };
+  const onScroll = () => { if (!raf2) raf2 = requestAnimationFrame(tickR); };
+  // Minisajtens typsnitt hämtas först när avsnittet närmar sig
+  const fonts = () => rm.classList.add('fonts');
+  if ('IntersectionObserver' in window) { const fo = new IntersectionObserver(es => { if (es[0].isIntersecting) { fonts(); fo.disconnect(); } }, {rootMargin:'150% 0px'}); fo.observe(stack); } else fonts();
+  const mode = () => { const f = motion && !window.__flat; if (f === anim) return; anim = f;
+    stack.classList.toggle('anim', f); stack.classList.toggle('flat', !f); place();
+    if (f) { steg = -1; last = -1; addEventListener('scroll', onScroll, {passive:true}); onScroll(); }
+    else { removeEventListener('scroll', onScroll); render(.73); sts.forEach(el => el.classList.add('on')); } };
+  dots.forEach((d, k) => d.addEventListener('click', () => { const range = stack.offsetHeight - innerHeight; scrollTo({top: stack.getBoundingClientRect().top + scrollY + range * (k + .55) / 4, behavior:'smooth'}); }));
+  const again = () => { place(); last = -1; if (anim) onScroll(); };
+  addEventListener('resize', again);
+  if (document.fonts) document.fonts.ready.then(again);
+  mode();
   }
 
   /* ---------- hero cards follow pointer (tiny) ---------- */
@@ -1193,10 +1344,13 @@ window.FORM_CONFIG = {
   const mb = $('.v2-menu-btn'), mn = $('#v2-menu');
   if (mb && mn) {
     const items = () => [mb, ...$$('a,button', mn)].filter(x => x.offsetParent !== null || x === mb);
-    const open = (kb) => { mn.hidden = false; mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); if (kb) ($('a', mn)||mb).focus(); };
-    const close = (back=true) => { mn.hidden = true; mb.setAttribute('aria-expanded','false'); mb.querySelector('.v2-menu-lbl').textContent='Meny'; document.documentElement.classList.remove('v2-menu-open'); if (back) mb.focus(); };
+    const open = (kb) => { mn.classList.add('on'); mb.setAttribute('aria-expanded','true'); mb.querySelector('.v2-menu-lbl').textContent='Stäng'; document.documentElement.classList.add('v2-menu-open'); if (kb) ($('a', mn)||mb).focus(); };
+    const close = (back=true) => { mn.classList.remove('on'); mb.setAttribute('aria-expanded','false'); mb.querySelector('.v2-menu-lbl').textContent='Meny'; document.documentElement.classList.remove('v2-menu-open'); if (back) mb.focus(); };
     mb.addEventListener('click', ev => mb.getAttribute('aria-expanded') === 'true' ? close() : open(ev.detail === 0));
     mn.addEventListener('click', ev => { if (ev.target.closest('a')) close(false); });
+    // Klick utanför menyn stänger den
+    document.addEventListener('click', ev => { if (mb.getAttribute('aria-expanded') === 'true' && !mn.contains(ev.target) && !mb.contains(ev.target)) close(false); });
+    mn.hidden = false; // ponytail: utan skript står menyn kvar dold med hidden; med skript sköter klassen on synligheten
     document.addEventListener('keydown', ev => {
       if (mb.getAttribute('aria-expanded') !== 'true') return;
       if (ev.key === 'Escape') { ev.preventDefault(); close(); return; }
@@ -1206,6 +1360,16 @@ window.FORM_CONFIG = {
     });
     matchMedia('(min-width: 861px)').addEventListener?.('change', m => { if (m.matches) close(false); });
   }
+  // --- Menyraden får skugga när man har skrollat ---
+  { const hd = $('header.site'); if (hd) { let s = null; const f = () => { const v = scrollY > 8; if (v !== s) { s = v; hd.classList.toggle('skuggad', v); } }; addEventListener('scroll', f, {passive:true}); f(); } }
+  // --- Huvudmenyn: en markering glider till länken man pekar på ---
+  { const ul = $('.nav>ul');
+    if (ul && matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const pill = document.createElement('span'); pill.className = 'v2-pill'; pill.setAttribute('aria-hidden', 'true'); ul.appendChild(pill); ul.classList.add('has-pill');
+      const to = a => { pill.style.top = a.offsetTop + 'px'; pill.style.height = a.offsetHeight + 'px'; pill.style.width = a.offsetWidth + 'px'; pill.style.transform = 'translateX(' + a.offsetLeft + 'px)'; };
+      $$('a', ul).forEach(a => { a.addEventListener('pointerenter', () => { if (pill.style.opacity !== '1') { pill.style.transition = 'none'; to(a); pill.offsetWidth; pill.style.transition = ''; } to(a); pill.style.opacity = '1'; }); a.addEventListener('focus', () => { to(a); pill.style.opacity = '1'; }); a.addEventListener('blur', () => { pill.style.opacity = '0'; }); });
+      ul.addEventListener('pointerleave', () => { pill.style.opacity = '0'; });
+    } }
   // --- Pausknapp för allt som loopar (WCAG 2.2.2) ---
   $$('[data-v2-pause]').forEach(btn => {
     const tgt = document.querySelector(btn.dataset.v2Pause);
