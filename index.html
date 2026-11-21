@@ -105,6 +105,7 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .nav ul a:hover{background:var(--sage-l);color:var(--ink)}
 .nav .btn{padding:12px 18px;font-size:15px}
 @media (max-width:860px){.nav>ul{display:none}}
+@media (min-width:861px) and (max-width:1000px){.nav ul{gap:0}.nav ul a{padding:9px 8px}}
 @media (max-width:420px){.nav .btn{padding:11px 14px;font-size:14px}.logo{font-size:19px}}
 
 /* hero */
@@ -779,9 +780,9 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
   <div class="wrap">
     <nav class="nav" aria-label="Huvudmeny">
       <a class="logo" href="#top" aria-label="Webbglans, till toppen"><svg class="gem" width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 3 L39 13 V31 L22 41 L5 31 V13 Z" fill="#455B47"/><path d="M22 3 L39 13 L22 22 Z" fill="#9DB49A"/><path d="M22 22 L39 13 V31 Z" fill="#6F8A6D"/><path class="gl" d="M11 17 L16 14" stroke="#F3DE95" stroke-width="2.6" stroke-linecap="round"/></svg><span class="wm">Webb<i>glans</i></span></a>
-      <ul><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul>
+      <ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul>
       <a class="btn v2-hbtn" href="granskning.html"><span class="hb-long">Kostnadsfri granskning</span><span class="hb-short">Granskning</span></a>
-      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></div>
+      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></div>
     </nav>
   </div>
 </header>
@@ -808,6 +809,35 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
         <div class="card c3"><small>Exempel</small><b>Varmare.<br>Snabbare.</b></div>
         
       </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="demo" data-blob="3" style="padding-top:0" aria-labelledby="h-demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Demosidor</span><h2 id="h-demo" style="margin-top:20px">Två demosidor för påhittade företag</h2></div>
+      <p class="lead">Vi har byggt två exempel i helt olika stil, så att ni kan se vad som går att göra. Företagen finns inte på riktigt och bilderna är AI-genererade.</p>
+    </div>
+    <div class="demos">
+      <article class="demo-k">
+        <figure><img src="demo/kafe-ram-1200.webp" srcset="demo/kafe-ram-640.webp 640w, demo/kafe-ram-1200.webp 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="750" alt="Kafédemon Ugnsvarm på en dator och en mobil: en kopp kaffe och nybakat bröd i ett mörkt bageri." loading="lazy"></figure>
+        <div class="in">
+          <span class="tag">Demo</span>
+          <h3>Ugnsvarm, kafé och bageri</h3>
+          <p>Kreativ och varm. Bilden överst följer skrollen, från ugnen som tänds till kaffet på bordet.</p>
+          <a class="btn soft" href="demo/kafe/">Öppna kafédemon <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </article>
+      <article class="demo-k">
+        <figure><img src="demo/advokat-ram-1200.webp" srcset="demo/advokat-ram-640.webp 640w, demo/advokat-ram-1200.webp 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="750" alt="Advokatdemon Advokatbyrån Strand på en dator och en mobil: rubriken Familjerätt i Umeå och en knapp för att boka samtal." loading="lazy"></figure>
+        <div class="in">
+          <span class="tag">Demo</span>
+          <h3>Advokatbyrån Strand, familjerätt</h3>
+          <p>Stilren och tydlig. Allt på sidan leder till att besökaren bokar ett första samtal.</p>
+          <a class="btn soft" href="demo/advokat/">Öppna advokatdemon <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -891,35 +921,6 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
   </div>
 </section>
 
-<section class="sec" id="demo" data-blob="3" style="padding-top:0" aria-labelledby="h-demo">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="kicker">Demosidor</span><h2 id="h-demo" style="margin-top:20px">Två demosidor för påhittade företag</h2></div>
-      <p class="lead">Vi har byggt två exempel i helt olika stil, så att ni kan se vad som går att göra. Företagen finns inte på riktigt och bilderna är AI-genererade.</p>
-    </div>
-    <div class="demos">
-      <article class="demo-k">
-        <figure><img src="demo/kafe-bild-1200.webp" srcset="demo/kafe-bild-640.webp 640w, demo/kafe-bild-1200.webp 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="750" alt="Startsidan för kafédemon Ugnsvarm: en kopp kaffe och nybakat bröd i ett mörkt bageri." loading="lazy"></figure>
-        <div class="in">
-          <span class="tag">Demo</span>
-          <h3>Ugnsvarm, kafé och bageri</h3>
-          <p>Kreativ och varm. Bilden överst följer skrollen, från ugnen som tänds till kaffet på bordet.</p>
-          <a class="btn soft" href="demo/kafe/">Öppna kafédemon <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        </div>
-      </article>
-      <article class="demo-k">
-        <figure><img src="demo/advokat-bild-1200.webp" srcset="demo/advokat-bild-640.webp 640w, demo/advokat-bild-1200.webp 1200w" sizes="(max-width:860px) 100vw, 560px" width="1200" height="750" alt="Startsidan för advokatdemon Advokatbyrån Strand: rubriken Familjerätt i Umeå och en knapp för att boka samtal." loading="lazy"></figure>
-        <div class="in">
-          <span class="tag">Demo</span>
-          <h3>Advokatbyrån Strand, familjerätt</h3>
-          <p>Stilren och tydlig. Allt på sidan leder till att besökaren bokar ett första samtal.</p>
-          <a class="btn soft" href="demo/advokat/">Öppna advokatdemon <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
 <section class="sec" id="resultat" data-blob="4" style="padding-top:0" aria-labelledby="h-res">
   <div class="wrap">
     <div class="results-box rv">
@@ -989,7 +990,7 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
   <div class="wrap">
     <div class="foot">
       <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp hemsidor som redan finns.</p></div>
-      <div><h2 class="foot-h">Sidor</h2><ul><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
+      <div><h2 class="foot-h">Sidor</h2><ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
       <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li></ul></div>
     </div>
     <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span><span class="orgnr">Org.nr 950613-1078</span></span><span><a href="#top">Till toppen ↑</a></span></div>
