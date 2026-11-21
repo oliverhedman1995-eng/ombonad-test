@@ -694,13 +694,16 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
 .ba-b.ba-magic:hover{border-color:#3A4E3C;box-shadow:0 0 0 4px #3A4E3C!important}
 .own-a{transition:box-shadow .25s ease,background .2s}.own-a:hover{box-shadow:0 0 0 4px #FFFDF8}.v2-band-in{padding-top:calc(clamp(28px,5vw,56px) - 7px)!important;padding-bottom:calc(clamp(28px,5vw,56px) - 4px)!important}.om-me .me{padding-bottom:calc(clamp(22px,4vw,40px) - 9px)!important}
 .v2-opt:has(input:checked){padding-inline:10px!important}
+
+/* Sidfotens juridiska rad: org.nr efter namnet, raden centrerad i höjd */
+.legal{align-items:center}.legal .orgnr::before{content:"·";margin:0 .4em}
 </style>
 </head>
-<body>
+<body id="top">
 <a class="skip" href="#main">Hoppa till innehållet</a>
 <div class="blob" aria-hidden="true"><svg viewBox="-60 -60 120 120"><path id="blobPath" fill="#DCE6D7" d="M0-45C25-45 45-25 45 0S25 45 0 45-45 25-45 0-25-45 0-45Z"/></svg></div>
 
-<header class="site" id="top">
+<header class="site">
   <div class="wrap">
     <nav class="nav" aria-label="Huvudmeny">
       <a class="logo" href="index.html" aria-label="Webbglans, till startsidan"><svg class="gem" width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 3 L39 13 V31 L22 41 L5 31 V13 Z" fill="#455B47"/><path d="M22 3 L39 13 L22 22 Z" fill="#9DB49A"/><path d="M22 22 L39 13 V31 Z" fill="#6F8A6D"/><path class="gl" d="M11 17 L16 14" stroke="#F3DE95" stroke-width="2.6" stroke-linecap="round"/></svg><span class="wm">Webb<i>glans</i></span></a>
@@ -743,7 +746,7 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
 </details>
 <div class="v2-hp" aria-hidden="true"><label for="f-website2">Lämna detta fält tomt</label><input id="f-website2" name="website2" type="text" tabindex="-1" autocomplete="off"></div>
 <p class="v2-gdpr">Uppgifterna används bara för att planera arbetet och raderas när uppdraget är avslutat. <a href="integritet.html" id="integritetspolicy-lank">Läs vår integritetspolicy</a></p>
-<button class="btn" type="submit">Skicka in er sajt <span class="dot" aria-hidden="true">→</span></button>
+<button class="btn" type="submit">Skicka in er sajt <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
 
 </form>
 <div class="ok" id="ok" role="status" tabindex="-1"><strong>Tack!</strong> Jag tittar på er hemsida och hör av mig inom några dagar.</div>
@@ -758,9 +761,9 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
     <div class="foot">
       <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp hemsidor som redan finns.</p></div>
       <div><h2 class="foot-h">Sidor</h2><ul><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
-      <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
+      <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li></ul></div>
     </div>
-    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span></span><span><a href="#top">Till toppen ↑</a></span></div>
+    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span><span class="orgnr">Org.nr 950613-1078</span></span><span><a href="#top">Till toppen ↑</a></span></div>
   </div>
 </footer>
 
