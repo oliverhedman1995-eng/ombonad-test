@@ -278,7 +278,10 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .rm-r0{font-weight:600;color:var(--ink)}
 .rm-sheen{position:absolute;inset:0;z-index:2;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.35) 50%,transparent 62%);transform:translateX(-110%);pointer-events:none}
 .anim .rm{cursor:pointer}
-@media (min-width:861px){.anim .stack-sticky{grid-template-columns:.86fr 1.14fr}.anim .stack-text{min-height:340px}}
+/* Ett raster för alla tvåkolumnsavsnitt: två lika breda kolumner med 24 px mellanrum, som demokorten, så att skarvarna linjerar lodrätt */
+@media (min-width:861px){.hero-grid,.stack-sticky,.anim .stack-sticky,.sec-head,.sec .v2-band-in{grid-template-columns:1fr 1fr;column-gap:24px}.results-box .measure{column-gap:24px}.anim .stack-text{min-height:390px}}
+.sec .v2-band-in{padding:calc(clamp(34px,6vw,70px) - 7px) clamp(34px,6vw,70px) calc(clamp(34px,6vw,70px) - 4px)!important} /* samma sidomarginal som resultatbandet, så att texten i de mörka banden linjerar */
+.st h2{text-wrap:balance}
 .anim .stack-ill{bottom:24px}
 @media (max-width:860px){
   .anim .stack-text{min-height:232px}
@@ -970,10 +973,10 @@ header.site .v2-menu{border-radius:8px!important}
     <div>
       <span class="kicker" id="h-stack">Från matt till blank</span>
       <div class="stack-text">
-        <div class="st on" data-i="0"><h2>Det börjar med det ni redan har.</h2><p>Innehållet, domänen och plattformen finns redan. Oftast räcker det att göra om det som finns.</p></div>
-        <div class="st" data-i="1"><h2>Vi hittar det som skaver.</h2><p>Tunga bilder, otydliga budskap och knappar som ingen ser. Vi mäter, listar och prioriterar.</p></div>
-        <div class="st" data-i="2"><h2>Sen putsar vi fram glansen.</h2><p>Vi byter typsnitt, ger texten luft, ser över färgerna och gör sidorna lättare. Grunden är densamma.</p></div>
-        <div class="st" data-i="3"><h2>Och mäter igen.</h2><p>Vi mäter med PageSpeed och WAVE före och efter, går igenom resultatet och gör en enkel överlämning.</p></div>
+        <div class="st on" data-i="0"><h2>Vi börjar med sajten ni har.</h2><p>Innehåll, domän och plattform finns redan. Ofta är det formen som har åldrats, inte verksamheten.</p></div>
+        <div class="st" data-i="1"><h2>Vi hittar det som skaver.</h2><p>Otydliga rubriker, tunga bilder och knappar som ingen ser. Vi går igenom både utseende och teknik och prioriterar.</p></div>
+        <div class="st" data-i="2"><h2>Sen putsar vi fram glansen.</h2><p>Färger, typsnitt och bilder som passar er, och rörelse där den hjälper. Sajten ska kännas som ert företag, inte som en mall.</p></div>
+        <div class="st" data-i="3"><h2>Och visar skillnaden i siffror.</h2><p>Snabbare, tydligare och lättare att använda. Vi visar skillnaden med PageSpeed och WAVE och går igenom resultatet med er.</p></div>
       </div>
       <div class="dots" role="group" aria-label="Välj steg"><button type="button" class="on" aria-label="Steg 1" aria-current="step"></button><button type="button" aria-label="Steg 2"></button><button type="button" aria-label="Steg 3"></button><button type="button" aria-label="Steg 4"></button></div>
       <div class="dk-ctrl"><button type="button" class="dk-prev">← Tillbaka</button><button type="button" class="dk-next pri">Nästa steg →</button></div>
