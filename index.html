@@ -277,12 +277,10 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .rm-rows b{color:var(--sage-d);margin-left:.6cqw}
 .rm-r0{font-weight:600;color:var(--ink)}
 .rm-sheen{position:absolute;inset:0;z-index:2;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.35) 50%,transparent 62%);transform:translateX(-110%);pointer-events:none}
-.stack.anim{height:500vh}
-.anim .stack-sticky{position:sticky;top:0;height:100vh;height:100svh;padding-top:92px;padding-bottom:28px}
+.anim .rm{cursor:pointer}
 @media (min-width:861px){.anim .stack-sticky{grid-template-columns:.86fr 1.14fr}.anim .stack-text{min-height:340px}}
 .anim .stack-ill{bottom:24px}
 @media (max-width:860px){
-  .anim .stack-sticky{padding-top:84px;padding-bottom:16px;gap:14px;align-content:center}
   .anim .stack-text{min-height:232px}
   .anim .st{top:34px}
   .anim .st h2{font-size:clamp(28px,8vw,36px)}
@@ -951,6 +949,7 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
         <div class="st" data-i="3"><h2>Och mäter igen.</h2><p>Vi mäter med PageSpeed och WAVE före och efter, går igenom resultatet och gör en enkel överlämning.</p></div>
       </div>
       <div class="dots" role="group" aria-label="Välj steg"><button type="button" class="on" aria-label="Steg 1" aria-current="step"></button><button type="button" aria-label="Steg 2"></button><button type="button" aria-label="Steg 3"></button><button type="button" aria-label="Steg 4"></button></div>
+      <div class="dk-ctrl"><button type="button" class="dk-prev">← Tillbaka</button><button type="button" class="dk-next pri">Nästa steg →</button></div>
     </div>
     <div class="rm" aria-hidden="true">
       <div class="rm-bar"><i></i><i></i><i></i><span class="rm-url">bastunvinterhamn.se</span></div>
@@ -1247,18 +1246,29 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
     const lt = (4.8 - 3.2 * g).toFixed(1).replace('.', ',') + ' s'; if (E.lt.textContent !== lt) E.lt.textContent = lt;
     E.sheen.style.transform = 'translateX(' + (-110 + 220 * S(c, .72, 1)) + '%)';
   }
-  const prog = () => { const r = stack.getBoundingClientRect(), range = stack.offsetHeight - innerHeight; return range > 0 ? clamp(-r.top / range, 0, 1) : 0; };
-  const tickR = () => { raf2 = 0; const p = prog(); setSteg(Math.min(3, Math.floor(p * 4))); const k = Math.round(p * 2000); if (k !== last) { last = k; render(p); } };
-  const onScroll = () => { if (!raf2) raf2 = requestAnimationFrame(tickR); };
+  // Knapparna styr: varje steg har ett läge i animationen, och övergången dit tar 0,7–1 s
+  const LAGE = [.12, .44, .73, 1], prevB = stack.querySelector('.dk-prev'), nextB = stack.querySelector('.dk-next');
+  let cur = LAGE[0];
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const go = n => { n = (n + 4) % 4; setSteg(n);
+    prevB.disabled = n === 0; nextB.textContent = n === 3 ? 'Börja om ↺' : 'Nästa steg →';
+    const from = cur, to = LAGE[n]; cancelAnimationFrame(raf2);
+    if (!anim) { cur = to; render(to); return; }
+    const dur = (from < to && to === .73 ? 1 : Math.min(1, .45 + Math.abs(to - from))) * 1000; let t0 = 0; // ponytail: putsningen får hela sekunden, övriga 0,7–0,8 s
+    const f = t => { if (!t0) t0 = t; const k = Math.min(1, (t - t0) / dur); cur = from + (to - from) * ease(k); render(cur); if (k < 1) raf2 = requestAnimationFrame(f); };
+    raf2 = requestAnimationFrame(f); };
+  nextB.addEventListener('click', () => go(steg + 1));
+  prevB.addEventListener('click', () => go(steg - 1));
+  dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+  rm.addEventListener('click', () => { if (anim) go(steg + 1); }); // tryck på sajten = nästa steg, precis som med kortleken
   // Minisajtens typsnitt hämtas först när avsnittet närmar sig
   const fonts = () => rm.classList.add('fonts');
   if ('IntersectionObserver' in window) { const fo = new IntersectionObserver(es => { if (es[0].isIntersecting) { fonts(); fo.disconnect(); } }, {rootMargin:'150% 0px'}); fo.observe(stack); } else fonts();
   const mode = () => { const f = motion && !window.__flat; if (f === anim) return; anim = f;
     stack.classList.toggle('anim', f); stack.classList.toggle('flat', !f); place();
-    if (f) { steg = -1; last = -1; addEventListener('scroll', onScroll, {passive:true}); onScroll(); }
-    else { removeEventListener('scroll', onScroll); render(.73); sts.forEach(el => el.classList.add('on')); } };
-  dots.forEach((d, k) => d.addEventListener('click', () => { const range = stack.offsetHeight - innerHeight; scrollTo({top: stack.getBoundingClientRect().top + scrollY + range * (k + .55) / 4, behavior:'smooth'}); }));
-  const again = () => { place(); last = -1; if (anim) onScroll(); };
+    if (f) { steg = -1; go(0); }
+    else { cancelAnimationFrame(raf2); render(.73); sts.forEach(el => el.classList.add('on')); } };
+  const again = () => { place(); if (anim) render(cur); };
   addEventListener('resize', again);
   if (document.fonts) document.fonts.ready.then(again);
   mode();
