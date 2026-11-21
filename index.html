@@ -1225,21 +1225,23 @@ header.site .v2-menu{border-radius:8px!important}
     const lt = (4.8 - 3.2 * g).toFixed(1).replace('.', ',') + ' s'; if (E.lt.textContent !== lt) E.lt.textContent = lt;
     E.sheen.style.transform = 'translateX(' + (-110 + 220 * S(c, .72, 1)) + '%)';
   }
-  // Knapparna styr: varje steg har ett läge i animationen, och övergången dit tar 0,7–1 s
+  // Knapparna styr: varje steg har ett läge i animationen, och övergången dit tar 2 s (Oliver: 0,7–1 s kändes stressat)
   const LAGE = [.12, .44, .73, 1], prevB = stack.querySelector('.dk-prev'), nextB = stack.querySelector('.dk-next');
-  let cur = LAGE[0];
+  let cur = LAGE[0], busy = false;
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  const go = n => { n = (n + 4) % 4; setSteg(n);
+  const go = (n, snap) => { n = (n + 4) % 4; setSteg(n);
     prevB.disabled = n === 0; nextB.textContent = n === 3 ? 'Börja om ↺' : 'Nästa steg →';
-    const from = cur, to = LAGE[n]; cancelAnimationFrame(raf2);
-    if (!anim) { cur = to; render(to); return; }
-    const dur = (from < to && to === .73 ? 1 : Math.min(1, .45 + Math.abs(to - from))) * 1000; let t0 = 0; // ponytail: putsningen får hela sekunden, övriga 0,7–0,8 s
-    const f = t => { if (!t0) t0 = t; const k = Math.min(1, (t - t0) / dur); cur = from + (to - from) * ease(k); render(cur); if (k < 1) raf2 = requestAnimationFrame(f); };
+    const from = cur, to = LAGE[n]; cancelAnimationFrame(raf2); busy = false;
+    if (!anim || snap || from === to) { cur = to; render(to); return; }
+    const dur = 2000; let t0 = 0; busy = true;
+    const f = t => { if (!t0) t0 = t; const k = Math.min(1, (t - t0) / dur); cur = from + (to - from) * ease(k); render(cur); if (k < 1) raf2 = requestAnimationFrame(f); else busy = false; };
     raf2 = requestAnimationFrame(f); };
-  nextB.addEventListener('click', () => go(steg + 1));
-  prevB.addEventListener('click', () => go(steg - 1));
-  dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
-  rm.addEventListener('click', () => { if (anim) go(steg + 1); }); // tryck på sajten = nästa steg, precis som med kortleken
+  // Klickar man igen medan en övergång pågår hoppar den direkt till slutet av steget
+  const skip = () => go(steg, true);
+  nextB.addEventListener('click', () => busy ? skip() : go(steg + 1));
+  prevB.addEventListener('click', () => busy ? skip() : go(steg - 1));
+  dots.forEach((d, k) => d.addEventListener('click', () => go(k, busy)));
+  rm.addEventListener('click', () => { if (anim) busy ? skip() : go(steg + 1); }); // tryck på sajten = nästa steg, precis som med kortleken
   // Minisajtens typsnitt hämtas först när avsnittet närmar sig
   const fonts = () => rm.classList.add('fonts');
   if ('IntersectionObserver' in window) { const fo = new IntersectionObserver(es => { if (es[0].isIntersecting) { fonts(); fo.disconnect(); } }, {rootMargin:'150% 0px'}); fo.observe(stack); } else fonts();
