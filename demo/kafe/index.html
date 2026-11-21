@@ -46,14 +46,14 @@ p{margin:0 0 1em;text-wrap:pretty}
 .demo a{color:#fff}
 
 /* Meny */
-.nav{position:fixed;top:var(--demo-h,38px);left:0;right:0;z-index:50;background-color:rgba(31,22,17,.92);backdrop-filter:blur(10px);transition:background .4s var(--ease),top .3s var(--ease),box-shadow .4s var(--ease)}
+.nav{position:fixed;top:var(--demo-h,38px);left:0;right:0;z-index:50;background-color:rgba(31,22,17,.94);transition:background .4s var(--ease),top .3s var(--ease),box-shadow .4s var(--ease)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
 .brand{display:flex;align-items:center;gap:10px;color:var(--on-dark);text-decoration:none;font:800 24px/1 var(--display);letter-spacing:-.02em}
 .brand svg{flex:none}
 .links{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0}
 .links a{color:var(--on-dark);text-decoration:none;font-weight:600;font-size:16px}
 .links a:hover{color:#fff}
-.nav.solid{top:0;background:rgba(31,22,17,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.nav.solid{top:0;background:rgba(31,22,17,.94);box-shadow:0 1px 0 rgba(255,255,255,.06)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;background:var(--accent);color:#fff;text-decoration:none;font:600 18px/1 var(--body);border:0;cursor:pointer;box-shadow:0 0 0 0 var(--accent);transition:background .25s var(--ease),box-shadow .25s var(--ease)}
 .btn:hover{background:var(--accent-hover);color:#fff;box-shadow:0 0 0 4px rgba(79,107,69,.35)}
 .btn.ljus{background:var(--on-dark);color:var(--dark)}
@@ -72,7 +72,7 @@ p{margin:0 0 1em;text-wrap:pretty}
 .band.on{pointer-events:auto}
 .band.b3{top:38%}
 .band::before{content:"";position:absolute;inset:-30% -25% -30% -40%;z-index:-1;pointer-events:none;opacity:calc(.25 + .75*var(--k,1));background:radial-gradient(ellipse 70% 62% at 45% 50%,rgba(18,11,7,.78) 0%,rgba(18,11,7,.52) 46%,rgba(18,11,7,0) 76%)}
-.band .kick{display:inline-block;font:400 14px/1 var(--mono);letter-spacing:.08em;color:var(--on-dark);margin-bottom:18px;padding:8px 12px;border-radius:999px;background:rgba(18,11,7,.62);backdrop-filter:blur(8px);text-shadow:0 1px 3px rgba(18,11,7,.85)}
+.band .kick{display:inline-block;font:400 14px/1 var(--mono);letter-spacing:.08em;color:var(--on-dark);margin-bottom:18px;padding:8px 12px;border-radius:999px;background:rgba(18,11,7,.72);text-shadow:0 1px 3px rgba(18,11,7,.85)}
 .band .line{font:800 clamp(38px,5.2vw,72px)/1.04 var(--display);letter-spacing:-.025em}
 .band h1{font-size:clamp(64px,9vw,128px);letter-spacing:-.04em}
 .band .sub{font:400 20px/1.45 var(--body);margin:18px 0 28px;max-width:30ch}
@@ -179,8 +179,8 @@ footer a:hover{color:#fff}
 .in .fram:nth-child(3){transition-delay:.24s}
 
 /* Mjöldamm: ett levande lager bakom allt */
-.damm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.55) 0 1px,transparent 2px),radial-gradient(circle at 70% 60%,rgba(255,255,255,.4) 0 1px,transparent 2px),radial-gradient(circle at 40% 80%,rgba(255,255,255,.45) 0 1px,transparent 2px);background-size:280px 340px,360px 300px,420px 380px;animation:damm 90s linear infinite;animation-delay:-20s}
-@keyframes damm{to{background-position:0 -340px,0 -300px,0 -380px}}
+.damm{position:fixed;left:0;right:0;top:0;height:calc(100% + 360px);pointer-events:none;z-index:0;opacity:.5;background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.55) 0 1px,transparent 2px),radial-gradient(circle at 70% 60%,rgba(255,255,255,.4) 0 1px,transparent 2px),radial-gradient(circle at 40% 80%,rgba(255,255,255,.45) 0 1px,transparent 2px);background-size:280px 360px,360px 360px,420px 360px;will-change:transform;animation:damm 90s linear infinite;animation-delay:-20s}
+@keyframes damm{to{transform:translate3d(0,-360px,0)}}
 main,footer{position:relative;z-index:1}
 body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
 
@@ -352,7 +352,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <script>
 (() => {
-  const N = 73, frameUrl = i => 'assets/frames/f' + String(i + 1).padStart(3, '0') + '.webp';
+  const N = 145, frameUrl = i => 'assets/frames/f' + String(i + 1).padStart(3, '0') + '.webp';
   const hero = document.querySelector('.hero'), stage = document.getElementById('stage');
   const cv = document.getElementById('hero'), ctx = cv.getContext('2d', {alpha:false}), poster = document.getElementById('poster');
   const ring = document.getElementById('ring'), cue = document.getElementById('cue'), nav = document.getElementById('nav');
@@ -407,18 +407,27 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   }
   function nearest(i){ for (let o = 0; o < N; o++){ if (frames[i - o] && frames[i - o].ok) return frames[i - o]; if (frames[i + o] && frames[i + o].ok) return frames[i + o]; } return null; }
   function sizeCanvas(){ const d = Math.min(devicePixelRatio || 1, 2); cv.width = Math.round(innerWidth * d); cv.height = Math.round(innerHeight * d); drawn = null; }
+  // Tempokarta: var i skrollen varje bildruta visas. Den jämnar ut filmens tempo, så att samma skroll ger
+  // ungefär lika mycket rörelse hela vägen (filmen rör sig annars 2,6 gånger fortare i mitten).
+  const KARTA = [0,0.0023,0.0060,0.0097,0.0134,0.0173,0.0211,0.0249,0.0287,0.0324,0.0363,0.0401,0.0441,0.0485,0.0528,0.0567,0.0605,0.0645,0.0693,0.0747,0.0802,0.0856,0.0904,0.0952,0.1003,0.1058,0.1116,0.1176,0.1238,0.1301,0.1360,0.1417,0.1478,0.1544,0.1610,0.1675,0.1741,0.1810,0.1880,0.1950,0.2021,0.2093,0.2168,0.2247,0.2328,0.2409,0.2490,0.2569,0.2648,0.2731,0.2816,0.2904,0.2994,0.3085,0.3173,0.3258,0.3343,0.3432,0.3525,0.3619,0.3715,0.3809,0.3901,0.3990,0.4080,0.4174,0.4270,0.4366,0.4467,0.4566,0.4661,0.4750,0.4834,0.4920,0.5011,0.5107,0.5202,0.5295,0.5384,0.5468,0.5553,0.5644,0.5738,0.5836,0.5934,0.6031,0.6126,0.6216,0.6307,0.6404,0.6500,0.6600,0.6704,0.6806,0.6903,0.6997,0.7087,0.7180,0.7276,0.7373,0.7469,0.7564,0.7652,0.7735,0.7816,0.7898,0.7981,0.8064,0.8145,0.8225,0.8299,0.8369,0.8438,0.8511,0.8584,0.8655,0.8726,0.8794,0.8853,0.8908,0.8963,0.9021,0.9081,0.9141,0.9197,0.9251,0.9296,0.9333,0.9369,0.9411,0.9459,0.9505,0.9548,0.9589,0.9626,0.9663,0.9702,0.9742,0.9780,0.9818,0.9856,0.9892,0.9927,0.9963,1.0000];
+  function frameAt(p){ let lo = 0, hi = N - 1; while (hi - lo > 1){ const m = (lo + hi) >> 1; if (KARTA[m] <= p) lo = m; else hi = m; } return lo + clamp((p - KARTA[lo]) / ((KARTA[hi] - KARTA[lo]) || 1), 0, 1); }
+  function paint(img, alpha){ const iw = img.naturalWidth, ih = img.naturalHeight, sc = Math.max(cv.width / iw, cv.height / ih), w = iw * sc, h = ih * sc; ctx.globalAlpha = alpha; ctx.drawImage(img, (cv.width - w) / 2, (cv.height - h) / 2, w, h); ctx.globalAlpha = 1; }
+  // Två intilliggande bildrutor tonas ihop, så att bilden ändras vid varje skrollpixel och inte i hopp
   function draw(){
     rafId = null; const p = heroProgress(); updateCaptions(p);
-    const f = nearest(Math.round(p * (N - 1))); if (!f || f === drawn) return; drawn = f;
-    const iw = f.img.naturalWidth, ih = f.img.naturalHeight, sc = Math.max(cv.width / iw, cv.height / ih), w = iw * sc, h = ih * sc;
-    ctx.drawImage(f.img, (cv.width - w) / 2, (cv.height - h) / 2, w, h);
+    const fi = frameAt(p), i = Math.floor(fi), t = fi - i, key = Math.round(fi * 50);
+    if (key === drawn) return;
+    const a = frames[i] && frames[i].ok ? frames[i] : nearest(i), b = frames[i + 1] && frames[i + 1].ok ? frames[i + 1] : null;
+    if (!a) return; drawn = key;
+    paint(a.img, 1); if (b && t > .02) paint(b.img, t);
   }
   function onScroll(){ if (rafId === null) rafId = requestAnimationFrame(draw); }
   addEventListener('resize', () => { if (scrubOn){ sizeCanvas(); onScroll(); } });
 
   // Första bandet syns direkt vid sidladdning
-  let loadK = 0; const t0 = performance.now();
-  (function ramp(now){ loadK = clamp((now - t0) / 900, 0, 1); updateCaptions(scrubOn ? heroProgress() : 1); if (loadK < 1) requestAnimationFrame(ramp); })(t0);
+  let loadK = 0;
+  // körs bara när skrollbilden är igång (startas i enableScrub); i stillbildsläget står texten redan klar
+  let t0 = 0; function ramp(now){ if (!scrubOn) return; if (!t0) t0 = now; loadK = clamp((now - t0) / 900, 0, 1); updateCaptions(heroProgress()); if (loadK < 1) requestAnimationFrame(ramp); }
 
   function failVideo(){ failed = true; stage.classList.add('video-failed'); ring.style.opacity = 0; cv.style.display = 'none'; }
   // Bilderna laddas när sidan är klar, sex åt gången, så att de inte tar kraft från första visningen
@@ -446,7 +455,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
   // Fem villkor för stillbild, samma som i CSS:en, och de följs live
   const GATES = ['(max-width: 720px)','(orientation: portrait) and (max-width: 1024px)','(orientation: portrait) and (pointer: coarse)','(orientation: landscape) and (pointer: coarse) and (max-height: 560px)','(prefers-reduced-motion: reduce)'];
-  function enableScrub(){ if (scrubOn) return; scrubOn = true; initHeroOnce(); sizeCanvas(); addEventListener('scroll', onScroll, {passive:true}); bands.forEach(b => { b.op = -1; b.k = -1; b.el.style.opacity = ''; }); unpin(); updateCaptions(heroProgress()); onScroll(); }
+  function enableScrub(){ if (scrubOn) return; scrubOn = true; initHeroOnce(); sizeCanvas(); addEventListener('scroll', onScroll, {passive:true}); bands.forEach(b => { b.op = -1; b.k = -1; b.el.style.opacity = ''; }); unpin(); updateCaptions(heroProgress()); onScroll(); requestAnimationFrame(ramp); }
   function disableScrub(){ if (!scrubOn && inited === false){ pin(); return; } scrubOn = false; removeEventListener('scroll', onScroll); if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; } bands.forEach(b => { b.el.style.opacity = ''; b.el.style.removeProperty('--k'); b.op = -1; b.k = -1; }); pin(); }
   function applyHeroMode(){ GATES.some(q => matchMedia(q).matches) ? disableScrub() : enableScrub(); }
   const MQLS = GATES.map(q => matchMedia(q)); MQLS.forEach(m => m.addEventListener('change', applyHeroMode));
