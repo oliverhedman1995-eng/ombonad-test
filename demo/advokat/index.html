@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="sv">
+<html lang="sv" class="js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,7 +20,7 @@
 :root{
   --bas:#FFFFFF; --yta:#F2F3F5; --linje:#D9DCE1;
   --marin:#15233B; --marin-2:#22324D; --text:#15233B; --text-2:#4A5568; --pa-marin:#FFFFFF; --pa-marin-2:#C5CCD8;
-  --accent:#2556C4; --accent-hover:#1C45A3; --fokus:#E8A33D; --demo:#1F6B45;
+  --accent:#2556C4; --accent-hover:#1C45A3; --fokus:#E8A33D; --demo:#1F6B45; --ease:cubic-bezier(.22,.8,.24,1);
   --serif:'Source Serif 4',Georgia,serif; --sans:'Public Sans',system-ui,sans-serif;
   /* Storleksskala, dator: 14/16/18/22/32/48/64 */
   --s1:14px; --s2:16px; --s3:18px; --s4:22px; --s5:32px; --s6:48px; --s7:64px;
@@ -50,16 +50,46 @@ p{margin:0 0 1em;text-wrap:pretty}
 .demo a:hover{color:#fff;text-decoration-thickness:2px}
 
 /* Meny */
-.meny{position:sticky;top:0;z-index:50;background:var(--bas);border-bottom:1px solid var(--linje)}
+.meny{position:sticky;top:0;z-index:50;background:var(--bas);border-bottom:1px solid var(--linje);transition:box-shadow .3s var(--ease)}
+.meny.skuggad{box-shadow:0 10px 30px -18px rgba(21,35,59,.45)}
 .meny .sida{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
 .namn{display:flex;align-items:center;gap:12px;color:var(--marin);font:600 var(--s4)/1.2 var(--serif);white-space:nowrap}
 .namn:hover{color:var(--marin);text-decoration:none}
 .namn svg{flex:none}
-.lankar{display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
-.lankar a:not(.knapp){color:var(--text);font-size:var(--s2);font-weight:500}
-.lankar a:not(.knapp):hover{color:var(--marin-2)}
-@media (max-width:960px){.lankar li:not(:last-child){display:none}}
-@media (max-width:480px){.meny .sida{height:64px}.namn{font-size:18px}.namn svg{width:28px;height:28px}}
+.namn rect{transition:fill .3s}
+.namn:hover rect{fill:var(--accent)}
+.hoger{display:flex;align-items:center;gap:32px}
+.lankar{position:relative;display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
+/* Understrykningen ritas fram från vänster vid hover, 2 px tjock och 3 px under texten */
+.lankar a{position:relative;display:block;color:var(--text);font-size:var(--s2);font-weight:500;line-height:1.2}
+.lankar a::after{content:"";position:absolute;left:0;right:0;top:calc(100% + 3px);height:2px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.lankar a:hover{color:var(--marin-2);text-decoration:none}
+.lankar a:hover::after{transform:scaleX(1);transform-origin:left}
+.lankar a.aktiv{color:var(--marin)}
+/* Markören glider till avsnittet man läser */
+.markor{position:absolute;left:0;top:0;height:2px;width:0;background:var(--accent);opacity:0;pointer-events:none;transition:transform .5s var(--ease),width .5s var(--ease),opacity .3s}
+.meny-knapp{display:none;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--linje);border-radius:4px;background:var(--bas);color:var(--marin);cursor:pointer;box-shadow:0 0 0 0 var(--linje);transition:box-shadow .2s,border-color .2s}
+.meny-knapp:hover{border-color:var(--marin);box-shadow:0 0 0 4px var(--yta)}
+.meny-knapp svg{width:20px;height:20px}
+.meny-knapp path{transition:transform .35s var(--ease),opacity .2s;transform-origin:10px 10px}
+.meny-knapp[aria-expanded=true] .l1{transform:translateY(5px) rotate(45deg)}
+.meny-knapp[aria-expanded=true] .l2{opacity:0}
+.meny-knapp[aria-expanded=true] .l3{transform:translateY(-5px) rotate(-45deg)}
+/* Mobilmenyn: rullas ner som en gardin, länkarna kommer in en i taget */
+.mobilmeny{position:absolute;left:0;right:0;top:100%;background:var(--marin);padding:16px 0 32px;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .5s var(--ease),visibility 0s .5s}
+.mobilmeny.oppen{clip-path:inset(0);visibility:visible;transition:clip-path .5s var(--ease),visibility 0s}
+.mobilmeny ul{list-style:none;width:var(--sida);margin:0 auto;padding:0}
+.mobilmeny li{border-bottom:1px solid var(--marin-2);opacity:0;transform:translateY(-8px);transition:opacity .3s,transform .4s var(--ease)}
+.mobilmeny.oppen li{opacity:1;transform:none}
+.mobilmeny.oppen li:nth-child(2){transition-delay:.06s}
+.mobilmeny.oppen li:nth-child(3){transition-delay:.12s}
+.mobilmeny.oppen li:nth-child(4){transition-delay:.18s}
+.mobilmeny a{display:block;padding:16px 0;color:#fff;font:600 var(--s5)/1.2 var(--serif)}
+.mobilmeny a:hover{color:#fff;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.mobilmeny .liten-lank{font:600 var(--s3)/1.2 var(--sans);color:var(--pa-marin-2)}
+@media (max-width:960px){.hoger nav{display:none}.meny-knapp{display:inline-flex}.hoger{gap:12px}}
+@media (min-width:961px){.mobilmeny{display:none}}
+@media (max-width:480px){.meny .sida{height:64px}.namn{font-size:18px}.namn svg{width:28px;height:28px}.meny-knapp{width:40px;height:40px}.meny .knapp .lang{display:none}.namn{gap:10px;font-size:17px}.hoger{gap:8px}}
 
 /* Knappar: växer 4 px åt alla håll vid hover, texten står still */
 .knapp{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border:0;border-radius:4px;background:var(--accent);color:#fff;font:600 var(--s3)/1.2 var(--sans);text-align:center;cursor:pointer;box-shadow:0 0 0 0 var(--accent-hover);transition:background .2s,box-shadow .2s}
@@ -75,8 +105,15 @@ p{margin:0 0 1em;text-wrap:pretty}
 .ingress{font-size:var(--s4);line-height:1.5;color:var(--text-2);max-width:34ch;margin-bottom:32px}
 .atgard{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px}
 .atgard .tel{font-weight:600}
-.topp figure{margin:0;border-radius:4px;overflow:hidden;background:var(--yta);aspect-ratio:3/2}
-.topp figure img{width:100%;height:100%;object-fit:cover}
+/* Bildspel i toppen: bilderna tonas mjukt över i varandra och zoomar sakta */
+.bildspel{position:relative;margin:0;border-radius:4px;overflow:hidden;background:var(--yta);aspect-ratio:4/3}
+.bildspel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.6s var(--ease),transform 7s linear}
+.bildspel img.vald{opacity:1;transform:scale(1)}
+.paus{position:absolute;right:16px;bottom:16px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--marin);cursor:pointer;box-shadow:0 0 0 0 rgba(255,255,255,.92);transition:box-shadow .2s}
+.paus:hover{box-shadow:0 0 0 4px rgba(255,255,255,.92)}
+.paus svg{width:16px;height:16px}
+.paus .spela,.paus[aria-pressed=true] .pausa{display:none}
+.paus[aria-pressed=true] .spela{display:block}
 .lofte{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;grid-column:1/-1}
 .lofte li{border-top:2px solid var(--marin);padding-top:20px}
 .lofte b{display:block;font:600 var(--s4)/1.25 var(--serif);margin-bottom:8px}
@@ -98,19 +135,35 @@ section{scroll-margin-top:96px}
 .omraden figure{margin:0;border-radius:4px;overflow:hidden;aspect-ratio:4/3;position:sticky;top:112px}
 .omraden figure img{width:100%;height:100%;object-fit:cover}
 
+/* Bilderna längre ner avtäcks när de kommer in, och rör sig lite inne i ramen */
+.ram img{height:116%!important;transform:translateY(var(--y,-7%))}
+.js .avtack{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease)}
+.js .avtack.syns{clip-path:inset(0)}
+
 /* Så går det till: ett band i huvudfärgen */
 .marin{background:var(--marin);color:var(--pa-marin)}
 .marin .ingress{color:var(--pa-marin-2)}
-.steg{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px;counter-reset:steg}
-.steg li{counter-increment:steg;border-top:1px solid var(--marin-2);padding-top:24px}
-.steg li::before{content:counter(steg);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--pa-marin-2);font:600 var(--s3)/1 var(--sans);margin-bottom:24px}
+/* En linje fylls i mellan stegen och siffrorna tänds i tur och ordning */
+.steg{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px;counter-reset:steg}
+.steg::before,.steg::after{content:"";position:absolute;left:22px;right:0;top:21px;height:2px;background:var(--marin-2)}
+.steg::after{background:var(--pa-marin-2);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease)}
+.steg.syns::after{transform:scaleX(1)}
+.steg li{position:relative;counter-increment:steg}
+.steg li::before{content:counter(steg);position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--pa-marin-2);background:var(--marin);color:var(--pa-marin);font:600 var(--s3)/1 var(--sans);margin-bottom:24px;transition:background .4s,color .4s}
+.steg.syns li::before{background:var(--pa-marin);color:var(--marin)}
+.steg.syns li:nth-child(2)::before{transition-delay:.55s}
+.steg.syns li:nth-child(3)::before{transition-delay:1.1s}
 .steg h3{margin-bottom:8px}
 .steg p{margin:0;color:var(--pa-marin-2)}
 
 /* Vad det kostar */
 .kostnad{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.kostnad .lager{position:relative;padding-bottom:96px}
 .kostnad figure{margin:0;border-radius:4px;overflow:hidden;aspect-ratio:4/3}
 .kostnad figure img{width:100%;height:100%;object-fit:cover}
+.kort{position:absolute;right:-32px;bottom:0;width:min(340px,85%);background:var(--marin);color:var(--pa-marin-2);border-radius:4px;padding:34px 32px 28px;box-shadow:0 24px 48px -24px rgba(21,35,59,.6)}
+.kort b{display:block;color:#fff;font:600 var(--s4)/1.25 var(--serif);margin-bottom:8px}
+.kort p{margin:0;font-size:var(--s2)}
 .priser{width:100%;border-collapse:collapse;margin-bottom:32px}
 .priser th,.priser td{padding:16px 0;border-bottom:1px solid var(--linje);text-align:left;vertical-align:baseline;font-weight:400}
 .priser th{padding-right:16px}
@@ -150,12 +203,19 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
   .topp .sida,.omraden,.kostnad,.boka .sida{grid-template-columns:1fr;gap:40px}
   .topp{padding-top:40px}
   .lofte,.steg{grid-template-columns:1fr;gap:32px}
-
-  .omraden figure{position:static;aspect-ratio:4/3}
-
-  .dorr{display:none}
+  .omraden figure{position:static}
+  .steg::before,.steg::after{left:21px;right:auto;top:22px;bottom:22px;width:2px;height:auto}
+  .steg::after{transform:scaleY(0);transform-origin:top}
+  .steg.syns::after{transform:scaleY(1)}
+  .steg li{padding-left:72px;min-height:44px}
+  .steg li::before{position:absolute;left:0;top:0;margin:0}
+  .kostnad .lager{padding-bottom:64px}
+  .kort{right:16px;padding:26px 24px 20px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  .ram img{transform:none;height:100%!important}
+}
 </style>
 </head>
 <body>
@@ -168,15 +228,27 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
       <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#15233B"/><path d="M8 21h16M8 16h16M8 11h16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
       Advokatbyrån Strand
     </a>
-    <nav aria-label="Huvudmeny">
-      <ul class="lankar">
-        <li><a href="#omraden">Det vi hjälper till med</a></li>
-        <li><a href="#sa-gar-det-till">Så går det till</a></li>
-        <li><a href="#kostnad">Vad det kostar</a></li>
-        <li><a class="knapp" href="#boka">Boka samtal</a></li>
-      </ul>
-    </nav>
+    <div class="hoger">
+      <nav aria-label="Huvudmeny">
+        <ul class="lankar">
+          <li><a href="#omraden">Det vi hjälper till med</a></li>
+          <li><a href="#sa-gar-det-till">Så går det till</a></li>
+          <li><a href="#kostnad">Vad det kostar</a></li>
+          <li class="markor" aria-hidden="true"></li>
+        </ul>
+      </nav>
+      <a class="knapp" href="#boka">Boka<span class="lang">&nbsp;samtal</span></a>
+      <button class="meny-knapp" type="button" aria-expanded="false" aria-controls="mobilmeny" aria-label="Meny"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="l1" d="M3 5h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="l2" d="M3 10h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="l3" d="M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
   </div>
+  <nav class="mobilmeny" id="mobilmeny" aria-label="Meny">
+    <ul>
+      <li><a href="#omraden">Det vi hjälper till med</a></li>
+      <li><a href="#sa-gar-det-till">Så går det till</a></li>
+      <li><a href="#kostnad">Vad det kostar</a></li>
+      <li><a class="liten-lank" href="tel:+46701740642">Ring 070-174 06 42</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main id="main" tabindex="-1">
@@ -190,7 +262,11 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
           <a class="tel" href="tel:+46701740642">Ring 070-174 06 42</a>
         </div>
       </div>
-      <figure><img src="assets/bord-1400.webp" srcset="assets/bord-800.webp 800w, assets/bord-1400.webp 1400w" sizes="(max-width:900px) 100vw, 560px" width="1400" height="933" alt="En kopp kaffe och ett anteckningsblock på ett ljust träbord i dagsljus." fetchpriority="high"></figure>
+      <figure class="bildspel" aria-label="Bilder från byrån">
+        <img class="vald" src="assets/bord-1400.webp" srcset="assets/bord-800.webp 800w, assets/bord-1400.webp 1400w" sizes="(max-width:900px) 100vw, 560px" width="1400" height="1050" alt="En kopp kaffe och ett anteckningsblock på ett ljust träbord i dagsljus." fetchpriority="high">
+        <img src="assets/dorr-1400.webp" srcset="assets/dorr-800.webp 800w, assets/dorr-1400.webp 1400w" sizes="(max-width:900px) 100vw, 560px" width="1400" height="1050" alt="Byråns mörkblå ytterdörr med ett handtag i mässing." loading="lazy">
+        <button class="paus" type="button" aria-pressed="false" aria-label="Pausa bildspelet"><svg class="pausa" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><svg class="spela" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
+      </figure>
       <ul class="lofte">
         <li><b>Samma advokat hela vägen</b><span>Den du träffar första gången har hand om ärendet tills det är klart.</span></li>
         <li><b>Fast pris på avtal</b><span>Samboavtal, äktenskapsförord och testamente kostar det vi sagt från början.</span></li>
@@ -212,7 +288,7 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
           <li><h3>Framtidsfullmakt</h3><p>Bestäm i förväg vem som ska sköta din ekonomi om du inte längre kan göra det själv.</p></li>
         </ul>
       </div>
-      <figure><img src="assets/rum-1000.webp" width="1000" height="750" alt="Två stolar vid ett litet runt bord med en karaff vatten, i ett lugnt mötesrum." loading="lazy"></figure>
+      <figure class="ram avtack"><img src="assets/rum-1000.webp" width="1000" height="750" alt="Två stolar vid ett litet runt bord med en karaff vatten, i ett lugnt mötesrum." loading="lazy"></figure>
     </div>
   </section>
 
@@ -230,7 +306,10 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
 
   <section class="sek" id="kostnad" aria-labelledby="kostnad-rubrik">
     <div class="sida kostnad">
-      <figure><img src="assets/papper-1000.webp" width="1000" height="750" alt="En bunt papper med ett gem och en penna på ett skrivbord." loading="lazy"></figure>
+      <div class="lager">
+        <figure class="ram avtack"><img src="assets/papper-1000.webp" width="1000" height="750" alt="En bunt papper med ett gem och en penna på ett skrivbord." loading="lazy"></figure>
+        <div class="kort" data-fart="-0.06"><b>Rättsskydd i hemförsäkringen</b><p>Det kan betala det mesta av en tvist. Vi kontrollerar ditt skydd redan i första samtalet.</p></div>
+      </div>
       <div>
         <h2 id="kostnad-rubrik">Vad det kostar</h2>
         <p class="ingress">Alla priser är inklusive moms.</p>
@@ -243,7 +322,6 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
             <tr><th scope="row">Bodelning, vårdnad och arvstvist<small>Per timme</small></th><td>2 400 kr</td></tr>
           </tbody>
         </table>
-        <p class="not">Har du en hemförsäkring kan rättsskyddet betala det mesta av en tvist. Vi kontrollerar det åt dig redan i första samtalet.</p>
       </div>
     </div>
   </section>
@@ -259,7 +337,6 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
           <li><span>Kontoret</span><span>Storgatan, Umeå</span></li>
           <li><span>Vardagar</span><span>08.30–17.00</span></li>
         </ul>
-        <figure class="dorr"><img src="assets/dorr-800.webp" width="800" height="1000" alt="En mörkblå ytterdörr med ett handtag i mässing." loading="lazy"></figure>
       </div>
       <form id="formular">
         <h3>Vi ringer upp dig</h3>
@@ -296,10 +373,62 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
 </footer>
 
 <script>
-document.getElementById('formular').addEventListener('submit', e => {
-  e.preventDefault();
-  document.getElementById('klar').classList.add('syns');
-});
+(() => {
+  const lugn = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('formular').addEventListener('submit', e => { e.preventDefault(); document.getElementById('klar').classList.add('syns'); });
+
+  // Mobilmenyn
+  const meny = document.querySelector('.meny'), knapp = document.querySelector('.meny-knapp'), mobil = document.getElementById('mobilmeny');
+  const stang = () => { mobil.classList.remove('oppen'); knapp.setAttribute('aria-expanded', 'false'); };
+  knapp.addEventListener('click', () => { const o = !mobil.classList.contains('oppen'); mobil.classList.toggle('oppen', o); knapp.setAttribute('aria-expanded', o); });
+  mobil.addEventListener('click', e => { if (e.target.closest('a')) stang(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && mobil.classList.contains('oppen')){ stang(); knapp.focus(); } });
+
+  // Markören i menyn följer avsnittet man läser
+  const lankar = [...document.querySelectorAll('.lankar a')], markor = document.querySelector('.markor');
+  const avsnitt = lankar.map(a => document.querySelector(a.getAttribute('href')));
+  let aktiv = null;
+  function markera(a){
+    if (a === aktiv) return; aktiv = a;
+    lankar.forEach(l => l.classList.toggle('aktiv', l === a));
+    if (!a){ markor.style.opacity = 0; return; }
+    markor.style.top = (a.offsetTop + a.offsetHeight + 3) + 'px';
+    markor.style.width = a.offsetWidth + 'px';
+    markor.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+    markor.style.opacity = 1;
+  }
+
+  // Lager som rör sig i olika takt, bilder som rör sig i ramen
+  const fart = [...document.querySelectorAll('[data-fart]')], ramar = [...document.querySelectorAll('.ram img')];
+  let rad = null;
+  function rita(){
+    rad = null; const h = innerHeight;
+    meny.classList.toggle('skuggad', scrollY > 8);
+    // Avtäckning när bilderna och stegen kommer in (kontrolleras vid varje skroll, så att inget missas vid snabb skroll)
+    document.querySelectorAll('.avtack:not(.syns), .steg:not(.syns)').forEach(el => { if (el.getBoundingClientRect().top < h * .85) el.classList.add('syns'); });
+    let a = null; avsnitt.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < h * .4 && r.bottom > h * .4) a = lankar[i]; });
+    markera(a);
+    if (lugn) return;
+    fart.forEach(el => { const r = el.parentElement.getBoundingClientRect(); const d = r.top + r.height / 2 - h / 2; el.style.transform = 'translate3d(0,' + Math.max(-48, Math.min(48, d * +el.dataset.fart)).toFixed(1) + 'px,0)'; });
+    ramar.forEach(img => { const r = img.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > h) return; const p = (r.top + r.height) / (h + r.height); img.style.setProperty('--y', (-14 * (1 - p)).toFixed(2) + '%'); });
+  }
+  addEventListener('scroll', () => { if (rad === null) rad = requestAnimationFrame(rita); }, {passive:true});
+  addEventListener('resize', () => { aktiv = undefined; rita(); });
+  rita();
+  // Bildspelet i toppen: byter bild var sjätte sekund, går att pausa, står still vid reducera rörelse
+  const bilder = [...document.querySelectorAll('.bildspel img')], paus = document.querySelector('.paus');
+  let nr = 0, timer = null;
+  const nasta = () => { bilder[nr].classList.remove('vald'); nr = (nr + 1) % bilder.length; bilder[nr].classList.add('vald'); };
+  const starta = () => { timer = setInterval(nasta, 6000); paus.setAttribute('aria-pressed', 'false'); };
+  const stoppa = () => { clearInterval(timer); timer = null; paus.setAttribute('aria-pressed', 'true'); };
+  paus.addEventListener('click', () => timer ? stoppa() : starta());
+  if (lugn) stoppa(); else starta();
+
+  // Reserv: avtäck också via IntersectionObserver, om skrollhändelserna inte hinner köras
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('syns'); io.unobserve(e.target); } }));
+  document.querySelectorAll('.avtack, .steg').forEach(el => io.observe(el));
+
+})();
 </script>
 </body>
 </html>
