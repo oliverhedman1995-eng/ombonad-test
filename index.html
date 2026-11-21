@@ -969,7 +969,7 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
               <div class="v-shade"></div>
               <div class="v-snow"></div>
               <div class="v-nav"><b>VINTERHAMN</b><span>Bastun</span><span>Kallbad</span><span>Priser</span><em>Boka</em></div>
-              <div class="v-copy"><span class="v-eye">Vedeldad bastu vid havet</span><div class="v-h"><span class="v-ht">Värm dig vid havet.</span><i class="v-caret"></i></div><div class="v-cta"><span class="v-b1">Boka en kväll →</span><span class="v-b2">Se priser</span></div></div>
+              <div class="v-copy"><div class="v-eyew"><span class="v-eye">Vedeldad bastu vid havet</span></div><div class="v-h"><span class="v-ht">Värm dig vid havet.</span><i class="v-caret"></i></div><div class="v-cta"><span class="v-b1">Boka en kväll →</span><span class="v-b2">Se priser</span></div></div>
               <div class="v-card"><span class="v-dot"></span><b>Ikväll 18–21</b><span>4 platser kvar</span></div>
             </div>
             <div class="v-tick"><div class="v-tick-in">Vedeldat <i>✦</i> Kallbad i isvaken <i>✦</i> Handdukar ingår <i>✦</i> Öppet året runt <i>✦</i> Vedeldat <i>✦</i> Kallbad i isvaken <i>✦</i> Handdukar ingår <i>✦</i> Öppet året runt <i>✦</i></div></div>
@@ -1198,7 +1198,7 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
   const stack = document.querySelector('.stack'), sts = [...stack.querySelectorAll('.st')], dots = [...stack.querySelectorAll('.dots button')];
   const rm = stack.querySelector('.rm'), q = s => rm.querySelector(s), qa = s => [...rm.querySelectorAll(s)];
   const E = {old: q('.rm-old'), side: q('.o-side'), ht: q('.o-ht'), main: q('.o-main'), nw: q('.rm-new'), sc: q('.v-scroll'), hero: q('.v-hero'), bg: q('.v-bg'),
-    snow: q('.v-snow'), nav: q('.v-nav'), eye: q('.v-copy .v-eye'), nh: q('.v-ht'), caret: q('.v-caret'), cta: q('.v-cta'), card: q('.v-card'), tick: q('.v-tick-in'),
+    snow: q('.v-snow'), nav: q('.v-nav'), eye: q('.v-eyew'), nh: q('.v-ht'), caret: q('.v-caret'), cta: q('.v-cta'), card: q('.v-card'), tick: q('.v-tick-in'),
     figs: qa('.v-sec img'), sect: q('.v-sec-t'), scan: q('.rm-scan'), mks: qa('.rm-mk'), tool: q('.rm-tool'),
     score: q('.rm-score'), arc: q('.rm-arc'), ps: q('.rm-ps'), wv: q('.rm-wv'), lt: q('.rm-lt'), sheen: q('.rm-sheen')};
   const OLD = E.ht.textContent, NEW = E.nh.textContent;

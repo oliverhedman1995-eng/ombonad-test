@@ -401,7 +401,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       const op = +(inOp * (1 - outOp)).toFixed(3);
       let k = clamp((p - b.a) / (b.ramp || Math.min(.025, (b.b - b.a) * .35)), 0, 1);
       if (i === 0) k = Math.max(k, loadK);
-      if (Math.abs(op - b.op) > .004){ b.op = op; b.el.style.opacity = op; b.el.classList.toggle('on', op > .5); }
+      if (Math.abs(op - b.op) > .004){ b.op = op; b.el.style.opacity = op; b.el.style.visibility = op < .01 ? 'hidden' : ''; b.el.classList.toggle('on', op > .5); } // ponytail: helt osynlig text döljs, så att den inte räknas som lågkontrast
       if (Math.abs(k - b.k) > .008 || (k === 1 && b.k !== 1)){ b.k = k; b.el.style.setProperty('--k', k.toFixed(3)); }
     });
     const c = p < .04 ? '1' : '0'; if (cue.style.opacity !== c) cue.style.opacity = c;
@@ -459,8 +459,8 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
   // Villkoret för stillbild, samma som i CSS:en, och det följs live
   const GATES = ['(prefers-reduced-motion: reduce)'];
-  function enableScrub(){ if (scrubOn) return; scrubOn = true; initHeroOnce(); sizeCanvas(); addEventListener('scroll', onScroll, {passive:true}); bands.forEach(b => { b.op = -1; b.k = -1; b.el.style.opacity = ''; }); unpin(); updateCaptions(heroProgress()); onScroll(); requestAnimationFrame(ramp); }
-  function disableScrub(){ if (!scrubOn && inited === false){ pin(); return; } scrubOn = false; removeEventListener('scroll', onScroll); if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; } bands.forEach(b => { b.el.style.opacity = ''; b.el.style.removeProperty('--k'); b.op = -1; b.k = -1; }); pin(); }
+  function enableScrub(){ if (scrubOn) return; scrubOn = true; initHeroOnce(); sizeCanvas(); addEventListener('scroll', onScroll, {passive:true}); bands.forEach(b => { b.op = -1; b.k = -1; b.el.style.opacity = ''; b.el.style.visibility = ''; }); unpin(); updateCaptions(heroProgress()); onScroll(); requestAnimationFrame(ramp); setTimeout(() => { if (scrubOn && loadK < 1){ loadK = 1; updateCaptions(heroProgress()); } }, 1500); }
+  function disableScrub(){ if (!scrubOn && inited === false){ pin(); return; } scrubOn = false; removeEventListener('scroll', onScroll); if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; } bands.forEach(b => { b.el.style.opacity = ''; b.el.style.visibility = ''; b.el.style.removeProperty('--k'); b.op = -1; b.k = -1; }); pin(); }
   function applyHeroMode(){ GATES.some(q => matchMedia(q).matches) ? disableScrub() : enableScrub(); }
   const MQLS = GATES.map(q => matchMedia(q)); MQLS.forEach(m => m.addEventListener('change', applyHeroMode));
 
