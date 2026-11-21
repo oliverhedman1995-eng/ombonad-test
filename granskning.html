@@ -743,6 +743,12 @@ header.site .v2-menu{border-radius:8px!important}
 /* Signaturen: bågen, som ett fönster eller en dörröppning. Används på demokortens bilder och porträttet */
 .demo-k figure{margin:16px 16px 0;border-radius:999px 999px 0 0/150px 150px 0 0;border-bottom:0;overflow:hidden}
 .om-me .me-pic{border-radius:999px 999px 4px 4px!important;height:clamp(150px,20vw,225px)!important}
+/* Ridån vid sidbyte: en salviagrön halvmåne drar över skärmen */
+.t-curtain{position:fixed;left:-12vw;right:-12vw;top:0;height:135vh;z-index:300;background:var(--sage-d);pointer-events:none;
+  border-radius:50% 50% 0 0/16vh 16vh 0 0;transform:translateY(105%);transition:transform .8s cubic-bezier(.7,0,.2,1),border-radius .8s cubic-bezier(.7,0,.2,1)}
+.t-curtain.cover{transform:translateY(-17vh);border-radius:0}
+.t-curtain.away{transform:translateY(-140%);border-radius:0 0 50% 50%/0 0 16vh 16vh}
+@media (prefers-reduced-motion:reduce){.t-curtain{display:none}}
 </style>
 </head>
 <body id="top">
@@ -1110,6 +1116,23 @@ window.FORM_CONFIG = {
 (()=>{const g=document.querySelector('.glint');if(!g)return;
 const run=()=>{g.classList.remove('run');void g.offsetWidth;g.classList.add('run');};
 setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
+</script>
+<script>
+(() => {
+  // Ridån vid sidbyte: samma som på startsidan, så att den lyfts när man kommer hit och drar över när man går vidare
+  if (!document.documentElement.classList.contains('motion')) return;
+  // Ridån vid sidbyte inom sajten
+  const cur = document.createElement('div'); cur.className = 't-curtain'; cur.setAttribute('aria-hidden', 'true'); document.body.appendChild(cur);
+  let flag = null; try { flag = sessionStorage.getItem('t-ridå'); sessionStorage.removeItem('t-ridå'); } catch (e) {}
+  if (flag) { cur.style.transition = 'none'; cur.classList.add('cover'); cur.offsetWidth; cur.style.transition = ''; requestAnimationFrame(() => requestAnimationFrame(() => cur.classList.add('away'))); }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]'); if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || a.target) return;
+    const href = a.getAttribute('href'); if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || a.hostname !== location.hostname) return;
+    e.preventDefault(); try { sessionStorage.setItem('t-ridå', '1'); } catch (err) {}
+    cur.classList.remove('away'); cur.classList.add('cover'); setTimeout(() => { location.href = a.href; }, 780);
+  });
+  addEventListener('pageshow', e => { if (e.persisted) cur.classList.remove('cover', 'away'); });
+})();
 </script>
 </body>
 </html>
