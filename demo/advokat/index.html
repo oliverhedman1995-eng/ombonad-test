@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Advokatbyrån Strand, familjerätt i Umeå | Demo av Webbglans</title>
+<meta name="description" content="Demo av Webbglans: en påhittad advokatbyrå i Umeå som hjälper till vid skilsmässa, vårdnad, bodelning och arv. Första samtalet är kostnadsfritt.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#15233B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315233B'/%3E%3Cpath d='M8 21h16M8 16h16M8 11h16' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Source Serif 4';font-weight:500 700;font-display:swap;src:url(fonts/source-serif-4-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Source Serif 4';font-weight:500 700;font-display:swap;src:url(fonts/source-serif-4-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Public Sans';font-weight:400 700;font-display:swap;src:url(fonts/public-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Public Sans';font-weight:400 700;font-display:swap;src:url(fonts/public-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+/* Färger 60/30/10: ljust som bas, marinblått som huvudfärg, blått bara på det man klickar på */
+:root{
+  --bas:#FFFFFF; --yta:#F2F3F5; --linje:#D9DCE1;
+  --marin:#15233B; --marin-2:#22324D; --text:#15233B; --text-2:#4A5568; --pa-marin:#FFFFFF; --pa-marin-2:#C5CCD8;
+  --accent:#2556C4; --accent-hover:#1C45A3; --fokus:#E8A33D; --demo:#1F6B45;
+  --serif:'Source Serif 4',Georgia,serif; --sans:'Public Sans',system-ui,sans-serif;
+  /* Storleksskala, dator: 14/16/18/22/32/48/64 */
+  --s1:14px; --s2:16px; --s3:18px; --s4:22px; --s5:32px; --s6:48px; --s7:64px;
+  --sek:112px; --sida:min(1120px,100% - 48px);
+}
+@media (max-width:720px){
+  /* Mobil: 14/16/17/20/26/34/40 */
+  :root{--s3:17px; --s4:20px; --s5:26px; --s6:34px; --s7:40px; --sek:72px; --sida:calc(100% - 40px)}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bas);color:var(--text);font:400 var(--s3)/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:var(--accent-hover);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--fokus);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h3{font-size:var(--s4);line-height:1.25}
+p{margin:0 0 1em;text-wrap:pretty}
+.sida{width:var(--sida);margin-inline:auto}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--marin);color:#fff;padding:12px 16px}
+.skip:focus{left:12px}
+
+/* Demoremsan */
+.demo{background:var(--demo);color:#fff;font:600 var(--s1)/1.4 var(--sans);text-align:center;padding:10px 16px}
+.demo a{color:#fff;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.demo a:hover{color:#fff;text-decoration-thickness:2px}
+
+/* Meny */
+.meny{position:sticky;top:0;z-index:50;background:var(--bas);border-bottom:1px solid var(--linje)}
+.meny .sida{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.namn{display:flex;align-items:center;gap:12px;color:var(--marin);font:600 var(--s4)/1.2 var(--serif);white-space:nowrap}
+.namn:hover{color:var(--marin);text-decoration:none}
+.namn svg{flex:none}
+.lankar{display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
+.lankar a:not(.knapp){color:var(--text);font-size:var(--s2);font-weight:500}
+.lankar a:not(.knapp):hover{color:var(--marin-2)}
+@media (max-width:960px){.lankar li:not(:last-child){display:none}}
+@media (max-width:480px){.meny .sida{height:64px}.namn{font-size:18px}.namn svg{width:28px;height:28px}}
+
+/* Knappar: växer 4 px åt alla håll vid hover, texten står still */
+.knapp{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border:0;border-radius:4px;background:var(--accent);color:#fff;font:600 var(--s3)/1.2 var(--sans);text-align:center;cursor:pointer;box-shadow:0 0 0 0 var(--accent-hover);transition:background .2s,box-shadow .2s}
+.knapp:hover{background:var(--accent-hover);color:#fff;text-decoration:none;box-shadow:0 0 0 4px var(--accent-hover)}
+.meny .knapp{min-height:44px;padding:0 20px;font-size:var(--s2)}
+.meny .knapp{white-space:nowrap}
+@media (max-width:480px){.meny .sida{gap:12px}.meny .knapp{min-height:40px;padding:0 14px;font-size:var(--s1)}}
+
+/* Toppen */
+.topp{padding:80px 0 var(--sek)}
+.topp .sida{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.topp h1{font-size:var(--s7);margin-bottom:24px}
+.ingress{font-size:var(--s4);line-height:1.5;color:var(--text-2);max-width:34ch;margin-bottom:32px}
+.atgard{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px}
+.atgard .tel{font-weight:600}
+.topp figure{margin:0;border-radius:4px;overflow:hidden;background:var(--yta);aspect-ratio:3/2}
+.topp figure img{width:100%;height:100%;object-fit:cover}
+.lofte{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;grid-column:1/-1}
+.lofte li{border-top:2px solid var(--marin);padding-top:20px}
+.lofte b{display:block;font:600 var(--s4)/1.25 var(--serif);margin-bottom:8px}
+.lofte span{color:var(--text-2)}
+
+/* Avsnitt */
+section{scroll-margin-top:96px}
+.sek{padding:var(--sek) 0}
+.sek h2{font-size:var(--s6);margin-bottom:16px}
+.sek .ingress{margin-bottom:48px}
+.ljusgra{background:var(--yta)}
+
+/* Det vi hjälper till med */
+.omraden{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start}
+.lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--linje)}
+.lista li{padding:24px 0;border-bottom:1px solid var(--linje)}
+.lista h3{margin-bottom:8px}
+.lista p{margin:0;color:var(--text-2)}
+.omraden figure{margin:0;border-radius:4px;overflow:hidden;aspect-ratio:4/3;position:sticky;top:112px}
+.omraden figure img{width:100%;height:100%;object-fit:cover}
+
+/* Så går det till: ett band i huvudfärgen */
+.marin{background:var(--marin);color:var(--pa-marin)}
+.marin .ingress{color:var(--pa-marin-2)}
+.steg{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px;counter-reset:steg}
+.steg li{counter-increment:steg;border-top:1px solid var(--marin-2);padding-top:24px}
+.steg li::before{content:counter(steg);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--pa-marin-2);font:600 var(--s3)/1 var(--sans);margin-bottom:24px}
+.steg h3{margin-bottom:8px}
+.steg p{margin:0;color:var(--pa-marin-2)}
+
+/* Vad det kostar */
+.kostnad{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.kostnad figure{margin:0;border-radius:4px;overflow:hidden;aspect-ratio:4/3}
+.kostnad figure img{width:100%;height:100%;object-fit:cover}
+.priser{width:100%;border-collapse:collapse;margin-bottom:32px}
+.priser th,.priser td{padding:16px 0;border-bottom:1px solid var(--linje);text-align:left;vertical-align:baseline;font-weight:400}
+.priser th{padding-right:16px}
+.priser td{text-align:right;white-space:nowrap;font-weight:600}
+.priser small{display:block;font-size:var(--s2);color:var(--text-2)}
+.not{font-size:var(--s2);color:var(--text-2);max-width:52ch}
+
+/* Boka */
+.boka .sida{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
+.kontakt{list-style:none;margin:0 0 32px;padding:0}
+.kontakt li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--linje)}
+.kontakt span:first-child{color:var(--text-2)}
+.dorr{margin:0;border-radius:4px;overflow:hidden;aspect-ratio:4/5;max-width:360px}
+.dorr img{width:100%;height:100%;object-fit:cover}
+form{background:var(--bas);border:1px solid var(--linje);border-radius:4px;padding:40px}
+form h3{font-size:var(--s5);margin-bottom:8px}
+form > p{color:var(--text-2)}
+label{display:block;font-weight:600;font-size:var(--s2);margin:24px 0 8px}
+label .valfri{font-weight:400;color:var(--text-2)}
+input,select,textarea{width:100%;min-height:52px;border:1px solid #8A94A6;border-radius:4px;background:#fff;padding:12px 16px;font:400 var(--s3)/1.4 var(--sans);color:var(--text)}
+select{appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M2 5l5 5 5-5' fill='none' stroke='%2315233B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center;padding-right:44px}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,86,196,.25)}
+form .knapp{width:100%;margin-top:32px}
+.tyst{font-size:var(--s1);color:var(--text-2);margin:16px 0 0}
+.klar{display:none;margin:16px 0 0;padding:16px;border-radius:4px;background:#E4ECFA;font-weight:600}
+.klar.syns{display:block}
+@media (max-width:480px){form{padding:24px 20px}}
+
+footer{background:var(--marin);color:var(--pa-marin-2);padding:48px 0;font-size:var(--s2)}
+footer .sida{display:flex;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
+footer p{margin:0;text-wrap:balance}
+footer a{color:#fff;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+footer a:hover{color:#fff;text-decoration-thickness:2px}
+
+@media (max-width:900px){
+  .topp .sida,.omraden,.kostnad,.boka .sida{grid-template-columns:1fr;gap:40px}
+  .topp{padding-top:40px}
+  .lofte,.steg{grid-template-columns:1fr;gap:32px}
+
+  .omraden figure{position:static;aspect-ratio:4/3}
+
+  .dorr{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Hoppa till innehållet</a>
+<div class="demo" role="note">Demo av Webbglans. Advokatbyrån Strand är en påhittad advokatbyrå. <a href="https://webbglans.se/">Tillbaka till webbglans.se</a></div>
+
+<header class="meny">
+  <div class="sida">
+    <a class="namn" href="#main" aria-label="Advokatbyrån Strand, till toppen">
+      <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#15233B"/><path d="M8 21h16M8 16h16M8 11h16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+      Advokatbyrån Strand
+    </a>
+    <nav aria-label="Huvudmeny">
+      <ul class="lankar">
+        <li><a href="#omraden">Det vi hjälper till med</a></li>
+        <li><a href="#sa-gar-det-till">Så går det till</a></li>
+        <li><a href="#kostnad">Vad det kostar</a></li>
+        <li><a class="knapp" href="#boka">Boka samtal</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="topp" aria-labelledby="rubrik">
+    <div class="sida">
+      <div>
+        <h1 id="rubrik">Familjerätt i Umeå</h1>
+        <p class="ingress">Vi hjälper dig vid skilsmässa, vårdnadstvist, bodelning och arv. Det första samtalet tar 30 minuter och kostar ingenting.</p>
+        <div class="atgard">
+          <a class="knapp" href="#boka">Boka ett första samtal</a>
+          <a class="tel" href="tel:+46701740642">Ring 070-174 06 42</a>
+        </div>
+      </div>
+      <figure><img src="assets/bord-1400.webp" srcset="assets/bord-800.webp 800w, assets/bord-1400.webp 1400w" sizes="(max-width:900px) 100vw, 560px" width="1400" height="933" alt="En kopp kaffe och ett anteckningsblock på ett ljust träbord i dagsljus." fetchpriority="high"></figure>
+      <ul class="lofte">
+        <li><b>Samma advokat hela vägen</b><span>Den du träffar första gången har hand om ärendet tills det är klart.</span></li>
+        <li><b>Fast pris på avtal</b><span>Samboavtal, äktenskapsförord och testamente kostar det vi sagt från början.</span></li>
+        <li><b>Svar inom en arbetsdag</b><span>Ringer eller skriver du till oss får du besked senast nästa vardag.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sek ljusgra" id="omraden" aria-labelledby="omraden-rubrik">
+    <div class="sida omraden">
+      <div>
+        <h2 id="omraden-rubrik">Det vi hjälper till med</h2>
+        <p class="ingress">Vi arbetar bara med familjerätt. Här är det vanligaste som folk kommer till oss med.</p>
+        <ul class="lista">
+          <li><h3>Skilsmässa och bodelning</h3><p>Vi går igenom vad ni äger tillsammans, skriver bodelningsavtalet och förhandlar om ni inte är överens.</p></li>
+          <li><h3>Vårdnad, boende och umgänge</h3><p>Vi hjälper er att komma överens om barnen, och företräder dig i tingsrätten om det inte går.</p></li>
+          <li><h3>Samboavtal och äktenskapsförord</h3><p>Ett kort avtal i dag kan spara en lång tvist senare. Vi skriver det på ett möte.</p></li>
+          <li><h3>Testamente och arv</h3><p>Vi skriver testamentet, förklarar vad lagen säger om arvet och gör bouppteckningen.</p></li>
+          <li><h3>Framtidsfullmakt</h3><p>Bestäm i förväg vem som ska sköta din ekonomi om du inte längre kan göra det själv.</p></li>
+        </ul>
+      </div>
+      <figure><img src="assets/rum-1000.webp" width="1000" height="750" alt="Två stolar vid ett litet runt bord med en karaff vatten, i ett lugnt mötesrum." loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="sek marin" id="sa-gar-det-till" aria-labelledby="steg-rubrik">
+    <div class="sida">
+      <h2 id="steg-rubrik">Så går det till</h2>
+      <p class="ingress">Du vet alltid vad nästa steg är och vad det kostar.</p>
+      <ol class="steg">
+        <li><h3>Första samtalet</h3><p>30 minuter på telefon, video eller på kontoret. Du berättar, vi förklarar vad lagen säger och vad du kan göra.</p></li>
+        <li><h3>Ett skriftligt förslag</h3><p>Inom två dagar får du ett mejl med vad vi föreslår, hur lång tid det tar och vad det kostar.</p></li>
+        <li><h3>Vi gör jobbet</h3><p>Du säger ja eller nej. Säger du ja börjar vi, och du får besked varje gång något händer i ärendet.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sek" id="kostnad" aria-labelledby="kostnad-rubrik">
+    <div class="sida kostnad">
+      <figure><img src="assets/papper-1000.webp" width="1000" height="750" alt="En bunt papper med ett gem och en penna på ett skrivbord." loading="lazy"></figure>
+      <div>
+        <h2 id="kostnad-rubrik">Vad det kostar</h2>
+        <p class="ingress">Alla priser är inklusive moms.</p>
+        <table class="priser">
+          <tbody>
+            <tr><th scope="row">Första samtalet<small>30 minuter</small></th><td>0 kr</td></tr>
+            <tr><th scope="row">Samboavtal<small>Fast pris</small></th><td>4 500 kr</td></tr>
+            <tr><th scope="row">Äktenskapsförord<small>Fast pris</small></th><td>5 500 kr</td></tr>
+            <tr><th scope="row">Testamente<small>Fast pris, för en person</small></th><td>4 000 kr</td></tr>
+            <tr><th scope="row">Bodelning, vårdnad och arvstvist<small>Per timme</small></th><td>2 400 kr</td></tr>
+          </tbody>
+        </table>
+        <p class="not">Har du en hemförsäkring kan rättsskyddet betala det mesta av en tvist. Vi kontrollerar det åt dig redan i första samtalet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sek ljusgra boka" id="boka" aria-labelledby="boka-rubrik">
+    <div class="sida">
+      <div>
+        <h2 id="boka-rubrik">Boka ett första samtal</h2>
+        <p class="ingress">Skriv några rader så ringer vi upp dig och bokar en tid som passar.</p>
+        <ul class="kontakt">
+          <li><span>Telefon</span><a href="tel:+46701740642">070-174 06 42</a></li>
+          <li><span>Mejl</span><a href="mailto:kontakt@advokatstrand.example">kontakt@advokatstrand.example</a></li>
+          <li><span>Kontoret</span><span>Storgatan, Umeå</span></li>
+          <li><span>Vardagar</span><span>08.30–17.00</span></li>
+        </ul>
+        <figure class="dorr"><img src="assets/dorr-800.webp" width="800" height="1000" alt="En mörkblå ytterdörr med ett handtag i mässing." loading="lazy"></figure>
+      </div>
+      <form id="formular">
+        <h3>Vi ringer upp dig</h3>
+        <p>Det tar en minut att fylla i.</p>
+        <label for="namn">Namn</label>
+        <input id="namn" name="namn" autocomplete="name" required>
+        <label for="tel">Telefon</label>
+        <input id="tel" name="tel" type="tel" autocomplete="tel" required>
+        <label for="vad">Vad gäller det?</label>
+        <select id="vad" name="vad" required>
+          <option value="">Välj det som passar bäst</option>
+          <option>Skilsmässa och bodelning</option>
+          <option>Vårdnad, boende och umgänge</option>
+          <option>Samboavtal eller äktenskapsförord</option>
+          <option>Testamente och arv</option>
+          <option>Framtidsfullmakt</option>
+          <option>Något annat</option>
+        </select>
+        <label for="mer">Berätta kort <span class="valfri">(valfritt)</span></label>
+        <textarea id="mer" name="mer"></textarea>
+        <button class="knapp" type="submit">Skicka</button>
+        <p class="tyst">Det du skriver omfattas av advokaternas tystnadsplikt.</p>
+        <p class="klar" id="klar" role="status">Tack! Det här är en demo, så inget skickas någonstans.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="sida">
+    <p>Demo av <a href="https://webbglans.se/">Webbglans</a>. Advokatbyrån Strand är en påhittad advokatbyrå, och bilderna är AI-genererade.</p>
+    <p>© 2026 Advokatbyrån Strand</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('formular').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('klar').classList.add('syns');
+});
+</script>
+</body>
+</html>
