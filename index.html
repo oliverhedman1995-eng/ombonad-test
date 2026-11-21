@@ -1191,28 +1191,29 @@ header.site .v2-menu{border-radius:8px!important}
     E.mks.forEach(m => { const r = q(m.dataset.t).getBoundingClientRect();
       Object.assign(m.style, {left: (r.left - pb.left - pad) + 'px', top: (r.top - pb.top - pad) + 'px', width: (r.width + pad * 2) + 'px', height: (r.height + pad * 2) + 'px'}); }); };
   function render(p){
-    const a = S(p, .24, .42), b = S(p, .46, .72), d = S(p, .74, .9), c = S(p, .86, .98);
+    const lin = (k, x, y) => clamp((k - x) / (y - x), 0, 1); // ponytail: steg 2 och 3 linjära, så att bara själva tiden mjukas och inget rusar i mitten
+    const a = lin(p, .24, .43), b = lin(p, .43, .72), d = S(p, .74, .9), c = S(p, .86, .98);
     // 2 · Granskning: en skanning går över sidan och problemen ringas in
-    set(E.scan, Math.sin(Math.PI * S(a, 0, .4)) * .9, 'translateY(' + (S(a, 0, .4) * 640 - 100) + '%)');
-    E.mks.forEach((m, i) => { const k = S(a, .3 + i * .2, .42 + i * .2) * (1 - S(b, 0, .1)); set(m, k, 'scale(' + (1.15 - .15 * k) + ')'); });
+    set(E.scan, Math.sin(Math.PI * S(a, 0, .5)) * .9, 'translateY(' + (S(a, 0, .5) * 640 - 100) + '%)');
+    E.mks.forEach((m, i) => { const k = S(a, .36 + i * .2, .56 + i * .2) * (1 - S(b, 0, .08)); set(m, k, 'scale(' + (1.15 - .15 * k) + ')'); });
     // 3 · Putsning: det gamla plockas bort, sidan blir mörk, bilden öppnas, ny rubrik skrivs i nytt typsnitt
     E.old.style.opacity = (1 - S(b, .16, .24)).toFixed(3);
     set(E.side, 1, 'translateX(' + (-120 * S(b, .02, .14)) + '%)');
     const del = Math.round(OLD.length * (1 - S(b, .02, .16))); if (E.ht.textContent.length !== del) E.ht.textContent = OLD.slice(0, del);
     set(E.main, 1 - S(b, .08, .18), 'translateY(' + (8 * S(b, .08, .18)) + '%)');
     E.nw.style.opacity = S(b, .14, .24).toFixed(3);
-    const op = S(b, .18, .38), ins = ((1 - op) * 46).toFixed(2);
+    const op = S(b, .18, .4), ins = ((1 - op) * 46).toFixed(2);
     E.hero.style.clipPath = 'inset(' + ins + '% ' + ins + '% ' + ins + '% ' + ins + '% round ' + (4 * (1 - op)).toFixed(2) + 'cqw)';
     E.bg.style.transform = 'scale(' + (1.22 - .1 * op - .12 * S(p, .6, 1)).toFixed(4) + ')';
-    E.snow.style.opacity = (S(b, .34, .55) * .9).toFixed(3);
+    E.snow.style.opacity = (S(b, .36, .6) * .9).toFixed(3);
     E.snow.style.transform = 'translate3d(0,' + (p * 16).toFixed(3) + '%,0)'; // ponytail: flyttas som lager i stället för att ritas om
-    set(E.tool, S(b, .2, .28) * (1 - S(b, .86, .96)), 'translateY(' + (30 * (1 - S(b, .2, .28))) + '%) scale(' + (.9 + .1 * S(b, .2, .28)) + ')');
-    set(E.nav, S(b, .28, .4), 'translateY(' + (-60 * (1 - S(b, .28, .4))) + '%)');
-    set(E.eye, S(b, .34, .42), 'translateY(' + (60 * (1 - S(b, .34, .42))) + '%)');
-    const typ = Math.round(NEW.length * S(b, .38, .62)); if (E.nh.textContent.length !== typ) E.nh.textContent = NEW.slice(0, typ);
-    E.caret.classList.toggle('on', b > .36 && b < .7);
-    set(E.cta, S(b, .6, .7), 'translateY(' + (40 * (1 - S(b, .6, .7))) + '%)');
-    set(E.card, S(b, .68, .8), 'translateX(' + (30 * (1 - S(b, .68, .8))) + '%)');
+    set(E.tool, S(b, .22, .3) * (1 - S(b, .9, 1)), 'translateY(' + (30 * (1 - S(b, .22, .3))) + '%) scale(' + (.9 + .1 * S(b, .22, .3)) + ')');
+    set(E.nav, S(b, .3, .42), 'translateY(' + (-60 * (1 - S(b, .3, .42))) + '%)');
+    set(E.eye, S(b, .38, .46), 'translateY(' + (60 * (1 - S(b, .38, .46))) + '%)');
+    const typ = Math.round(NEW.length * Math.min(1, Math.max(0, (b - .42) / .38))); // ponytail: jämn skrivtakt, cirka 0,75 s if (E.nh.textContent.length !== typ) E.nh.textContent = NEW.slice(0, typ);
+    E.caret.classList.toggle('on', b > .4 && b < .86);
+    set(E.cta, S(b, .78, .88), 'translateY(' + (40 * (1 - S(b, .78, .88))) + '%)');
+    set(E.card, S(b, .86, .98), 'translateX(' + (30 * (1 - S(b, .86, .98))) + '%)');
     // 4 · Minisajten skrollar till nästa avsnitt, löpsedeln rör sig, sedan mäts sidan
     E.sc.style.transform = 'translateY(' + (-50 * d).toFixed(3) + 'cqw)';
     E.tick.style.transform = 'translateX(' + (-30 * S(p, .55, 1)).toFixed(3) + '%)';
@@ -1226,9 +1227,9 @@ header.site .v2-menu{border-radius:8px!important}
     E.sheen.style.transform = 'translateX(' + (-110 + 220 * S(c, .72, 1)) + '%)';
   }
   // Knapparna styr: varje steg har ett läge i animationen, och övergången dit tar 2 s (Oliver: 0,7–1 s kändes stressat)
-  const LAGE = [.12, .44, .73, 1], prevB = stack.querySelector('.dk-prev'), nextB = stack.querySelector('.dk-next');
+  const LAGE = [.24, .43, .72, .98], prevB = stack.querySelector('.dk-prev'), nextB = stack.querySelector('.dk-next');
   let cur = LAGE[0], busy = false;
-  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const ease = t => .5 - Math.cos(Math.PI * t) / 2; // ponytail: mjuk kurva, så att mitten av övergången inte rusar
   const go = (n, snap) => { n = (n + 4) % 4; setSteg(n);
     prevB.disabled = n === 0; nextB.textContent = n === 3 ? 'Börja om ↺' : 'Nästa steg →';
     const from = cur, to = LAGE[n]; cancelAnimationFrame(raf2); busy = false;
