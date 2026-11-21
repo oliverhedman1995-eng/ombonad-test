@@ -633,8 +633,8 @@ header.site.skuggad .nav{box-shadow:0 18px 40px -18px rgba(44,48,44,.55),inset 0
 .nav>ul.has-pill{position:relative;z-index:0}
 .nav>ul.has-pill a:hover{background:none}
 @media (max-width:860px){
-  .js header.site .v2-menu{animation:none;clip-path:inset(0 0 100% 0 round 26px);opacity:0;transform:translateY(-10px);visibility:hidden;transition:clip-path .45s cubic-bezier(.2,.8,.2,1),opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s linear .45s}
-  .js header.site .v2-menu.on{clip-path:inset(0 0 0 0 round 26px);opacity:1;transform:none;visibility:visible;transition-delay:0s}
+  .js header.site .v2-menu{animation:none;clip-path:inset(0 0 100% 0 round 8px);opacity:0;transform:translateY(-10px);visibility:hidden;transition:clip-path .45s cubic-bezier(.2,.8,.2,1),opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s linear .45s}
+  .js header.site .v2-menu.on{clip-path:inset(0 0 0 0 round 8px);opacity:1;transform:none;visibility:visible;transition-delay:0s}
   .js .v2-menu li a,.js .v2-menu .v2-menu-cta{animation:none;opacity:0;transform:translateY(-8px);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
   .js .v2-menu.on li a,.js .v2-menu.on .v2-menu-cta{opacity:1;transform:none}
   .js .v2-menu.on li:nth-child(1) a{transition-delay:.07s}.js .v2-menu.on li:nth-child(2) a{transition-delay:.12s}.js .v2-menu.on li:nth-child(3) a{transition-delay:.17s}.js .v2-menu.on li:nth-child(4) a{transition-delay:.22s}.js .v2-menu.on li:nth-child(5) a{transition-delay:.27s}.js .v2-menu.on .v2-menu-cta{transition-delay:.32s}
@@ -832,6 +832,33 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
 .demo-k p{margin:0;color:var(--ink-2);font-size:var(--t3)!important}
 .demo-k .btn{margin-top:auto}
 @media (max-width:860px){.demos{grid-template-columns:1fr}.demo-k .in{padding:24px}}
+/* Formspråk B (Oliver 2026-11-21, efter research på Stripe, Linear, Vercel, Anthropic, Teenage Engineering m.fl.):
+   små radier per roll, hårlinjer i stället för skuggor, piller bara för granskningsknappen, bågen som signaturform. */
+:root{--r:4px;--v-r:4px;--hair:rgba(69,91,71,.22)}
+/* Kort och paneler: 4 px, hårlinje, ingen skugga */
+.demo-k,.step,.au,.v2-pr-ex,.v2-pr-table,.v2-step,.v2-why li,.faq details,.pkc,.price,.own,.ok,.v2-focus,.note,.rp-m div,.a-cards div,.om-me .me,.dial{border-radius:4px!important;box-shadow:inset 0 0 0 1px var(--hair)!important}
+.cta,.v2-band-in,.results-box{border-radius:4px!important;box-shadow:none!important}
+.hero-art .card{border-radius:6px!important}
+.field input,.field textarea{border-radius:4px!important}
+/* Knappar: 6 px. Bara granskningsknappen är ett piller, så att den känns igen överallt */
+.btn,.dk-ctrl button,.own-a,.v2-opt,.v2-pause,.js .v2-menu-btn,.v2-menu-btn{border-radius:6px!important}
+.btn:not(.soft):not(.ghost){box-shadow:none!important}
+.btn.soft{box-shadow:inset 0 0 0 1px rgba(69,91,71,.5)!important}
+a.btn[href="granskning.html"],.v2-menu-cta{border-radius:999px!important}
+/* Etiketter och menyval: 2–4 px */
+.tag,.chips li,.checks span,.step li,.c2 .pill,.kicker{border-radius:2px!important}
+.nav ul a,.v2-pill{border-radius:4px!important}
+/* Menyraden: rak list med hårlinje, skugga först när man har skrollat */
+.nav{border-radius:8px!important;box-shadow:inset 0 0 0 1px var(--hair)!important}
+header.site.skuggad .nav{box-shadow:0 12px 30px -18px rgba(44,48,44,.45),inset 0 0 0 1px var(--hair)!important}
+header.site .v2-menu{border-radius:8px!important}
+/* Stegnummer: riktiga cirklar i stället för blobbar */
+.step .num,.step:hover .num{border-radius:50%!important}
+/* Upprustningens webbläsarfönster */
+.rm{border-radius:10px!important}
+/* Signaturen: bågen, som ett fönster eller en dörröppning. Används på demokortens bilder och porträttet */
+.demo-k figure{margin:16px 16px 0;border-radius:999px 999px 0 0/150px 150px 0 0;border-bottom:0;overflow:hidden}
+.om-me .me-pic{border-radius:999px 999px 4px 4px!important;height:clamp(150px,20vw,225px)!important}
 </style>
 <script type="application/ld+json">
 {
@@ -995,53 +1022,7 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
   </div>
 </section>
 
-<section class="sec" id="forvandling" data-blob="2" aria-labelledby="h-ba">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="kicker">Före & efter</span><h2 id="h-ba" style="margin-top:20px">Dra i reglaget och jämför</h2></div>
-      <p class="lead">Samma innehåll och plattform, men med ny struktur, nya typsnitt och kortare laddtid. Dra i knappen eller använd piltangenterna.</p>
-    </div>
-    <div class="v2-ba-labels" aria-hidden="true"><span class="ba-label l">← Före</span><span class="ba-label r">Efter →</span></div>
-    <div class="ba rv" id="ba" data-shot="ba">
-      <div class="ba-pane ba-before" aria-hidden="true">
-        <div class="b-site">
-          <div class="b-top">Exempelföretaget AB <small>Hem | Om oss | Tjänster | Kontakt | Länkar</small></div>
-          <div class="b-grid">
-            <div class="b-side">» Startsida<br>» Om företaget<br>» Våra tjänster<br>» Prislista (PDF)<br>» Gästbok<br>» Kontakta oss</div>
-            <div class="b-main"><div class="b-img">bild.jpg</div><h4>Välkommen!</h4>Här på vår hemsida kan du läsa om allt vi gör. Vi har funnits sedan länge och erbjuder många olika tjänster till både företag och privatpersoner. Läs mer i menyn till vänster eller ladda ner vår prislista.<br><span class="b-warn">Sidan visas bäst i 1024×768</span></div>
-          </div>
-          <span class="b-badge">Laddar på 6,2 s</span>
-        </div>
-      </div>
-      <div class="ba-pane ba-after" aria-hidden="true">
-        <div class="a-site">
-          <div class="a-nav"><b>Exempelföretaget</b><span>Tjänster · Om oss · Kontakt</span></div>
-          <div class="a-hero">
-            <div><h4>Hjälp som gör skillnad i hela regionen.</h4><p>Vi tar hand om det praktiska så att ni kan fokusera på det viktiga.</p><span class="a-btn">Boka ett samtal →</span>
-              <div class="a-stats"><div><b>Snabb</b>laddning</div><div><b>Tydlig</b>meny</div><div><b>Mobil</b>först</div></div></div>
-            <div class="a-pic"><span class="a-orb"></span></div>
-          </div>
-          <div class="a-cards"><div><i aria-hidden="true">→</i><b>Tjänster</b><span>Tydligt utbud</span></div><div><i aria-hidden="true">→</i><b>Om oss</b><span>Människorna bakom</span></div><div><i aria-hidden="true">→</i><b>Kontakt</b><span>Svar inom en dag</span></div></div>
-          <span class="a-badge a-speed">Laddar på 0,9 s</span>
-          <span class="a-badge a-acc">✓ Tillgänglig</span>
-          <span class="a-spark s1"></span><span class="a-spark s2"></span><span class="a-spark s3"></span>
-        </div>
-      </div>
-            <div class="ba-line"></div>
-      <div class="ba-knob"><svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 9l-6 6 6 6M19 9l6 6-6 6"/></svg></div>
-            <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" step="1" aria-label="Jämför före och efter: andel som visar före-versionen" aria-describedby="ba-desc" aria-valuetext="50 procent före">
-    </div>
-    <div class="ba-ctrl" role="group" aria-label="Visa före eller efter">
-      <button type="button" class="ba-b" data-ba="100">Före</button>
-      <button type="button" class="ba-b" data-ba="0">Efter</button>
-      <button type="button" class="ba-b ba-magic">Förvandla</button>
-    </div>
-    <p class="sr" id="ba-desc">Före: tät text, sidomeny och varningsruta. Efter: tydlig rubrik, luft, en knapp och en bild.</p>
-    <div class="ba-note"><span><span class="tag">Exempel</span>&nbsp; Riktiga före och efter-bilder från kunder publiceras här när de har godkänt det.</span></div>
-  </div>
-</section>
-
-<section class="sec" id="resultat" data-blob="4" style="padding-top:0" aria-labelledby="h-res">
+<section class="sec" id="resultat" data-blob="4" aria-labelledby="h-res">
   <div class="wrap">
     <div class="results-box rv">
       <div class="sec-head" style="margin-bottom:34px">
@@ -1186,8 +1167,6 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
   } else { path.setAttribute('d', blobD(K[0].r, 0)); }
 
 
-  /* ponytail: dekoranimationer i före/efter körs bara när sektionen syns */
-  if ('IntersectionObserver' in window) { const fv=document.getElementById('forvandling'); if (fv) new IntersectionObserver(es=>fv.classList.toggle('vis',es[0].isIntersecting)).observe(fv); }
 
   /* namnteckningen skrivs fram när den syns */
   { const sg=document.querySelector('.me-sig'); if (sg && 'IntersectionObserver' in window) { const o=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ sg.classList.add('signed'); o.disconnect(); } },{threshold:.6}); o.observe(sg); } else if (sg) sg.classList.add('signed'); }
@@ -1278,40 +1257,6 @@ small:not([aria-hidden="true"] small){font-size:var(--t1)!important}[aria-hidden
   const art = document.querySelector('.hero-art');
   if (motion && art && matchMedia('(pointer:fine)').matches) art.addEventListener('pointermove', e => { const b=art.getBoundingClientRect(), x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5; art.style.transform=`rotateY(${x*8}deg) rotateX(${-y*8}deg)`; });
 
-  /* ---------- springy before/after slider (native range = keyboard + SR) ---------- */
-  if (document.getElementById('ba')) { // ponytail: före/efter finns bara på startsidan
-  const ba = document.getElementById('ba'), rg = document.getElementById('baRange'), bub = ba.querySelector('.ba-bubble');
-  let pos = 50, vel = 0, target = 50, raf = 0, touched = false;
-  const paint = () => { ba.style.setProperty('--pos', pos.toFixed(2)+'%'); ba.style.setProperty('--sq', (1 + clamp(Math.abs(vel)*.012,0,.22)).toFixed(3)); ba.style.setProperty('--rot', (vel*.6).toFixed(1)+'deg'); };
-  const step = () => { const k=.14, d=.72; vel = (vel + (target-pos)*k)*d; pos += vel; paint();
-    if (Math.abs(vel)>.01 || Math.abs(target-pos)>.05) raf=requestAnimationFrame(step); else { pos=target; vel=0; paint(); raf=0; } };
-  const go = v => { target = +v; rg.setAttribute('aria-valuetext', Math.round(target)+' procent före'); if (!motion) { pos=target; vel=0; paint(); return; } if(!raf) raf=requestAnimationFrame(step); };
-  rg.addEventListener('input', e => go(e.target.value));
-  rg.addEventListener('focus', () => ba.classList.add('focus')); rg.addEventListener('blur', () => ba.classList.remove('focus'));
-  ['pointerdown','keydown','input'].forEach(ev => rg.addEventListener(ev, () => { if(!touched){ touched=true; bub.classList.add('gone'); } }));
-  paint();
-  /* knappar: Före / Efter / Förvandla */
-  const bbs = [...document.querySelectorAll('.ba-b[data-ba]')];
-  const mark = v => bbs.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.ba === v)));
-  const setTo = v => { touched = true; if (bub) bub.classList.add('gone'); rg.value = v; go(v); mark(v); };
-  bbs.forEach(b => b.addEventListener('click', () => setTo(+b.dataset.ba)));
-  rg.addEventListener('input', () => mark(-1));
-  const magic = document.querySelector('.ba-magic');
-  if (magic) magic.addEventListener('click', () => {
-    touched = true; if (bub) bub.classList.add('gone'); ba.classList.remove('shine'); mark(-1);
-    if (!motion) { setTo(0); return; }
-    rg.value = 100; go(100);
-    const t0 = performance.now() + 450, dur = 1700;
-    const tick = now => { const k = Math.min(1, Math.max(0, (now - t0) / dur)), e = 1 - Math.pow(1 - k, 3), v = Math.round(100 - 100 * e);
-      rg.value = v; go(v); if (k < 1) requestAnimationFrame(tick); else { mark(0); void ba.offsetWidth; ba.classList.add('shine'); } };
-    requestAnimationFrame(tick);
-  });
-  if (motion && 'IntersectionObserver' in window) {
-    const so = new IntersectionObserver(es => { if (es[0].isIntersecting) { so.disconnect();
-      const seq=[[600,32],[1150,66],[1700,50]]; seq.forEach(([t,v]) => setTimeout(() => { if(!touched) go(v); }, t)); } }, {threshold:.6});
-    so.observe(ba);
-  }
-  } // slut på före/efter-skyddet
 
   /* ---------- form (demo, no backend) ---------- */
   /* v1-formuläret ersatt av formulär 1 (se v2-skriptet längst ned) */
