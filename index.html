@@ -4,6 +4,7 @@
 <link rel="preload" as="image" href="ljus/morgon.jpg" fetchpriority="high">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://webbglans.se/">
 <!-- ============================================================
      UTKAST 4 – "Ombonad" · PROTOTYP, inte publicerad.
      Mjuk, varm nordisk riktning: linne, salvia, smörgult, rundade former.
@@ -1011,6 +1012,8 @@ header.site .v2-menu{border-radius:8px!important}
 /* Genomgående: morgonljuset i hjälten, pappersstruktur och solfläckar längre ner */
 :root{--korn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .27 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 html,.t main{background-image:var(--korn)!important;background-size:180px 180px!important}
+/* Inga ensamma ord på sista raden */
+p,li,dd{text-wrap:pretty}h2,h3,.v2-step-h{text-wrap:balance}
 :root{--navh:92px}
 @media (max-width:860px){:root{--navh:88px}}
 .t .hero.ljus{position:relative;min-height:min(760px,84svh);display:flex;align-items:flex-start;margin-top:calc(-1 * var(--navh,0px));padding-top:calc(var(--navh,0px) + clamp(36px,5vw,64px))}
@@ -1115,7 +1118,7 @@ html,.t main{background-image:var(--korn)!important;background-size:180px 180px!
       <div class="stack-text">
         <div class="st on" data-i="0"><h2>Vi börjar med sajten ni har.</h2><p>Innehåll, domän och plattform finns redan. Ofta är det formen som har åldrats, inte verksamheten.</p></div>
         <div class="st" data-i="1"><h2>Vi hittar det som skaver.</h2><p>Otydliga rubriker, tunga bilder och knappar som ingen ser. Vi går igenom både utseende och teknik och prioriterar.</p></div>
-        <div class="st" data-i="2"><h2>Sen putsar vi fram glansen.</h2><p>Färger, typsnitt och bilder som passar er, och rörelse där den hjälper. Sajten ska kännas som ert företag, inte som en mall.</p></div>
+        <div class="st" data-i="2"><h2>Sedan putsar vi fram glansen.</h2><p>Färger, typsnitt och bilder som passar er, och rörelse där den hjälper. Sajten ska kännas som ert företag, inte som en mall.</p></div>
         <div class="st" data-i="3"><h2>Och visar skillnaden i siffror.</h2><p>Snabbare, tydligare och lättare att använda. Vi visar skillnaden med PageSpeed och WAVE och går igenom resultatet med er.</p></div>
       </div>
       <div class="dots" role="group" aria-label="Välj steg"><button type="button" class="on" aria-label="Steg 1" aria-current="step"></button><button type="button" aria-label="Steg 2"></button><button type="button" aria-label="Steg 3"></button><button type="button" aria-label="Steg 4"></button></div>
@@ -1181,7 +1184,7 @@ html,.t main{background-image:var(--korn)!important;background-size:180px 180px!
       <div class="measure">
         <div class="m-item">
           <h3>PageSpeed <small>Googles hastighetsmätning</small></h3>
-          <p>Visar hur snabbt sajten känns i mobilen. Varje extra sekund får fler besökare att ge upp innan sidan ens syns, och Google väger in samma mått när de rangordnar sökresultat.</p>
+          <p>Visar hur snabbt sajten känns i mobilen. Varje extra sekund får fler besökare att ge upp innan sidan ens syns, och Google väger in samma mått när sökresultaten rangordnas.</p>
           <p class="m-why"><b>För er:</b> fler som stannar kvar, och bättre chans att synas när någon söker.</p>
         </div>
         <div class="m-item">
@@ -1252,7 +1255,7 @@ html,.t main{background-image:var(--korn)!important;background-size:180px 180px!
     <div class="foot">
       <div><div class="big" data-brand>Webbglans</div><p style="margin-top:16px;max-width:40ch;color:var(--ink-2)">Vi rustar upp hemsidor som redan finns.</p></div>
       <div><h2 class="foot-h">Sidor</h2><ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
-      <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li></ul></div>
+      <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund/Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li></ul></div>
     </div>
     <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span><span class="orgnr">Org.nr 950613-1078</span></span><span><a href="#top">Till toppen <span class="pil upp" aria-hidden="true"></span></a></span></div>
     <div class="t-mark" aria-hidden="true">Webbglans</div>
