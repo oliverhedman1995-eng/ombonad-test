@@ -746,6 +746,17 @@ header.site .v2-menu{border-radius:8px!important}
 .t-curtain.cover{transform:translateY(-17vh);border-radius:0}
 .t-curtain.away{transform:translateY(-140%);border-radius:0 0 50% 50%/0 0 16vh 16vh}
 @media (prefers-reduced-motion:reduce){.t-curtain{display:none}}
+/* Pilar ritade som vektor (Oliver 2026-11-22: teckenpilarna hamnade på olika höjd på Android).
+   I text ligger pilens mitt på Figtrees mittlinje, 0,30 em över baslinjen (där plus- och minustecknet har sin mitt). I rutor ligger den exakt i mitten. */
+:root{--pil-h:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12h15M13.5 6l6 6-6 6'/%3E%3C/svg%3E");--pil-v:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19.5 12h-15M10.5 6l-6 6 6 6'/%3E%3C/svg%3E");--pil-upp:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19.5v-15M6 10.5l6-6 6 6'/%3E%3C/svg%3E");--pil-om:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12.8a7 7 0 1 1-2.05-4.95M17 4.2v3.65h-3.65'/%3E%3C/svg%3E")}
+.pil{display:inline-block;width:.85em;height:.85em;flex:none;vertical-align:-.125em;background:currentColor;-webkit-mask:var(--pil-h) center/contain no-repeat;mask:var(--pil-h) center/contain no-repeat;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.pil.upp{-webkit-mask-image:var(--pil-upp);mask-image:var(--pil-upp)}
+/* Pilen sitter alltid i textraden och räknas från baslinjen, så den hamnar likadant på alla plattformar (flexcentrering skilde 1,5 px mellan dator och Android) */
+.tl .pil,.v2-menu-cta .pil{margin-left:.45em}
+.v2-menu-cta{display:block!important;text-align:center;padding:16px 20px!important;min-height:0!important;line-height:1.3}
+.v2-menu li a{align-items:baseline!important;min-height:0!important;padding-top:16px!important;padding-bottom:16px!important}
+.t a:hover .pil,.t a:focus-visible .pil{transform:translateX(5px)}
+.v2-menu li a::after{content:""!important;width:.85em;height:.85em;flex:none;background:currentColor;-webkit-mask:var(--pil-h) center/contain no-repeat;mask:var(--pil-h) center/contain no-repeat;position:relative;bottom:calc(.225 * 22px - .425em)} /* menyvalen är Newsreader 22 px, mittlinje 0,225 em */
 </style>
 </head>
 <body id="top">
@@ -758,7 +769,7 @@ header.site .v2-menu{border-radius:8px!important}
       <a class="logo" href="index.html" aria-label="Webbglans, till startsidan"><svg class="gem" width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 3 L39 13 V31 L22 41 L5 31 V13 Z" fill="#455B47"/><path d="M22 3 L39 13 L22 22 Z" fill="#9DB49A"/><path d="M22 22 L39 13 V31 Z" fill="#6F8A6D"/><path class="gl" d="M11 17 L16 14" stroke="#F3DE95" stroke-width="2.6" stroke-linecap="round"/></svg><span class="wm">Webb<i>glans</i></span></a>
       <ul><li><a href="index.html#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html" aria-current="page">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul>
       <a class="btn v2-hbtn" href="granskning.html"><span class="hb-long">Kostnadsfri granskning</span><span class="hb-short">Granskning</span></a>
-      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="index.html#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html" aria-current="page">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></div>
+      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="index.html#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html" aria-current="page">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="granskning.html">Kostnadsfri granskning <span class="pil" aria-hidden="true"></span></a></div>
     </nav>
   </div>
 </header>
@@ -785,7 +796,7 @@ header.site .v2-menu{border-radius:8px!important}
 </ol></li>
 <li class="v2-ph rv"><p class="v2-ph-h"><span class="v2-ph-n">Fas 4</span> <span class="v2-ph-t">Publicering och överlämning</span></p><ol class="v2-steps">
 <li class="v2-step" value="7"><span class="v2-step-n" aria-hidden="true">07</span><h3 class="v2-step-h"><span class="sr">Steg 7: </span>Feedback och publicering</h3><p>En feedbackrunda ingår. Vi bockar av kravlistan, tar ny backup och publicerar.</p></li>
-<li class="v2-step" value="8"><span class="v2-step-n" aria-hidden="true">08</span><h3 class="v2-step-h"><span class="sr">Steg 8: </span>Överlämning</h3><p>Instruktion för egna ändringar, kravlistan ifylld med ”ni bad om → vi gjorde” och faktura efter publicering.</p></li>
+<li class="v2-step" value="8"><span class="v2-step-n" aria-hidden="true">08</span><h3 class="v2-step-h"><span class="sr">Steg 8: </span>Överlämning</h3><p>Instruktion för egna ändringar, kravlistan ifylld med ”ni bad om <span class="pil" aria-hidden="true"></span><span class="sr">till</span> vi gjorde” och faktura efter publicering.</p></li>
 </ol></li>
 </ol>
 <p class="v2-tl-note"><b>Tidplan:</b> cirka 5–6 veckor. Takten styrs mest av hur snabbt texter och bilder kommer in, och ni får tid att fundera mellan stegen.</p></div>
@@ -814,7 +825,7 @@ header.site .v2-menu{border-radius:8px!important}
     <div class="v2-band-in">
       <div><span class="kicker">Nästa steg</span><h2 id="h-band" style="margin-top:18px">Vad kan er sajt bli?</h2>
       <p class="lead" style="margin-top:14px">Fast pris från 4 000 kr + 1 000 kr per sida. Först gör vi en kostnadsfri snabbgranskning, sedan bestämmer ni om ni vill gå vidare.</p></div>
-      <div class="v2-band-btns"><a class="btn" href="granskning.html">Kostnadsfri granskning <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="btn ghost" href="pris.html">Se priser</a><a class="v2-band-link" href="sa-jobbar-vi.html">Så jobbar vi →</a></div>
+      <div class="v2-band-btns"><a class="btn" href="granskning.html">Kostnadsfri granskning <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="btn ghost" href="pris.html">Se priser</a><a class="v2-band-link" href="sa-jobbar-vi.html">Så jobbar vi <span class="pil" aria-hidden="true"></span></a></div>
     </div>
   </div>
 </section>
@@ -827,7 +838,7 @@ header.site .v2-menu{border-radius:8px!important}
       <div><h2 class="foot-h">Sidor</h2><ul><li><a href="index.html#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html" aria-current="page">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
       <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li></ul></div>
     </div>
-    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span><span class="orgnr">Org.nr 950613-1078</span></span><span><a href="#top">Till toppen ↑</a></span></div>
+    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span><span class="orgnr">Org.nr 950613-1078</span></span><span><a href="#top">Till toppen <span class="pil upp" aria-hidden="true"></span></a></span></div>
   </div>
 </footer>
 

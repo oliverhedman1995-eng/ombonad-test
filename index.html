@@ -970,6 +970,21 @@ header.site .v2-menu{border-radius:8px!important}
 .t .dk-ctrl .dk-next::before{content:"→"}
 .t .dk-ctrl .dk-next.restart::before{content:"↺"}
 .t .dk-ctrl button:hover:not(:disabled){transform:scale(1.07)}
+/* Pilar ritade som vektor (Oliver 2026-11-22: teckenpilarna hamnade på olika höjd på Android).
+   I text ligger pilens mitt på Figtrees mittlinje, 0,30 em över baslinjen (där plus- och minustecknet har sin mitt). I rutor ligger den exakt i mitten. */
+:root{--pil-h:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12h15M13.5 6l6 6-6 6'/%3E%3C/svg%3E");--pil-v:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19.5 12h-15M10.5 6l-6 6 6 6'/%3E%3C/svg%3E");--pil-upp:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19.5v-15M6 10.5l6-6 6 6'/%3E%3C/svg%3E");--pil-om:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12.8a7 7 0 1 1-2.05-4.95M17 4.2v3.65h-3.65'/%3E%3C/svg%3E")}
+.pil{display:inline-block;width:.85em;height:.85em;flex:none;vertical-align:-.125em;background:currentColor;-webkit-mask:var(--pil-h) center/contain no-repeat;mask:var(--pil-h) center/contain no-repeat;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.pil.upp{-webkit-mask-image:var(--pil-upp);mask-image:var(--pil-upp)}
+/* Pilen sitter alltid i textraden och räknas från baslinjen, så den hamnar likadant på alla plattformar (flexcentrering skilde 1,5 px mellan dator och Android) */
+.tl .pil,.v2-menu-cta .pil{margin-left:.45em}
+.v2-menu-cta{display:block!important;text-align:center;padding:16px 20px!important;min-height:0!important;line-height:1.3}
+.v2-menu li a{align-items:baseline!important;min-height:0!important;padding-top:16px!important;padding-bottom:16px!important}
+.t a:hover .pil,.t a:focus-visible .pil{transform:translateX(5px)}
+.v2-menu li a::after{content:""!important;width:.85em;height:.85em;flex:none;background:currentColor;-webkit-mask:var(--pil-h) center/contain no-repeat;mask:var(--pil-h) center/contain no-repeat;position:relative;bottom:calc(.225 * 22px - .425em)} /* menyvalen är Newsreader 22 px, mittlinje 0,225 em */
+.t .btn.soft::after,.t .btn.ghost::after{content:none!important}
+.t .dk-ctrl button::before{content:""!important;width:20px;height:20px;background:currentColor;-webkit-mask:var(--pil-v) center/contain no-repeat;mask:var(--pil-v) center/contain no-repeat}
+.t .dk-ctrl .dk-next::before{-webkit-mask-image:var(--pil-h);mask-image:var(--pil-h)}
+.t .dk-ctrl .dk-next.restart::before{-webkit-mask-image:var(--pil-om);mask-image:var(--pil-om)}
 </style>
 <script>document.documentElement.classList.add("t");if(document.documentElement.classList.contains("motion"))document.documentElement.classList.add("t-motion")</script>
 </head>
@@ -983,7 +998,7 @@ header.site .v2-menu{border-radius:8px!important}
       <a class="logo" href="#top" aria-label="Webbglans, till toppen"><svg class="gem" width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 3 L39 13 V31 L22 41 L5 31 V13 Z" fill="#455B47"/><path d="M22 3 L39 13 L22 22 Z" fill="#9DB49A"/><path d="M22 22 L39 13 V31 Z" fill="#6F8A6D"/><path class="gl" d="M11 17 L16 14" stroke="#F3DE95" stroke-width="2.6" stroke-linecap="round"/></svg><span class="wm">Webb<i>glans</i></span></a>
       <ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul>
       <a class="btn v2-hbtn" href="granskning.html"><span class="hb-long">Kostnadsfri granskning</span><span class="hb-short">Granskning</span></a>
-      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></div>
+      <button class="v2-menu-btn" type="button" aria-expanded="false" aria-controls="v2-menu"><span class="v2-burger" aria-hidden="true"><i></i><i></i></span><span class="v2-menu-lbl">Meny</span></button><div class="v2-menu" id="v2-menu" hidden><ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om</a></li><li><a href="pris.html#fragor">Frågor</a></li></ul><a class="v2-menu-cta" href="granskning.html">Kostnadsfri granskning <span class="pil" aria-hidden="true"></span></a></div>
     </nav>
   </div>
 </header>
@@ -1073,7 +1088,7 @@ header.site .v2-menu{border-radius:8px!important}
               <div class="v-shade"></div>
               <div class="v-snow"></div>
               <div class="v-nav"><b>VINTERHAMN</b><span>Bastun</span><span>Kallbad</span><span>Priser</span><em>Boka</em></div>
-              <div class="v-copy"><div class="v-eyew"><span class="v-eye">Vedeldad bastu vid havet</span></div><div class="v-h"><span class="v-ht">Värm dig vid havet.</span><i class="v-caret"></i></div><div class="v-cta"><span class="v-b1">Boka en kväll →</span><span class="v-b2">Se priser</span></div></div>
+              <div class="v-copy"><div class="v-eyew"><span class="v-eye">Vedeldad bastu vid havet</span></div><div class="v-h"><span class="v-ht">Värm dig vid havet.</span><i class="v-caret"></i></div><div class="v-cta"><span class="v-b1">Boka en kväll <span class="pil"></span></span><span class="v-b2">Se priser</span></div></div>
               <div class="v-card"><span class="v-dot"></span><b>Ikväll 18–21</b><span>4 platser kvar</span></div>
             </div>
             <div class="v-tick"><div class="v-tick-in">Vedeldat <i>✦</i> Kallbad i isvaken <i>✦</i> Handdukar ingår <i>✦</i> Öppet året runt <i>✦</i> Vedeldat <i>✦</i> Kallbad i isvaken <i>✦</i> Handdukar ingår <i>✦</i> Öppet året runt <i>✦</i></div></div>
@@ -1134,9 +1149,9 @@ header.site .v2-menu{border-radius:8px!important}
           <li><b>100</b><span>Bästa praxis</span></li>
           <li><b>100</b><span>SEO</span></li>
         </ul>
-        <a class="own-a" href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwebbglans.se%2F&amp;form_factor=mobile" target="_blank" rel="noopener">Mät själv <span aria-hidden="true">→</span><span class="sr"> (öppnas i ny flik)</span></a>
+        <a class="own-a" href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwebbglans.se%2F&amp;form_factor=mobile" target="_blank" rel="noopener">Mät själv <span class="pil" aria-hidden="true"></span><span class="sr"> (öppnas i ny flik)</span></a>
       </div>
-      <p class="own-cta">Undrar ni vad er sajt får? Vi mäter den gratis och förklarar vad siffrorna betyder. <a href="granskning.html">Kostnadsfri granskning <span aria-hidden="true">→</span></a></p>
+      <p class="own-cta">Undrar ni vad er sajt får? Vi mäter den gratis och förklarar vad siffrorna betyder. <a href="granskning.html">Kostnadsfri granskning <span class="pil" aria-hidden="true"></span></a></p>
     </div>
   </div>
 </section>
@@ -1159,7 +1174,7 @@ header.site .v2-menu{border-radius:8px!important}
     <div class="v2-band-in">
       <div><span class="kicker">Nästa steg</span><h2 id="h-band" style="margin-top:18px">Vad kan er sajt bli?</h2>
       <p class="lead" style="margin-top:14px">Fast pris från 4 000 kr + 1 000 kr per sida. Först gör vi en kostnadsfri snabbgranskning, sedan bestämmer ni om ni vill gå vidare.</p></div>
-      <div class="v2-band-btns"><a class="btn" href="granskning.html">Kostnadsfri granskning <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="btn ghost" href="pris.html">Se priser</a><a class="v2-band-link" href="sa-jobbar-vi.html">Så jobbar vi →</a></div>
+      <div class="v2-band-btns"><a class="btn" href="granskning.html">Kostnadsfri granskning <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="btn ghost" href="pris.html">Se priser</a><a class="v2-band-link" href="sa-jobbar-vi.html">Så jobbar vi <span class="pil" aria-hidden="true"></span></a></div>
     </div>
   </div>
 </section>
@@ -1172,7 +1187,7 @@ header.site .v2-menu{border-radius:8px!important}
       <div><h2 class="foot-h">Sidor</h2><ul><li><a href="#demo">Demosidor</a></li><li><a href="sa-jobbar-vi.html">Så jobbar vi</a></li><li><a href="pris.html">Pris</a></li><li><a href="om.html">Om Webbglans</a></li><li><a href="granskning.html">Kostnadsfri granskning</a></li><li><a href="integritet.html">Integritetspolicy</a></li></ul></div>
       <div><h2 class="foot-h">Kontakt</h2><ul><li>Holmsund / Umeå</li><li><a href="mailto:oliver@webbglans.se">oliver@webbglans.se</a></li></ul></div>
     </div>
-    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span><span class="orgnr">Org.nr 950613-1078</span></span><span><a href="#top">Till toppen ↑</a></span></div>
+    <div class="legal"><span>© <span id="yr">2026</span> <span data-brand>Webbglans</span><span class="orgnr">Org.nr 950613-1078</span></span><span><a href="#top">Till toppen <span class="pil upp" aria-hidden="true"></span></a></span></div>
     <div class="t-mark" aria-hidden="true">Webbglans</div>
   </div>
 </footer>
@@ -1493,7 +1508,10 @@ setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
     if (n.nodeType !== 3 || !n.textContent.trim()) return; let t = n.textContent.trim(), pil = '';
     if (t.endsWith('→')) { pil = '→'; t = t.slice(0, -1).trim(); }
     const s = document.createElement('span'); s.className = 'tl'; s.textContent = t; n.replaceWith(s);
-    if (pil) { const x = document.createElement('span'); x.className = 'ta'; x.setAttribute('aria-hidden', 'true'); x.textContent = pil; s.after(x); } }));
+    if (pil) { const x = document.createElement('span'); x.className = 'ta pil'; x.setAttribute('aria-hidden', 'true'); s.after(x); } }));
+  // Pilen läggs inne i textraden, så att den räknas från baslinjen (understrykningen följer bara texten)
+  document.querySelectorAll('.btn.soft, .btn.ghost, .own-a, .v2-band-link').forEach(l => { const tl = l.querySelector('.tl'); if (!tl) return; let p = l.querySelector('.pil');
+    if (!p) { p = document.createElement('span'); p.className = 'pil'; p.setAttribute('aria-hidden', 'true'); } tl.append(p); });
   // Nästa steg visar ↺ på sista steget (texten sätts av startsidans skript)
   // Stegknapparna är runda pilar: texten ligger kvar som skärmläsartext, och Nästa steg visar ↺ på sista steget
   document.querySelectorAll('.dk-ctrl button').forEach(btn => {
