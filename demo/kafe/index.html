@@ -126,13 +126,18 @@ section{position:relative;scroll-margin-top:88px}
 
 /* Ugnsklockan: signaturen */
 .klocka{display:grid;grid-template-columns:minmax(280px,440px) 1fr;gap:clamp(32px,6vw,88px);align-items:center;margin-top:48px}
-.urtavla{position:relative;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 42%,#F7F1E6 0 52%,#E6D9C3 53% 100%);box-shadow:inset 0 0 0 14px var(--dark),inset 0 0 0 17px var(--ember),0 30px 60px -28px rgba(31,22,17,.55)}
-.urtavla svg{position:absolute;inset:0;width:100%;height:100%}
-.visare{transform-origin:200px 200px;transition:transform 1s var(--ease)}
-.tid{position:absolute;transform:translate(-50%,-50%);min-width:84px;min-height:44px;padding:0 12px;border-radius:999px;border:2px solid var(--dark);background:var(--panel);color:var(--ink);font:400 16px/1 var(--mono);cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease),box-shadow .25s var(--ease)}
-.tid:hover{box-shadow:0 0 0 4px rgba(79,107,69,.3)}
-.tid[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
-.nu{position:absolute;left:50%;top:64%;transform:translate(-50%,-50%);font:400 14px/1.5 var(--mono);letter-spacing:.04em;color:var(--ink-2);text-align:center;width:70%;white-space:pre-line}
+/* Ugnsratten: mörk gjutjärnsratt med glöd. Tiderna sitter där de hör hemma på en urtavla, utanför ringen. */
+.urtavla{position:relative;aspect-ratio:1;width:100%;max-width:440px;justify-self:center}
+.ratt{position:absolute;left:50%;top:50%;width:var(--d,60%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 30px 60px -26px rgba(31,22,17,.6),0 0 0 1px rgba(31,22,17,.25)}
+.ratt svg{display:block;width:100%;height:100%}
+.visare{transform-box:view-box;transform-origin:200px 200px;transition:transform 1.2s var(--ease)}
+.tid{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);min-width:84px;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);font:400 16px/1 var(--mono);letter-spacing:.02em;cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease)}
+.tid:hover{box-shadow:0 0 0 4px rgba(227,161,92,.28)}
+.tid:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.tid[aria-pressed=true]{background:var(--dark);border-color:var(--ember);color:var(--on-dark)}
+.nu{margin:18px auto 0;max-width:30ch;font:400 14px/1.6 var(--mono);letter-spacing:.04em;color:var(--ink-2);text-align:center;white-space:pre-line}
+.klocka-kol{display:flex;flex-direction:column;align-items:center}
+@media (max-width:360px){.tid{min-width:62px;padding:0 8px;font-size:14px}} /* smala telefoner: knapparna smalare men lika höga, så att ratten får plats */
 .bakas figure{margin:0;position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/3;background:var(--dark-2)}
 .bakas figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .6s var(--ease),transform 1.2s var(--ease)}
 .bakas figure img.vald{opacity:1;transform:scale(1)}
@@ -272,18 +277,36 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <p class="ingress">Tryck på en tid. Klockan visar själv vad som bakas närmast just nu.</p>
       </div>
       <div class="klocka">
-        <div class="urtavla fram" id="urtavla">
-          <svg viewBox="0 0 400 400" aria-hidden="true">
-            <g stroke="#2A1E16" stroke-width="3" stroke-linecap="round">
-              <line x1="200" y1="58" x2="200" y2="74"/><line x1="342" y1="200" x2="326" y2="200"/><line x1="200" y1="342" x2="200" y2="326"/><line x1="58" y1="200" x2="74" y2="200"/>
-            </g>
-            <g class="visare" id="visare"><line x1="200" y1="200" x2="200" y2="96" stroke="#4F6B45" stroke-width="7" stroke-linecap="round"/><circle cx="200" cy="200" r="11" fill="#2A1E16"/></g>
-          </svg>
-          <button class="tid" style="left:50%;top:12%" data-i="0" aria-pressed="false">06.00</button>
-          <button class="tid" style="left:88%;top:50%" data-i="1" aria-pressed="false">07.30</button>
-          <button class="tid" style="left:50%;top:88%" data-i="2" aria-pressed="false">11.00</button>
-          <button class="tid" style="left:12%;top:50%" data-i="3" aria-pressed="false">14.00</button>
-          <div class="nu" id="nu" aria-live="polite"></div>
+        <div class="klocka-kol fram">
+          <div class="urtavla" id="urtavla">
+            <div class="ratt">
+              <svg viewBox="0 0 400 400" aria-hidden="true">
+                <defs>
+                  <radialGradient id="jarn" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#3A2A20"/><stop offset=".65" stop-color="#241912"/><stop offset="1" stop-color="#160F0B"/></radialGradient>
+                  <radialGradient id="glod" cx="50%" cy="100%" r="62%"><stop offset="0" stop-color="#E3A15C" stop-opacity=".55"/><stop offset=".55" stop-color="#E3A15C" stop-opacity=".12"/><stop offset="1" stop-color="#E3A15C" stop-opacity="0"/></radialGradient>
+                </defs>
+                <circle cx="200" cy="200" r="198" fill="#1F1611"/>
+                <circle cx="200" cy="200" r="186" fill="url(#jarn)"/>
+                <circle cx="200" cy="200" r="186" fill="url(#glod)"/>
+                <circle cx="200" cy="200" r="186" fill="none" stroke="#E3A15C" stroke-width="1.5" stroke-opacity=".8"/>
+                <g id="streck"></g>
+                <g id="markorer"></g>
+                <g font-family="DM Mono, ui-monospace, monospace" font-size="20" fill="#D6C7B2" text-anchor="middle" dominant-baseline="central">
+                  <text x="200" y="62">12</text><text x="338" y="200">3</text><text x="200" y="338">6</text><text x="62" y="200">9</text>
+                </g>
+                <g class="visare" id="visare">
+                  <path d="M196 214 L198.5 92 Q200 84 201.5 92 L204 214 Z" fill="#F4ECDF"/>
+                  <circle cx="200" cy="96" r="5" fill="#E3A15C"/>
+                </g>
+                <circle cx="200" cy="200" r="13" fill="#E3A15C"/><circle cx="200" cy="200" r="5" fill="#1F1611"/>
+              </svg>
+            </div>
+            <button class="tid" data-i="0" aria-pressed="false">06.00</button>
+            <button class="tid" data-i="1" aria-pressed="false">07.30</button>
+            <button class="tid" data-i="2" aria-pressed="false">11.00</button>
+            <button class="tid" data-i="3" aria-pressed="false">14.00</button>
+          </div>
+          <p class="nu" id="nu" aria-live="polite"></p>
         </div>
         <div class="bakas fram" id="bakas">
           <figure>
@@ -455,12 +478,35 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   const knappar = [...document.querySelectorAll('.tid')], bilder = [...document.querySelectorAll('.bakas img')];
   const visare = document.getElementById('visare'), nu = document.getElementById('nu');
   const bRubrik = document.getElementById('bakas-rubrik'), bText = document.getElementById('bakas-text');
-  let vald = -1;
+  let vald = -1, nuvVinkel = null;
+  // Vinkel på en tolvtimmars urtavla, medurs från klockan tolv
+  const vinkel = t => ((t.h % 12) + t.m / 60) * 30;
+  // Visaren tar kortaste vägen till nästa tid
+  function vrid(v){ if (nuvVinkel === null) nuvVinkel = v; else { let d = ((v - nuvVinkel) % 360 + 540) % 360 - 180; nuvVinkel += d; } visare.style.transform = 'rotate(' + nuvVinkel + 'deg)'; }
+  // Streck var femte minut och tydligare varje timme, plus en glödande prick där varje bakning sitter
+  const NS = 'http://www.w3.org/2000/svg', streck = document.getElementById('streck'), markorer = document.getElementById('markorer');
+  for (let m = 0; m < 60; m++){ if (m % 5 && m % 15) continue; const timme = m % 5 === 0, a = m * 6 * Math.PI / 180, r1 = 172, r2 = timme ? 156 : 164;
+    const l = document.createElementNS(NS, 'line'); l.setAttribute('x1', 200 + r1 * Math.sin(a)); l.setAttribute('y1', 200 - r1 * Math.cos(a)); l.setAttribute('x2', 200 + r2 * Math.sin(a)); l.setAttribute('y2', 200 - r2 * Math.cos(a));
+    l.setAttribute('stroke', '#D6C7B2'); l.setAttribute('stroke-width', timme ? 3 : 1.5); l.setAttribute('stroke-opacity', timme ? .75 : .35); l.setAttribute('stroke-linecap', 'round'); streck.appendChild(l); }
+  TIDER.forEach(t => { const a = vinkel(t) * Math.PI / 180, c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', 200 + 179 * Math.sin(a)); c.setAttribute('cy', 200 - 179 * Math.cos(a)); c.setAttribute('r', 5); c.setAttribute('fill', '#E3A15C'); markorer.appendChild(c); });
+  // Knapparna läggs utanför ratten, längs samma vinkel, så långt ut att de aldrig rör ringen
+  const tavla = document.getElementById('urtavla'), ratt = tavla.querySelector('.ratt');
+  function placera(){
+    const W = tavla.clientWidth, GAP = 12, KANT = 4;
+    const mat = knappar.map(k => ({w: k.offsetWidth, h: k.offsetHeight}));
+    const ut = TIDER.map((t, n) => { const a = vinkel(t) * Math.PI / 180, sx = Math.sin(a), cy = -Math.cos(a); return {sx, cy, e: Math.abs(sx) * mat[n].w / 2 + Math.abs(cy) * mat[n].h / 2, hw: mat[n].w / 2, hh: mat[n].h / 2}; });
+    // Rattens radie: så stor som möjligt, men varje knapp ska få plats innanför tavlan
+    let R = W / 2;
+    ut.forEach(o => { const rx = (W / 2 - KANT - o.hw) / Math.max(Math.abs(o.sx), 1e-6), ry = (W / 2 - KANT - o.hh) / Math.max(Math.abs(o.cy), 1e-6); R = Math.min(R, Math.min(rx, ry) - GAP - o.e); });
+    R = Math.max(40, R); ratt.style.setProperty('--d', (2 * R / W * 100).toFixed(2) + '%');
+    ut.forEach((o, n) => { const d = R + GAP + o.e; knappar[n].style.setProperty('--x', (W / 2 + o.sx * d) + 'px'); knappar[n].style.setProperty('--y', (W / 2 + o.cy * d) + 'px'); });
+  }
+  placera(); addEventListener('resize', placera); if (document.fonts) document.fonts.ready.then(placera);
   function valj(i){
     if (i === vald) return; vald = i;
     knappar.forEach((k, n) => k.setAttribute('aria-pressed', n === i));
     bilder.forEach((b, n) => b.classList.toggle('vald', n === i));
-    visare.style.transform = 'rotate(' + (i * 90) + 'deg)';
+    vrid(vinkel(TIDER[i]));
     bRubrik.textContent = TIDER[i].rubrik; bText.textContent = TIDER[i].text;
   }
   knappar.forEach((k, n) => k.addEventListener('click', () => valj(n)));
