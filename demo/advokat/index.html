@@ -148,7 +148,7 @@ section{scroll-margin-top:96px}
 .steg::before,.steg::after{content:"";position:absolute;left:22px;right:0;top:21px;height:2px;background:var(--marin-2)}
 .steg::after{background:var(--pa-marin-2);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease)}
 .steg.syns::after{transform:scaleX(1)}
-.steg li{position:relative;counter-increment:steg}
+.steg li{position:relative;z-index:1;counter-increment:steg} /* över linjen, annars ritas strecket ovanpå siffrorna */
 .steg li::before{content:counter(steg);position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--pa-marin-2);background:var(--marin);color:var(--pa-marin);font:600 var(--s3)/1 var(--sans);margin-bottom:24px;transition:background .4s,color .4s}
 .steg.syns li::before{background:var(--pa-marin);color:var(--marin)}
 .steg.syns li:nth-child(2)::before{transition-delay:.55s}
