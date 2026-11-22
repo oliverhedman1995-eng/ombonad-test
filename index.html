@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="sv">
 <head>
+<link rel="preload" as="image" href="ljus/morgon.jpg" fetchpriority="high">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- ============================================================
@@ -1008,8 +1009,10 @@ header.site .v2-menu{border-radius:8px!important}
 </style>
 <style>
 /* Genomgående: morgonljuset i hjälten, pappersstruktur och solfläckar längre ner */
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.2;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .27 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+:root{--korn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .27 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+html,.t main{background-image:var(--korn)!important;background-size:180px 180px!important}
+:root{--navh:92px}
+@media (max-width:860px){:root{--navh:88px}}
 .t .hero.ljus{position:relative;min-height:min(760px,84svh);display:flex;align-items:flex-start;margin-top:calc(-1 * var(--navh,0px));padding-top:calc(var(--navh,0px) + clamp(36px,5vw,64px))}
 .t .hero.ljus::before{display:none}
 .hero.ljus .wrap{width:100%}
@@ -1022,7 +1025,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opa
   linear-gradient(0deg,var(--linen) 0%,rgba(244,239,230,0) 22%)}
 /* Solfläckar: samma morgonsol faller snett över några avsnitt längre ner */
 #demo,#for-vem{position:relative}
-#demo::before,#for-vem::before{content:"";position:absolute;z-index:-1;pointer-events:none;mix-blend-mode:multiply;background:url(ljus/sol.jpg) center/cover no-repeat;opacity:.75;
+#demo::before,#for-vem::before{content:"";position:absolute;z-index:-1;pointer-events:none;background:url(ljus/sol.jpg) center/cover no-repeat;opacity:.75;
   -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);mask-image:radial-gradient(closest-side,#000 55%,transparent 100%)}
 #demo::before{right:-8%;top:-6%;width:min(1100px,90vw);aspect-ratio:16/9}
 #for-vem::before{left:-12%;top:-20%;width:min(1000px,85vw);aspect-ratio:16/9;transform:scaleX(-1) rotate(8deg)}
