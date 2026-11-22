@@ -1223,7 +1223,7 @@ html,.t main{background-image:var(--korn)!important;background-size:180px 180px!
   <div class="wrap">
     <div class="d3-sten-grid">
       <div class="d3-sten-box" id="d3sten" tabindex="0" role="img" aria-label="En sexkantig grön glassten ur Webbglans logotyp. Dra eller använd piltangenterna för att vrida den.">
-        <video src="ljus/sten.mp4" poster="ljus/sten.jpg" muted playsinline preload="auto" loop></video>
+        <video src="ljus/sten.mp4" poster="ljus/sten.jpg" muted playsinline preload="none" loop></video>
         <span class="d3-hint">Dra för att vrida stenen</span>
       </div>
       <div>
@@ -1656,14 +1656,16 @@ setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
   const wrap = p => ((p % D) + D) % D;
   const seek = p => { want = wrap(p); if (!v.seeking) v.currentTime = want; };
   v.addEventListener('seeked', () => { if (want !== null && Math.abs(v.currentTime - want) > .02) v.currentTime = want; });
-  const frame = now => { const s = now / 1000, dt = Math.min(1/30, s - lastT || 0); lastT = s;
+  let synlig = false, igang = false;
+  const frame = now => { if (!synlig && !drag){ v.pause(); igang = false; return; } // utom synhåll: ingen film och ingen loop
+    const s = now / 1000, dt = Math.min(1/30, s - lastT || 0); lastT = s;
     if (!drag){
       vel += (BASE - vel) * (1 - Math.exp(-dt / tau));            // tillbaka mot grundtempot
       if (vel >= MINR){ want = null; const r = Math.min(16, vel); if (Math.abs(v.playbackRate - r) > .003) v.playbackRate = r; if (v.paused) v.play().catch(() => {}); pos = v.currentTime; }
       else { if (!v.paused) v.pause(); pos += vel * dt; seek(pos); } // bakåt eller nästan stilla: spola
     }
     requestAnimationFrame(frame); };
-  requestAnimationFrame(frame);
+  new IntersectionObserver(es => { synlig = es[0].isIntersecting; if (synlig && v.readyState === 0){ v.preload = 'auto'; v.load(); } if (synlig && !igang){ igang = true; lastT = 0; requestAnimationFrame(frame); } }, {rootMargin: '200px 0px'}).observe(box);
   box.addEventListener('pointerdown', e => { v.pause(); pos = v.currentTime; drag = {x: e.clientX, p: pos, t: e.timeStamp, lx: e.clientX, v: 0}; box.setPointerCapture(e.pointerId); box.classList.add('drar'); hint && hint.classList.add('borta'); });
   box.addEventListener('pointermove', e => { if (!drag) return; const k = D / (box.clientWidth * 1.6);
     pos = drag.p - (e.clientX - drag.x) * k; seek(pos);
@@ -1679,6 +1681,8 @@ setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
 </script>
 <script>
 // Hjältens bakgrund går upp bakom den klibbiga menyn
+// Morgonljuset pausar när hjälten är utom synhåll
+(() => { const v = document.querySelector('.ljus-bg video'); if (!v) return; new IntersectionObserver(es => { if (!v.isConnected) return; es[0].isIntersecting ? v.play().catch(() => {}) : v.pause(); }).observe(v); })();
 // Reducera rörelse: morgonljuset står still som bild och filmen laddas inte
 (() => { const v = document.querySelector('.ljus-bg video'); if (v && matchMedia('(prefers-reduced-motion: reduce)').matches){ v.pause(); v.removeAttribute('src'); v.load(); v.remove(); } })();
 (() => { const h = document.querySelector('header.site'); const s = () => document.documentElement.style.setProperty('--navh', h.offsetHeight + 'px'); s(); addEventListener('resize', s); })();
