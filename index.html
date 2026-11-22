@@ -1647,7 +1647,7 @@ setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
   const box = document.getElementById('d3sten'); if (!box) return;
   const v = box.querySelector('video'), hint = box.querySelector('.d3-hint');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Filmen är kodad baklänges, så stenens lugna snurr är vanlig uppspelning: varje bildruta är skarp och
+  // Stenens lugna snurr är vanlig uppspelning av filmen: varje bildruta är skarp och
   // webbläsaren sköter tempot. Dras stenen bakåt spolas filmen i stället. Ett varv tar 48 s i vila.
   const TURN = 48, MINR = .0625;
   let D = 8, BASE = 0, vel = 0, tau = .6, drag = null, lastT = 0, pos = 0, want = null;
@@ -1668,15 +1668,15 @@ setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
   new IntersectionObserver(es => { synlig = es[0].isIntersecting; if (synlig && v.readyState === 0){ v.preload = 'auto'; v.load(); } if (synlig && !igang){ igang = true; lastT = 0; requestAnimationFrame(frame); } }, {rootMargin: '200px 0px'}).observe(box);
   box.addEventListener('pointerdown', e => { v.pause(); pos = v.currentTime; drag = {x: e.clientX, p: pos, t: e.timeStamp, lx: e.clientX, v: 0}; box.setPointerCapture(e.pointerId); box.classList.add('drar'); hint && hint.classList.add('borta'); });
   box.addEventListener('pointermove', e => { if (!drag) return; const k = D / (box.clientWidth * 1.6);
-    pos = drag.p - (e.clientX - drag.x) * k; seek(pos);
-    const dt = (e.timeStamp - drag.t) / 1000; if (dt > 0) drag.v = drag.v * .6 + (-(e.clientX - drag.lx) * k / dt) * .4; drag.t = e.timeStamp; drag.lx = e.clientX; });
+    pos = drag.p + (e.clientX - drag.x) * k; seek(pos);
+    const dt = (e.timeStamp - drag.t) / 1000; if (dt > 0) drag.v = drag.v * .6 + ((e.clientX - drag.lx) * k / dt) * .4; drag.t = e.timeStamp; drag.lx = e.clientX; });
   const up = e => { if (!drag) return;
     const sv = e.timeStamp - drag.t > 120 ? 0 : drag.v; // stod fingret still innan släppet blir det inget kast
     drag = null; box.classList.remove('drar');
     vel = Math.max(-D * .9, Math.min(D * .9, sv));
     tau = Math.min(4, .8 + Math.abs(vel - BASE) / (D * .2)) / 3; }; // hårdare snurr ger längre återgång, klar inom högst 4 s
   box.addEventListener('pointerup', up); box.addEventListener('pointercancel', up);
-  box.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight'){ e.preventDefault(); vel = (e.key === 'ArrowRight' ? -1 : 1) * D * .25; tau = 1.2; hint && hint.classList.add('borta'); } });
+  box.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight'){ e.preventDefault(); vel = (e.key === 'ArrowRight' ? 1 : -1) * D * .25; tau = 1.2; hint && hint.classList.add('borta'); } });
 })();
 </script>
 <script>
