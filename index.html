@@ -915,7 +915,10 @@ header.site .v2-menu{border-radius:8px!important}
 /* Polerat hörn: ett avskuret hörn, aldrig fler än två per yta */
 .t .hero-art .c2{border-radius:0!important;clip-path:polygon(0 0,calc(100% - 34px) 0,100% 34px,100% 100%,0 100%)}
 .t .hero-art .c3{border-radius:0!important;clip-path:polygon(0 0,100% 0,100% 100%,22px 100%,0 calc(100% - 22px))}
-.t .demo-k figure{border-radius:0!important;margin:16px 16px 0;clip-path:polygon(0 0,calc(100% - 44px) 0,100% 44px,100% 100%,0 100%);transform-origin:50% 0}
+.t .demo-k figure{border-radius:0!important;margin:16px 16px 0;clip-path:polygon(0 0,calc(100% - 44px) 0,100% 44px,100% 100%,0 100%)}
+/* Demokortens bilder: glider sakta i ramen efter var kortet är (inte efter farten) och andas långsamt */
+.t .demo-k figure img{scale:1.06;translate:0 var(--py,0%);will-change:translate,scale;animation:andas 18s cubic-bezier(.45,0,.55,1) infinite alternate}
+@keyframes andas{from{scale:1.06}to{scale:1.11}}
 .t .results-box,.t .v2-band-in{border-radius:0!important;clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,var(--cut) 100%,0 calc(100% - var(--cut)));--cut:64px;will-change:transform}
 @media (max-width:700px){.t .results-box,.t .v2-band-in{--cut:34px}}
 /* Ringar runt granskningsknappen */
@@ -1041,7 +1044,7 @@ header.site .v2-menu{border-radius:8px!important}
         <div class="in">
           <span class="tag">Demo</span>
           <h3>Ugnsvarm, kafé och bageri</h3>
-          <p>Kreativ och varm. Bilden överst följer skrollen, från ugnen som tänds till kaffet på bordet.</p>
+          <p>Kreativ och varm. Bilden överst spelas upp av sig själv, från ugnen som tänds till kaffet på bordet.</p>
           <a class="btn soft" href="demo/kafe/">Öppna kafédemon <span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         </div>
       </article>
@@ -1547,18 +1550,16 @@ setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
   });
   let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => done.forEach(h => { split(h); h.classList.add('in'); }), 200); }); // ponytail: radbrytningen räknas om, och redan visade rubriker står kvar
 
-  // Skrollen: halvmånen stiger, ringarna andas, banden lyfts upp, ordmärket glider fram och demokorten böjer sig efter farten
+  // Skrollen: halvmånen stiger, ringarna andas, banden lyfts upp, ordmärket glider fram och demokortens bilder glider i ramen
   const hero = document.querySelector('.hero'), art = document.querySelector('.hero-art');
   const bands = [...document.querySelectorAll('.results-box, .v2-band-in')], figs = [...document.querySelectorAll('.demo-k figure')], mark = document.querySelector('.t-mark');
-  let lastY = scrollY, bend = 0, raf = 0;
+  let raf = 0;
   const frame = () => {
-    raf = 0; const y = scrollY, vh = innerHeight, v = y - lastY; lastY = y;
+    raf = 0; const y = scrollY, vh = innerHeight;
     if (hero) { const k = clamp(y / hero.offsetHeight, 0, 1); hero.style.setProperty('--rs', (1 + k * .25).toFixed(4)); if (art) art.style.setProperty('--moon', (-18 * k).toFixed(2)); }
     bands.forEach(b => { const r = b.getBoundingClientRect(), k = clamp((vh - r.top) / (vh * .7), 0, 1), e = 1 - Math.pow(1 - k, 3); b.style.transform = 'translateY(' + ((1 - e) * 90).toFixed(1) + 'px) scale(' + (.94 + .06 * e).toFixed(4) + ')'; });
     if (mark) { const r = mark.getBoundingClientRect(), k = clamp((vh - r.top) / r.height, 0, 1); mark.style.setProperty('--mk', ((1 - k) * 40).toFixed(2)); }
-    bend += (clamp(v * .12, -7, 7) - bend) * .18; if (Math.abs(bend) < .01) bend = 0;
-    figs.forEach(f => { f.style.transform = bend ? 'perspective(900px) rotateX(' + (-bend).toFixed(2) + 'deg) skewY(' + (bend * .35).toFixed(2) + 'deg)' : ''; });
-    if (bend) raf = requestAnimationFrame(frame);
+    figs.forEach(f => { const r = f.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return; const k = clamp((vh - r.top) / (vh + r.height), 0, 1); f.firstElementChild.style.setProperty('--py', ((.5 - k) * 5).toFixed(2) + '%'); });
   };
   const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
   addEventListener('scroll', kick, {passive: true}); addEventListener('resize', kick); frame();
