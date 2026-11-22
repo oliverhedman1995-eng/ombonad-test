@@ -990,6 +990,49 @@ header.site .v2-menu{border-radius:8px!important}
 .t .dk-ctrl .dk-next.restart::before{-webkit-mask-image:var(--pil-om);mask-image:var(--pil-om)}
 </style>
 <script>document.documentElement.classList.add("t");if(document.documentElement.classList.contains("motion"))document.documentElement.classList.add("t-motion")</script>
+<style>
+/* Stenen man vrider på, vid granskningen */
+.d3-sten-box video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
+.d3-sten-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.d3-sten-box{position:relative;aspect-ratio:1;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.d3-sten-box.drar{cursor:grabbing}
+.d3-sten-box video{-webkit-mask-image:radial-gradient(closest-side,#000 78%,transparent 100%);mask-image:radial-gradient(closest-side,#000 78%,transparent 100%)}
+.d3-sten-box:focus-visible{outline:3px solid var(--sage-d);outline-offset:6px}
+.d3-hint{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);font:500 14px/1 var(--sans,system-ui);color:var(--ink-2);background:rgba(255,253,248,.92);padding:9px 14px;border-radius:2px;transition:opacity .6s;white-space:nowrap}
+.d3-hint.borta{opacity:0}
+.d3-sten h2 i{color:var(--sage-d)}
+.d3-lista{list-style:none;padding:0;margin:22px 0 30px;display:grid;gap:10px}
+.d3-lista li{display:flex;gap:12px;align-items:baseline}
+.d3-lista li::before{content:"";flex:none;width:10px;height:10px;transform:translateY(-1px) rotate(30deg);background:var(--sage-d);clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%)}
+@media (max-width:860px){.d3-sten-grid{grid-template-columns:1fr;gap:20px}.d3-sten-box{max-width:420px;width:100%;margin:0 auto}}
+</style>
+<style>
+/* Genomgående: morgonljuset i hjälten, pappersstruktur och solfläckar längre ner */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.2;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .27 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.t .hero.ljus{position:relative;min-height:min(760px,84svh);display:flex;align-items:flex-start;margin-top:calc(-1 * var(--navh,0px));padding-top:calc(var(--navh,0px) + clamp(36px,5vw,64px))}
+.t .hero.ljus::before{display:none}
+.hero.ljus .wrap{width:100%}
+.hero.ljus .hero-grid{grid-template-columns:minmax(0,40rem)}
+.hero.ljus .hero-art{display:none}
+.t .hero>.ljus-bg,.ljus-bg{position:absolute!important;inset:0;z-index:0!important;overflow:hidden}
+.ljus-bg img,.ljus-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%}
+.ljus-bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(244,239,230,.78) 0%,rgba(244,239,230,.4) 38%,rgba(244,239,230,0) 60%),
+  linear-gradient(0deg,var(--linen) 0%,rgba(244,239,230,0) 22%)}
+/* Solfläckar: samma morgonsol faller snett över några avsnitt längre ner */
+#demo,#for-vem{position:relative}
+#demo::before,#for-vem::before{content:"";position:absolute;z-index:-1;pointer-events:none;mix-blend-mode:multiply;background:url(ljus/sol.jpg) center/cover no-repeat;opacity:.75;
+  -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);mask-image:radial-gradient(closest-side,#000 55%,transparent 100%)}
+#demo::before{right:-8%;top:-6%;width:min(1100px,90vw);aspect-ratio:16/9}
+#for-vem::before{left:-12%;top:-20%;width:min(1000px,85vw);aspect-ratio:16/9;transform:scaleX(-1) rotate(8deg)}
+@media (max-width:860px){
+  .t .hero.ljus{min-height:0;align-items:flex-end;padding-top:calc(var(--navh,0px) + 34vw)}
+  .ljus-bg img,.ljus-bg video{object-position:76% 30%}
+  .ljus-bg::after{background:linear-gradient(0deg,var(--linen) 0%,rgba(244,239,230,.86) 55%,rgba(244,239,230,.2) 85%)}
+}
+@media (prefers-reduced-motion:reduce){.ljus-bg video{display:none}}
+</style>
 </head>
 <body id="top">
 <a class="skip" href="#main">Hoppa till innehållet</a>
@@ -1007,7 +1050,8 @@ header.site .v2-menu{border-radius:8px!important}
 </header>
 
 <main id="main">
-<section class="hero" data-blob="0" aria-labelledby="h-hero">
+<section class="hero ljus" data-blob="0" aria-labelledby="h-hero">
+  <div class="ljus-bg" aria-hidden="true"><img src="ljus/morgon.jpg" alt="" fetchpriority="high"><video src="ljus/morgon.mp4" poster="ljus/morgon.jpg" autoplay muted loop playsinline preload="auto"></video></div>
   <div class="wrap">
     <div class="hero-grid">
       <div>
@@ -1168,6 +1212,23 @@ header.site .v2-menu{border-radius:8px!important}
       <article class="au rv"><div class="ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l2-6h16l2 6M4 11h20v12H4zM11 23v-6h6v6"/></svg></div><h3>Småföretag</h3><p>Hantverkare, butiker, kaféer och byråer som vill att sajten ger fler kunder.</p></article>
       <article class="au rv d1"><div class="ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="4"/><circle cx="19" cy="11" r="3"/><path d="M3 23c0-4 3-7 7-7s7 3 7 7M17 17c4 0 8 2 8 6"/></svg></div><h3>Föreningar</h3><p>Idrott, kultur och organisationer som vill bli lättare att hitta, förstå och engagera sig i.</p></article>
       <article class="au rv d2"><div class="ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11L14 4l11 7M5 11v10M10 11v10M18 11v10M23 11v10M3 24h22"/></svg></div><h3>Offentlig sektor</h3><p>Verksamheter med krav på tillgänglighet (WCAG) och tydlig information för alla.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec d3-sten" id="sten" style="padding-top:0" aria-labelledby="h-sten">
+  <div class="wrap">
+    <div class="d3-sten-grid">
+      <div class="d3-sten-box" id="d3sten" tabindex="0" role="img" aria-label="En sexkantig grön glassten ur Webbglans logotyp. Dra eller använd piltangenterna för att vrida den.">
+        <video src="ljus/sten.mp4" poster="ljus/sten.jpg" muted playsinline preload="auto" loop></video>
+        <span class="d3-hint">Dra för att vrida stenen</span>
+      </div>
+      <div>
+        <h2 id="h-sten">Vi vänder&nbsp;på <i>varje&nbsp;sten.</i></h2>
+        <p class="lead" style="margin-top:14px">Innan vi föreslår något går vi igenom er hemsida från alla håll. Ni får svart på vitt vad som fungerar och vad som drar ner den.</p>
+        <ul class="d3-lista"><li>Hur snabbt den laddar i mobilen</li><li>Om alla kan använda den, även med skärmläsare</li><li>Vad besökarna ser först, och vad de letar efter</li></ul>
+        <a class="btn" href="granskning.html">Boka granskningen</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1356,7 +1417,7 @@ header.site .v2-menu{border-radius:8px!important}
 
   /* ---------- hero cards follow pointer (tiny) ---------- */
   const art = document.querySelector('.hero-art');
-  if (motion && art && matchMedia('(pointer:fine)').matches) art.addEventListener('pointermove', e => { const b=art.getBoundingClientRect(), x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5; art.style.transform=`rotateY(${x*8}deg) rotateX(${-y*8}deg)`; });
+  if (false) art.addEventListener('pointermove', e => { const b=art.getBoundingClientRect(), x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5; art.style.transform=`rotateY(${x*8}deg) rotateX(${-y*8}deg)`; });
 
 
   /* ---------- form (demo, no backend) ---------- */
@@ -1576,6 +1637,48 @@ setTimeout(run,1400);g.addEventListener('pointerenter',run);})();
   });
   addEventListener('pageshow', e => { if (e.persisted) cur.classList.remove('cover', 'away'); });
 })();
+</script>
+<script>
+// Stenen: en film runt stenen. Dra för att vrida, annars snurrar den sakta själv.
+(() => {
+  const box = document.getElementById('d3sten'); if (!box) return;
+  const v = box.querySelector('video'), hint = box.querySelector('.d3-hint');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Filmen är kodad baklänges, så stenens lugna snurr är vanlig uppspelning: varje bildruta är skarp och
+  // webbläsaren sköter tempot. Dras stenen bakåt spolas filmen i stället. Ett varv tar 48 s i vila.
+  const TURN = 48, MINR = .0625;
+  let D = 8, BASE = 0, vel = 0, tau = .6, drag = null, lastT = 0, pos = 0, want = null;
+  v.muted = true; v.loop = true;
+  v.addEventListener('loadedmetadata', () => { D = v.duration; BASE = reduce ? 0 : D / TURN; vel = BASE; });
+  const wrap = p => ((p % D) + D) % D;
+  const seek = p => { want = wrap(p); if (!v.seeking) v.currentTime = want; };
+  v.addEventListener('seeked', () => { if (want !== null && Math.abs(v.currentTime - want) > .02) v.currentTime = want; });
+  const frame = now => { const s = now / 1000, dt = Math.min(1/30, s - lastT || 0); lastT = s;
+    if (!drag){
+      vel += (BASE - vel) * (1 - Math.exp(-dt / tau));            // tillbaka mot grundtempot
+      if (vel >= MINR){ want = null; const r = Math.min(16, vel); if (Math.abs(v.playbackRate - r) > .003) v.playbackRate = r; if (v.paused) v.play().catch(() => {}); pos = v.currentTime; }
+      else { if (!v.paused) v.pause(); pos += vel * dt; seek(pos); } // bakåt eller nästan stilla: spola
+    }
+    requestAnimationFrame(frame); };
+  requestAnimationFrame(frame);
+  box.addEventListener('pointerdown', e => { v.pause(); pos = v.currentTime; drag = {x: e.clientX, p: pos, t: e.timeStamp, lx: e.clientX, v: 0}; box.setPointerCapture(e.pointerId); box.classList.add('drar'); hint && hint.classList.add('borta'); });
+  box.addEventListener('pointermove', e => { if (!drag) return; const k = D / (box.clientWidth * 1.6);
+    pos = drag.p - (e.clientX - drag.x) * k; seek(pos);
+    const dt = (e.timeStamp - drag.t) / 1000; if (dt > 0) drag.v = drag.v * .6 + (-(e.clientX - drag.lx) * k / dt) * .4; drag.t = e.timeStamp; drag.lx = e.clientX; });
+  const up = e => { if (!drag) return;
+    const sv = e.timeStamp - drag.t > 120 ? 0 : drag.v; // stod fingret still innan släppet blir det inget kast
+    drag = null; box.classList.remove('drar');
+    vel = Math.max(-D * .9, Math.min(D * .9, sv));
+    tau = Math.min(4, .8 + Math.abs(vel - BASE) / (D * .2)) / 3; }; // hårdare snurr ger längre återgång, klar inom högst 4 s
+  box.addEventListener('pointerup', up); box.addEventListener('pointercancel', up);
+  box.addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight'){ e.preventDefault(); vel = (e.key === 'ArrowRight' ? -1 : 1) * D * .25; tau = 1.2; hint && hint.classList.add('borta'); } });
+})();
+</script>
+<script>
+// Hjältens bakgrund går upp bakom den klibbiga menyn
+// Reducera rörelse: morgonljuset står still som bild och filmen laddas inte
+(() => { const v = document.querySelector('.ljus-bg video'); if (v && matchMedia('(prefers-reduced-motion: reduce)').matches){ v.pause(); v.removeAttribute('src'); v.load(); v.remove(); } })();
+(() => { const h = document.querySelector('header.site'); const s = () => document.documentElement.style.setProperty('--navh', h.offsetHeight + 'px'); s(); addEventListener('resize', s); })();
 </script>
 </body>
 </html>
