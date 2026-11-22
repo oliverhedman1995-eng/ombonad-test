@@ -7,7 +7,7 @@
 <meta name="description" content="Demo av Webbglans: en påhittad advokatbyrå i Umeå som hjälper till vid skilsmässa, vårdnad, bodelning och arv. Första samtalet är kostnadsfritt.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#15233B">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315233B'/%3E%3Cpath d='M8 21h16M8 16h16M8 11h16' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315233B'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='21' fill='%23fff'%3E%C2%A7%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -50,14 +50,16 @@ p{margin:0 0 1em;text-wrap:pretty}
 .demo a:hover{color:#fff;text-decoration-thickness:2px}
 
 /* Meny */
-.meny{position:sticky;top:0;z-index:50;background:var(--bas);border-bottom:1px solid var(--linje);transition:box-shadow .3s var(--ease)}
+/* Bakgrunden ligger i ett eget lager, så att mobilmenyn under kan göra sidan bakom suddig */
+.meny{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--linje);transition:box-shadow .4s var(--ease)}
+.meny::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px) saturate(1.15);backdrop-filter:blur(14px) saturate(1.15)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.meny::before{background:var(--bas)}}
 .meny.skuggad{box-shadow:0 10px 30px -18px rgba(21,35,59,.45)}
 .meny .sida{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
 .namn{display:flex;align-items:center;gap:12px;color:var(--marin);font:600 var(--s4)/1.2 var(--serif);white-space:nowrap}
 .namn:hover{color:var(--marin);text-decoration:none}
-.namn svg{flex:none}
-.namn rect{transition:fill .3s}
-.namn:hover rect{fill:var(--accent)}
+.namn .mark{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:6px;background:var(--marin);color:#fff;font:600 20px/1 var(--serif);transition:background .4s var(--ease)}
+.namn:hover .mark{background:var(--accent)}
 .hoger{display:flex;align-items:center;gap:32px}
 .lankar{position:relative;display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
 /* Understrykningen ritas fram från vänster vid hover, 2 px tjock och 3 px under texten */
@@ -69,27 +71,40 @@ p{margin:0 0 1em;text-wrap:pretty}
 /* Markören glider till avsnittet man läser */
 .markor{position:absolute;left:0;top:0;height:2px;width:0;background:var(--accent);opacity:0;pointer-events:none;transition:transform .5s var(--ease),width .5s var(--ease),opacity .3s}
 .meny-knapp{display:none;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--linje);border-radius:4px;background:var(--bas);color:var(--marin);cursor:pointer;box-shadow:0 0 0 0 var(--linje);transition:box-shadow .2s,border-color .2s}
-.meny-knapp:hover{border-color:var(--marin);box-shadow:0 0 0 4px var(--yta)}
+@media (hover:hover){.meny-knapp:hover{border-color:var(--marin);box-shadow:0 0 0 4px var(--yta)}} /* på mobil fastnar hover efter ett tryck */
 .meny-knapp svg{width:20px;height:20px}
 .meny-knapp path{transition:transform .35s var(--ease),opacity .2s;transform-origin:10px 10px}
 .meny-knapp[aria-expanded=true] .l1{transform:translateY(5px) rotate(45deg)}
 .meny-knapp[aria-expanded=true] .l2{opacity:0}
 .meny-knapp[aria-expanded=true] .l3{transform:translateY(-5px) rotate(-45deg)}
-/* Mobilmenyn: rullas ner som en gardin, länkarna kommer in en i taget */
-.mobilmeny{position:absolute;left:0;right:0;top:100%;background:var(--marin);padding:16px 0 32px;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .5s var(--ease),visibility 0s .5s}
-.mobilmeny.oppen{clip-path:inset(0);visibility:visible;transition:clip-path .5s var(--ease),visibility 0s}
+/* Mobilmenyn: en lätt, nästan vit gardin som rullas ner långsamt. Raderna glider fram en i taget. */
+.mobilmeny{position:absolute;left:0;right:0;top:100%;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(18px) saturate(1.15);backdrop-filter:blur(18px) saturate(1.15);border-bottom:1px solid var(--linje);box-shadow:0 30px 40px -34px rgba(21,35,59,.4);padding:4px 0 20px;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .55s cubic-bezier(.65,0,.35,1),visibility 0s .55s}
+.mobilmeny.oppen{clip-path:inset(0 0 -60px 0);visibility:visible;transition:clip-path 1s cubic-bezier(.65,0,.35,1),visibility 0s}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.mobilmeny{background:var(--bas)}}
 .mobilmeny ul{list-style:none;width:var(--sida);margin:0 auto;padding:0}
-.mobilmeny li{border-bottom:1px solid var(--marin-2);opacity:0;transform:translateY(-8px);transition:opacity .3s,transform .4s var(--ease)}
-.mobilmeny.oppen li{opacity:1;transform:none}
-.mobilmeny.oppen li:nth-child(2){transition-delay:.06s}
-.mobilmeny.oppen li:nth-child(3){transition-delay:.12s}
-.mobilmeny.oppen li:nth-child(4){transition-delay:.18s}
-.mobilmeny a{display:block;padding:16px 0;color:#fff;font:600 var(--s5)/1.2 var(--serif)}
-.mobilmeny a:hover{color:#fff;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
-.mobilmeny .liten-lank{font:600 var(--s3)/1.2 var(--sans);color:var(--pa-marin-2)}
+.mobilmeny li{position:relative;opacity:0;transform:translateY(-6px);transition:opacity .25s,transform .3s var(--ease)}
+.mobilmeny li::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--linje);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.mobilmeny.oppen li{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.mobilmeny.oppen li::after{transform:scaleX(1);transition:transform 1s var(--ease)}
+.mobilmeny.oppen li:nth-child(1),.mobilmeny.oppen li:nth-child(1)::after{transition-delay:.22s}
+.mobilmeny.oppen li:nth-child(2),.mobilmeny.oppen li:nth-child(2)::after{transition-delay:.32s}
+.mobilmeny.oppen li:nth-child(3),.mobilmeny.oppen li:nth-child(3)::after{transition-delay:.42s}
+.mobilmeny.oppen li:nth-child(4),.mobilmeny.oppen li:nth-child(4)::after{transition-delay:.52s}
+.mobilmeny li:last-child::after{display:none}
+.mobilmeny a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;color:var(--marin);font:500 var(--s3)/1.3 var(--sans)}
+.mobilmeny a::after{content:"→";color:var(--text-2);transform:translateX(-6px);opacity:.6;transition:transform .4s var(--ease),opacity .4s,color .4s}
+.mobilmeny a:hover{color:var(--marin);text-decoration:none}
+.mobilmeny a:hover::after,.mobilmeny a:focus-visible::after{transform:none;opacity:1;color:var(--accent)}
+.mobilmeny .liten-lank{color:var(--accent);font-weight:600}
+.mobilmeny .liten-lank::after{content:none}
+.meny-knapp path{transition:transform .6s var(--ease),opacity .4s}
 @media (max-width:960px){.hoger nav{display:none}.meny-knapp{display:inline-flex}.hoger{gap:12px}}
 @media (min-width:961px){.mobilmeny{display:none}}
-@media (max-width:480px){.meny .sida{height:64px}.namn{font-size:18px}.namn svg{width:28px;height:28px}.meny-knapp{width:40px;height:40px}.meny .knapp .lang{display:none}.namn{gap:10px;font-size:17px}.hoger{gap:8px}}
+@media (max-width:480px){.meny .sida{height:64px}.namn{font-size:18px}.namn .mark{width:28px;height:28px;font-size:18px}.meny-knapp{width:40px;height:40px}.meny .knapp .lang{display:none}.namn{gap:10px;font-size:17px}.hoger{gap:8px}}
+
+/* Rubrikerna i avsnitten tonar in lugnt när man kommer fram till dem */
+.js .sek h2{opacity:0;transform:translateY(14px);transition:opacity 1.1s var(--ease),transform 1.3s var(--ease)}
+.js .sek h2.syns{opacity:1;transform:none}
 
 /* Knappar: växer 4 px åt alla håll vid hover, texten står still */
 .knapp{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border:0;border-radius:4px;background:var(--accent);color:#fff;font:600 var(--s3)/1.2 var(--sans);text-align:center;cursor:pointer;box-shadow:0 0 0 0 var(--accent-hover);transition:background .2s,box-shadow .2s}
@@ -213,19 +228,20 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
   .kort{right:16px;padding:26px 24px 20px}
 }
 @media (prefers-reduced-motion:reduce){
+  .js .sek h2{opacity:1;transform:none}
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
   .ram img{transform:none;height:100%!important}
 }
 </style>
 </head>
-<body>
+<body id="top">
 <a class="skip" href="#main">Hoppa till innehållet</a>
 <div class="demo" role="note">Demo av Webbglans. Advokatbyrån Strand är en påhittad advokatbyrå. <a href="https://webbglans.se/">Tillbaka till webbglans.se</a></div>
 
 <header class="meny">
   <div class="sida">
-    <a class="namn" href="#main" aria-label="Advokatbyrån Strand, till toppen">
-      <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#15233B"/><path d="M8 21h16M8 16h16M8 11h16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <a class="namn" href="#top" aria-label="Advokatbyrån Strand, till toppen">
+      <span class="mark" aria-hidden="true">§</span>
       Advokatbyrån Strand
     </a>
     <div class="hoger">
@@ -382,6 +398,7 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
   const stang = () => { mobil.classList.remove('oppen'); knapp.setAttribute('aria-expanded', 'false'); };
   knapp.addEventListener('click', () => { const o = !mobil.classList.contains('oppen'); mobil.classList.toggle('oppen', o); knapp.setAttribute('aria-expanded', o); });
   mobil.addEventListener('click', e => { if (e.target.closest('a')) stang(); });
+  document.addEventListener('click', e => { if (mobil.classList.contains('oppen') && !e.target.closest('.meny')) stang(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && mobil.classList.contains('oppen')){ stang(); knapp.focus(); } });
 
   // Markören i menyn följer avsnittet man läser
@@ -405,7 +422,7 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
     rad = null; const h = innerHeight;
     meny.classList.toggle('skuggad', scrollY > 8);
     // Avtäckning när bilderna och stegen kommer in (kontrolleras vid varje skroll, så att inget missas vid snabb skroll)
-    document.querySelectorAll('.avtack:not(.syns), .steg:not(.syns)').forEach(el => { if (el.getBoundingClientRect().top < h * .85) el.classList.add('syns'); });
+    document.querySelectorAll('.avtack:not(.syns), .steg:not(.syns), .sek h2:not(.syns)').forEach(el => { if (el.getBoundingClientRect().top < h * .85) el.classList.add('syns'); });
     let a = null; avsnitt.forEach((s, i) => { const r = s.getBoundingClientRect(); if (r.top < h * .4 && r.bottom > h * .4) a = lankar[i]; });
     markera(a);
     if (lugn) return;
@@ -426,7 +443,7 @@ footer a:hover{color:#fff;text-decoration-thickness:2px}
 
   // Reserv: avtäck också via IntersectionObserver, om skrollhändelserna inte hinner köras
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('syns'); io.unobserve(e.target); } }));
-  document.querySelectorAll('.avtack, .steg').forEach(el => io.observe(el));
+  document.querySelectorAll('.avtack, .steg, .sek h2').forEach(el => io.observe(el));
 
 })();
 </script>
