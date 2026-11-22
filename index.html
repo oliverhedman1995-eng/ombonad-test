@@ -33,6 +33,9 @@
 <style>
 /* Självhostade typsnitt (woff2, latin-subset, font-display:swap) */
 @font-face{font-family:'Figtree';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/Figtree-normal.woff2?v=10) format('woff2')}
+/* Reservtypsnitt med Newsreaders bredd, så att rubriken inte hoppar när rätt typsnitt laddas */
+@font-face{font-family:'Newsreader Reserv';src:local('Georgia');size-adjust:96.3%}
+@font-face{font-family:'Newsreader Reserv';font-style:italic;src:local('Georgia Italic'),local('Georgia-Italic');size-adjust:96.3%}
 @font-face{font-family:'Newsreader';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/Newsreader-normal.woff2?v=10) format('woff2')}
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:100 900;font-display:swap;src:url(fonts/Newsreader-italic.woff2?v=10) format('woff2')}
 @font-face{font-family:'Figtree';font-style:italic;font-weight:300 900;font-display:swap;src:url(fonts/Figtree-italic.woff2?v=10) format('woff2')}
@@ -40,7 +43,7 @@
 :root{
   --linen:#F4EFE6; --linen-2:#EBE4D6; --paper:#FFFDF8; --ink:#2C302C; --ink-2:#565C55; --line:#DED6C6;
   --sage:#9DB49A; --sage-2:#6F8A6D; --sage-d:#455B47; --sage-l:#DCE6D7; --butter:#F3DE95; --butter-l:#FBF1CF; --clay:#C9805A;
-  --disp:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --disp:'Newsreader','Newsreader Reserv', "Iowan Old Style", Georgia, serif;
   --sans:"Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --r:28px; --max:1180px; --spring:cubic-bezier(.34,1.56,.64,1); --ease:cubic-bezier(.22,.8,.2,1);
 }
@@ -114,6 +117,7 @@ header.site{position:sticky;top:0;z-index:50;padding:14px 0}
 .hero{padding:clamp(40px,7vw,90px) 0 clamp(60px,8vw,110px)}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,70px);align-items:center}
 .hero h1{margin:26px 0 26px}
+.hero h1{white-space:nowrap;font-size:min(clamp(46px,7vw,92px),12.2vw)} /* alltid två rader: reservtypsnittet bryter annars första raden innan Newsreader har laddats */
 .hero h1 .w{display:inline-block}
 .motion .hero h1 .w{opacity:0;transform:translateY(40px) rotate(4deg);animation:pop .9s var(--spring) forwards;animation-delay:calc(var(--i)*70ms + 150ms)}
 @keyframes pop{to{opacity:1;transform:none}}
