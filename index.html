@@ -1030,12 +1030,13 @@ p,li,dd{text-wrap:pretty}h2,h3,.v2-step-h{text-wrap:balance}
 .ljus-bg::after{content:"";position:absolute;inset:0;background:
   linear-gradient(90deg,rgba(244,239,230,.78) 0%,rgba(244,239,230,.4) 38%,rgba(244,239,230,0) 60%),
   linear-gradient(0deg,var(--linen) 0%,rgba(244,239,230,0) 22%)}
-/* Solfläckar: samma morgonsol faller snett över några avsnitt längre ner */
-#demo,#for-vem{position:relative}
-#demo::before,#for-vem::before{content:"";position:absolute;z-index:-1;pointer-events:none;background:url(ljus/sol.jpg) center/cover no-repeat;opacity:.75;
+/* Solfläckar: morgonsolen faller snett över varje avsnitt under toppen, växelvis från höger och vänster */
+main>section:not(:first-of-type){position:relative;isolation:isolate}
+main>section:not(:first-of-type)::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:-8%;width:min(1080px,90vw);aspect-ratio:16/9;background:url(ljus/sol.jpg) center/cover no-repeat;opacity:.72;
   -webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);mask-image:radial-gradient(closest-side,#000 55%,transparent 100%)}
-#demo::before{right:-8%;top:-6%;width:min(1100px,90vw);aspect-ratio:16/9}
-#for-vem::before{left:-12%;top:-20%;width:min(1000px,85vw);aspect-ratio:16/9;transform:scaleX(-1) rotate(8deg)}
+main>section:not(:first-of-type):nth-of-type(even)::before{right:-9%}
+main>section:not(:first-of-type):nth-of-type(odd)::before{left:-12%;top:-14%;transform:scaleX(-1) rotate(8deg)}
+@media (max-width:860px){main>section:not(:first-of-type)::before{width:130vw;top:-4%}}
 @media (max-width:860px){
   .t .hero.ljus{min-height:0;align-items:flex-end;padding-top:calc(var(--navh,0px) + 34vw)}
   .ljus-bg img,.ljus-bg video{object-position:76% 30%}
